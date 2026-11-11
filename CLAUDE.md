@@ -54,7 +54,10 @@ Git: github.com/drvegaz/Dragso (privat, push via HTTPS – SSH-nyckel saknas). V
 - Tänkt grund: **cms-core** (`C:\Web\cms-core`, github.com/drvegaz/cms-core), samma som PIFAST (`C:\Web\pifast-static`,
   PHP-sidor som ritas på servern) och Trossö (`C:\Web\Trosso\Trossö Trafikskola ombyggnad - CMS`, statisk sajt med
   `window.SITE`). Moduler som passar: formular (bokningsförfrågan, felanmälan), banners, oppettider, anvandare.
-  cms-core saknar stöd för flera språk – avgörs innan start.
+  Flera språk: modulen `sprak` i cms-core 1.6.0 (steg 1 klart: språk, översättningstabell, ändringskoll).
+  Plan och återstående steg (adresser /en/, AI-översättning, ordlista) i `C:\Web\cms-core\PLAN-sprak.md`,
+  AI-testet i `C:\Web\cms-core\test\sprak\`. Dragsö: engelska först, troligen på /en/; "Camping & Stugby" översätts.
+  Lägg alla texter, även knappar och "från … kr/natt", i site.json (t.ex. under `ui`) så att de kan översättas.
 - Synka kärnan med `php C:\Web\cms-core\sync.php "<webbplatsens mapp>"`, ändra aldrig i `cms/` direkt (utom `cms/site/`).
 - Varje cms-core-uppdatering på en sajt får en rad under "Nytt i CMS:et" i sajtens `cms/site/hjalp.html`.
 - Uppladdning görs med WinSCP och ett `tools/deploy.ps1` som i pifast/Trossö: förhandsvisning först, aldrig
