@@ -1,0 +1,238 @@
+{
+  "about": "Camping och stugby på en egen ö i Karlskronas skärgård, 3 km från centrum. Gästerna är familjer, husvagns- och husbilsresenärer och par.",
+  "tone": {
+    "en": "Tilltala läsaren med \"you\". Vänlig och enkel ton, som på svenska. Skriv priser som \"SEK 230\".",
+    "de": "Tilltala läsaren med \"du\" (inte \"Sie\"). Vänlig och enkel ton, som på svenska. Skriv priser som \"230 SEK\"."
+  },
+  "entries": [
+    {
+      "id": "d1",
+      "term": "Dragsö",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namnet på ön"
+    },
+    {
+      "id": "d2",
+      "term": "Karlskrona",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": ""
+    },
+    {
+      "id": "d3",
+      "term": "Stortorget",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "torget i Karlskrona"
+    },
+    {
+      "id": "d4",
+      "term": "Örlogsbyn",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugby (tyska: das, eftersom by = Dorf)"
+    },
+    {
+      "id": "d5",
+      "term": "Världsarvsbyn",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugby (tyska: das, eftersom by = Dorf)"
+    },
+    {
+      "id": "d6",
+      "term": "Fiskebyn",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugby (tyska: das, eftersom by = Dorf)"
+    },
+    {
+      "id": "d7",
+      "term": "Skärgårdsbyn",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugby (tyska: das, eftersom by = Dorf)"
+    },
+    {
+      "id": "d8",
+      "term": "Strandstugan",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på en stuga"
+    },
+    {
+      "id": "d9",
+      "term": "Dragsöstugan",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på en stuga"
+    },
+    {
+      "id": "d10",
+      "term": "Artilleristen",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d11",
+      "term": "Navigatören",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d12",
+      "term": "Signalisten",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d13",
+      "term": "Maskinisten",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d14",
+      "term": "Minören",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d15",
+      "term": "Korvetten",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d16",
+      "term": "Kustartilleristen",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d17",
+      "term": "Ubåten",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": "namn på stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d18",
+      "term": "Kids Club",
+      "type": "keep",
+      "fixed": {},
+      "explain": "",
+      "note": ""
+    },
+    {
+      "id": "d19",
+      "term": "Örlogsstugor",
+      "type": "fixed",
+      "fixed": {
+        "en": "Örlogsbyn cabins",
+        "de": "Örlogsbyn-Hütten"
+      },
+      "explain": "",
+      "note": "stugorna i Örlogsbyn"
+    },
+    {
+      "id": "d20",
+      "term": "pullmansäng",
+      "type": "explain",
+      "fixed": {},
+      "explain": "en säng som fälls ner från väggen, inte en våningssäng",
+      "note": ""
+    },
+    {
+      "id": "d21",
+      "term": "Stugsviter",
+      "type": "fixed",
+      "fixed": {
+        "en": "Cabin suites",
+        "de": "Hüttensuiten"
+      },
+      "explain": "",
+      "note": "en typ av stuga"
+    },
+    {
+      "id": "d22",
+      "term": "Lila zon",
+      "type": "fixed",
+      "fixed": {
+        "en": "Purple zone",
+        "de": "Lila Zone"
+      },
+      "explain": "",
+      "note": "campingzon"
+    },
+    {
+      "id": "d23",
+      "term": "Blå zon",
+      "type": "fixed",
+      "fixed": {
+        "en": "Blue zone",
+        "de": "Blaue Zone"
+      },
+      "explain": "",
+      "note": "campingzon"
+    },
+    {
+      "id": "d24",
+      "term": "Grön zon",
+      "type": "fixed",
+      "fixed": {
+        "en": "Green zone",
+        "de": "Grüne Zone"
+      },
+      "explain": "",
+      "note": "campingzon"
+    },
+    {
+      "id": "d25",
+      "term": "Orange zon",
+      "type": "fixed",
+      "fixed": {
+        "en": "Orange zone",
+        "de": "Orange Zone"
+      },
+      "explain": "",
+      "note": "campingzon"
+    },
+    {
+      "id": "d26",
+      "term": "Röd zon",
+      "type": "fixed",
+      "fixed": {
+        "en": "Red zone",
+        "de": "Rote Zone"
+      },
+      "explain": "",
+      "note": "campingzon"
+    }
+  ]
+}

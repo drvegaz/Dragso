@@ -1,2 +1,5 @@
 public/
 .vercel/
+# cms/site/config.php har lösenord och SMTP – aldrig i git.
+cms/site/config.php
+cms/storage/
