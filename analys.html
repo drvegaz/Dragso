@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dragsö Camping – analys av webbplats och bokning</title>
+<style>
+  :root { --text:#1f2933; --muted:#5f6b76; --line:#dde3e8; --soft:#f4f7f9; --accent:#0f6c8c; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#fff; color:var(--text); font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif; }
+  main { max-width:780px; margin:0 auto; padding:40px 16px 64px; }
+  h1 { font-size:30px; line-height:1.2; margin:0 0 6px; }
+  .meta { color:var(--muted); font-size:14px; margin:0 0 24px; }
+  .lead { font-size:18px; margin:0 0 32px; padding:16px 20px; background:var(--soft); border-left:4px solid var(--accent); }
+  h2 { font-size:21px; margin:40px 0 12px; padding-top:8px; border-top:1px solid var(--line); }
+  p { margin:0 0 14px; }
+  ul, ol { margin:0 0 14px; padding-left:22px; }
+  li { margin:0 0 6px; }
+  table { width:100%; border-collapse:collapse; margin:0 0 16px; font-size:15px; }
+  th, td { text-align:left; vertical-align:top; padding:9px 10px; border-bottom:1px solid var(--line); }
+  th { background:var(--soft); font-weight:600; }
+  .levels td:first-child { font-weight:700; white-space:nowrap; }
+  .tag { display:inline-block; font-size:12px; font-weight:700; padding:1px 8px; border-radius:10px; background:#e3f1f6; color:var(--accent); }
+  .warn { background:#fff7e6; border-left:4px solid #d48806; padding:12px 16px; margin:0 0 16px; }
+  a { color:var(--accent); }
+  @media print { main { padding-top:0; } h2 { break-after:avoid; } table, .lead, .warn { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Dragsö Camping – analys av webbplats och bokning</h1>
+  <p class="meta">11 november 2026 · bygger på det som syns publikt på dragso.se och boka.dragso.se</p>
+
+  <p class="lead">Bokningen sköts av ett eget system, <strong>TurBo2an från paxess</strong>, som kan vara kvar som det är. Webbplatsen runt omkring kan därför byggas om helt fristående, utan att bokningar, betalningar eller rutiner påverkas.</p>
+
+  <h2>Så fungerar det i dag</h2>
+  <p>Webbplatsen och bokningen är två helt olika system som bara länkar till varandra.</p>
+  <table>
+    <tr><th>Del</th><th>Vad det är</th><th>Kommentar</th></tr>
+    <tr><td>Webbplatsen<br>dragso.se</td><td>WordPress hos one.com, med temat "Ronneby" och sidbyggaren WPBakery</td><td>Cirka 88 sidor. Många tillägg (bildspel, cookies, formulär, Google). Startsidan laddar 33 stilmallar och 30 skript, men går ändå snabbt tack vare cachning.</td></tr>
+    <tr><td>Bokningen<br>boka.dragso.se</td><td>TurBo2an från paxess ("Turbo online"), på en egen server</td><td>Visas på sidan <em>Boka online</em> som en inbäddad ruta. Övriga bokningsknappar länkar direkt dit.</td></tr>
+    <tr><td>Engelska</td><td>Separat domän, dragsocamping.com</td><td>Inte samma webbplats som den svenska.</td></tr>
+    <tr><td>Systersajter</td><td>havsviken.se, ronnebyhavscamping.se, halloweek.se</td><td>Länkas från startsidan.</td></tr>
+  </table>
+
+  <h2>Bokningssystemet</h2>
+  <p>I bokningen väljer gästen boendetyp (camping, stugor, rum eller övrigt), datum och antal personer. Platser kan väljas direkt på en karta över området, och det finns ett FLEX-pris som går att avboka, samt rabattkoder.</p>
+  <p>Just nu går 17 kategorier att boka, bland annat:</p>
+  <table>
+    <tr><th>Kategori</th><th>Pris från</th></tr>
+    <tr><td>Örlogsbyn (dusch och toalett, 4+2 bäddar)</td><td>2 000 kr</td></tr>
+    <tr><td>Stugsviter (dusch och toalett, 4+2 bäddar)</td><td>1 800 kr</td></tr>
+    <tr><td>Världsarvsbyn och Fiskebyn</td><td>1 150 kr</td></tr>
+    <tr><td>Skärgårdsbyn, Dragsöstugan, Strandstugan</td><td>700–710 kr</td></tr>
+    <tr><td>Rum (2+1 bäddar)</td><td>600 kr</td></tr>
+    <tr><td>Husvagn, husbil och tält i lila, blå och grön zon</td><td>260 kr</td></tr>
+    <tr><td>Tältplatser</td><td>230–240 kr</td></tr>
+  </table>
+  <p>Bokningssidan hämtar sina uppgifter (priser, beskrivningar, bilder, lediga platser och kartan) från systemet i ett maskinläsbart format. Det betyder att en ny webbplats tekniskt sett skulle kunna visa aktuella priser och lediga platser. Det är dock inte dokumenterat som en öppen tjänst, så det bör göras i samråd med paxess.</p>
+  <div class="warn"><strong>Liten sak att rätta direkt:</strong> en testkategori, "Kanot test" för 1 200 kr, syns i den publika bokningen.</div>
+
+  <h2>Tre sätt att bygga om</h2>
+  <table class="levels">
+    <tr><th>Nivå</th><th>Vad det innebär</th><th>Arbete och risk</th></tr>
+    <tr><td>1. Ny webbplats</td><td>Ny, enklare webbplats med samma bokning som i dag, via länk eller inbäddad ruta.</td><td><span class="tag">Rekommenderas</span><br>Minst arbete. Kräver inget av paxess.</td></tr>
+    <tr><td>2. Med priser</td><td>Som nivå 1, men varje stug- och platssida visar aktuellt pris och en "Boka"-knapp som öppnar rätt kategori direkt.</td><td>Mer arbete. Kräver att paxess godkänner det, så att det inte slutar fungera om de ändrar något.</td></tr>
+    <tr><td>3. Nytt bokningssystem</td><td>Byta ut TurBo2an.</td><td>Ett affärsbeslut för campingen, inte en del av en ny webbplats. Påverkar hela driften.</td></tr>
+  </table>
+  <p>En ny webbplats kan få samma verktyg som de andra sajterna vi byggt: redaktören ändrar texter och bilder direkt på sidan, formulär (till exempel bokningsförfrågan och felanmälan, som finns i dag), banners högst upp och öppettider som uppdateras på ett ställe.</p>
+
+  <h2>Att tänka på</h2>
+  <ul>
+    <li><strong>Språk.</strong> Verktyget vi använder har inget stöd för flera språk. Den engelska sajten kan antingen fortsätta vara separat, eller så behöver språkstöd byggas.</li>
+    <li><strong>Antal sidor.</strong> Cirka 88 sidor, varav många är säsongs- och aktivitetssidor (kajak, SUP, äventyrsminigolf, Halloweek, jul och nyår). En del kan troligen slås ihop.</li>
+    <li><strong>Systersajterna.</strong> Om samma ägare har dem kan de få samma grund, så att allt sköts på samma sätt.</li>
+  </ul>
+
+  <h2>Frågor att reda ut innan vi bestämmer</h2>
+  <ol>
+    <li>Hur ser avtalet med paxess ut? Kan de ge dokumentation för att hämta priser och lediga platser, eller en färdig bokningsruta?</li>
+    <li>Ingår den engelska sajten, dragsocamping.com, i ombyggnaden? Och systersajterna?</li>
+    <li>Vilka av sidorna används egentligen, och vilka går att slå ihop eller ta bort?</li>
+    <li>Vem uppdaterar webbplatsen i dag, och vad är krångligt med det?</li>
+  </ol>
+
+  <h2>Källor</h2>
+  <ul>
+    <li><a href="https://www.dragso.se/">dragso.se</a> och <a href="https://boka.dragso.se/">boka.dragso.se</a>, granskade 11 november 2026</li>
+    <li><a href="https://www.visitblekinge.se/en/dragso-camping-stugby">Visit Blekinge – Dragsö Camping &amp; Stugby</a></li>
+    <li><a href="https://www.vastsverige.com/globalassets/turistradet-vastsverige/pdf/digital-narvaro/digital-handbok---bokning-online-2026.pdf">Västsvenska turistrådet – Digital handbok: bokning online 2026</a> (nämner TurBo2an från paxess)</li>
+  </ul>
+</main>
+</body>
+</html>

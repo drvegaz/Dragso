@@ -1,0 +1,9 @@
+{
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "sh build.sh",
+  "outputDirectory": "public",
+  "headers": [
+    { "source": "/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
+  ]
+}

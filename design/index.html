@@ -1,0 +1,721 @@
+<title>Dragsö Designförslag</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: ön först. Stor flygbild, bokningen alltid ett klick bort (röd knapp i headern),
+   innehåll i lugna band med smal textbredd. Zonfärgerna och snabbfakta är sajtens egna detaljer. */
+:root {
+  --paper: #f5f7f8;      /* sidans grund, sval gråvit */
+  --surface: #ffffff;
+  --ink: #14233f;        /* text, marinblå nästan svart */
+  --muted: #566376;
+  --line: #d9e1e7;
+  --hav: #233f8c;        /* från loggan */
+  --hav-soft: #e5ecf6;
+  --band: #233f8c;       /* faktaremsan */
+  --on-band: #ffffff;
+  --foot-bg: #0d1626; --on-foot: #e9eef5;
+  --season-bg: #14233f; --on-season: #f5f7f8;
+  --hero-shade: linear-gradient(90deg, rgba(10,22,40,0.78) 0%, rgba(10,22,40,0.45) 50%, rgba(10,22,40,0.1) 100%);
+  --hero-shade-m: linear-gradient(180deg, rgba(10,22,40,0.55), rgba(10,22,40,0.8));
+  --r-lg: 10px;
+  --shadow: rgba(20,35,63,0.13);
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --falu: #ad3328;       /* faluröd som stugorna, för Boka */
+  --on-falu: #ffffff;
+  --bar: #0d1626;        /* förslagsremsan, ligger utanför designen */
+  --on-bar: #e9eef5;
+  --z-orange: #d9731f; --z-gron: #2f8a47; --z-bla: #2a6fc4; --z-lila: #7a4db3; --z-rod: #c3352b;
+  --logo-light: block; --logo-dark: none;
+  --f-display: "Familjen Grotesk", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --r: 6px;
+  --wrap: 1180px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0d1522; --surface: #142033; --ink: #e8eef6; --muted: #9fb0c4; --line: #26354c;
+  --hav: #93b4ff; --hav-soft: #1a2944; --band: #1c3266; --falu: #d65a4d; --on-falu: #ffffff; --bar: #050a12; --on-bar: #e9eef5;
+  --shadow: rgba(0,0,0,0.45); --on-band: #ffffff; --foot-bg: #050a12; --on-foot: #e9eef5; --season-bg: #1a2944; --on-season: #e8eef6;
+  --hero-shade: linear-gradient(90deg, rgba(10,22,40,0.78) 0%, rgba(10,22,40,0.45) 50%, rgba(10,22,40,0.1) 100%);
+  --hero-shade-m: linear-gradient(180deg, rgba(10,22,40,0.55), rgba(10,22,40,0.8));
+  --logo-light: none; --logo-dark: block; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0d1522; --surface: #142033; --ink: #e8eef6; --muted: #9fb0c4; --line: #26354c;
+  --hav: #93b4ff; --hav-soft: #1a2944; --band: #1c3266; --falu: #d65a4d; --on-falu: #ffffff; --bar: #050a12; --on-bar: #e9eef5;
+  --shadow: rgba(0,0,0,0.45); --on-band: #ffffff; --foot-bg: #050a12; --on-foot: #e9eef5; --season-bg: #1a2944; --on-season: #e8eef6;
+  --hero-shade: linear-gradient(90deg, rgba(10,22,40,0.78) 0%, rgba(10,22,40,0.45) 50%, rgba(10,22,40,0.1) 100%);
+  --hero-shade-m: linear-gradient(180deg, rgba(10,22,40,0.55), rgba(10,22,40,0.8));
+  --logo-light: none; --logo-dark: block; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 400 17px/1.6 var(--f-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+img { max-width: 100%; display: block; }
+a { color: var(--hav); }
+:focus-visible { outline: 3px solid var(--hav); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.1; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.3rem, 5.5vw, 4.2rem); font-weight: 700; }
+h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 600; }
+h3 { font-size: 1.3rem; font-weight: 600; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 500 0.78rem/1.2 var(--f-data); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lead { font-size: 1.2rem; max-width: 60ch; color: var(--muted); }
+.prose { max-width: 65ch; display: grid; gap: 14px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 600 1rem/1 var(--f-body); padding: 14px 20px; border-radius: var(--r); text-decoration: none; border: 2px solid transparent; cursor: pointer; }
+.btn-boka { background: var(--falu); color: var(--on-falu); }
+.btn-boka:hover { filter: brightness(1.08); }
+.btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--hav); }
+.num { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+
+/* ---------- Förslagsremsan (inte del av designen) ---------- */
+.proposal { background: var(--bar); color: var(--on-bar); font: 400 14px/1.4 var(--f-body); }
+.proposal .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding-block: 10px; }
+.proposal strong { font-family: var(--f-data); font-weight: 500; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tabs a { color: var(--on-bar); text-decoration: none; padding: 5px 11px; border-radius: 99px; border: 1px solid rgba(233,238,245,0.25); font-size: 13px; }
+.tabs a[aria-current="page"] { background: var(--on-bar); color: var(--bar); border-color: var(--on-bar); }
+.proposal .note { flex: 1 1 320px; min-width: 0; opacity: 0.8; font-size: 13px; }
+
+/* ---------- Sajtens header ---------- */
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-head .wrap { display: flex; align-items: center; gap: 20px; padding-block: 10px; }
+.logo { flex: 0 0 auto; }
+.logo img { height: 46px; width: auto; }
+.logo .l-light { display: var(--logo-light); }
+.logo .l-dark { display: var(--logo-dark); }
+.mainnav { display: flex; gap: 4px; margin-left: auto; }
+.mainnav a { color: var(--ink); text-decoration: none; font-weight: 500; padding: 8px 12px; border-radius: var(--r); }
+.mainnav a:hover, .mainnav a[aria-current="page"] { background: var(--hav-soft); color: var(--hav); }
+.head-tools { display: flex; align-items: center; gap: 12px; }
+.head-tools .lang { font: 500 13px var(--f-data); color: var(--muted); text-decoration: none; }
+.head-tools .btn { padding: 11px 18px; }
+.menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: var(--r); padding: 9px 12px; font: 500 15px var(--f-body); cursor: pointer; }
+@media (max-width: 920px) {
+  .mainnav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--surface); border-bottom: 1px solid var(--line); flex-direction: column; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); }
+  .mainnav.open { display: flex; }
+  .menu-btn { display: inline-block; margin-left: auto; }
+  .head-tools .lang { display: none; }
+  .logo img { height: 38px; }
+}
+@media (max-width: 420px) { .head-tools .btn { padding: 10px 12px; font-size: 0.95rem; } }
+
+/* ---------- Gemensamma band ---------- */
+.band { padding-block: clamp(48px, 7vw, 88px); }
+.band-alt { background: var(--surface); border-block: 1px solid var(--line); }
+.section-head { display: grid; gap: 10px; margin-bottom: 32px; max-width: 70ch; }
+
+/* ---------- Start: hero ---------- */
+.hero { position: relative; color: #fff; background: #1a2b45; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after { content: ""; position: absolute; inset: 0; background: var(--hero-shade); }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; align-items: end; padding-block: clamp(64px, 11vw, 140px) clamp(40px, 6vw, 72px); }
+.hero .eyebrow { color: rgba(255,255,255,0.85); }
+.hero h1 { margin-top: 14px; }
+.hero .hero-text p { font-size: 1.2rem; max-width: 46ch; margin-top: 18px; color: rgba(255,255,255,0.92); }
+.stars { letter-spacing: 0.15em; color: #ffd27a; }
+.book-card { background: var(--surface); color: var(--ink); border-radius: var(--r-lg); padding: 22px; box-shadow: 0 20px 50px rgba(5,12,25,0.35); display: grid; gap: 4px; }
+.book-card h2 { font-size: 1.35rem; margin-bottom: 8px; }
+.book-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 14px 4px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+.book-row:hover b { color: var(--falu); }
+.book-row b { font: 600 1.1rem var(--f-display); display: block; }
+.book-row small { color: var(--muted); font-size: 0.9rem; }
+.book-row .price { text-align: right; font-size: 0.85rem; color: var(--muted); }
+.book-row .price span { display: block; font: 500 1.1rem var(--f-data); color: var(--ink); }
+.book-card .fine { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .hero::after { background: var(--hero-shade-m); } }
+
+.facts { background: var(--band); color: var(--on-band); }
+.facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding-block: 22px; }
+.facts div { display: grid; gap: 2px; }
+.facts b { font: 500 1.6rem var(--f-data); }
+.facts span { font-size: 0.92rem; opacity: 0.85; }
+@media (max-width: 700px) { .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Vägval */
+.paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.path { display: grid; grid-template-rows: auto 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; color: var(--ink); text-decoration: none; }
+.path img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; transition: transform .4s; }
+.path .ph { overflow: hidden; }
+.path:hover img { transform: scale(1.03); }
+.path .body { padding: 18px 20px 22px; display: grid; gap: 8px; align-content: start; }
+.path .from { font: 500 0.9rem var(--f-data); color: var(--muted); }
+.path .go { color: var(--hav); font-weight: 600; margin-top: 4px; }
+@media (max-width: 820px) { .paths { grid-template-columns: 1fr; } }
+
+/* Livet på ön */
+.mosaic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 200px; gap: 12px; }
+.tile { position: relative; border-radius: var(--r); overflow: hidden; background: var(--hav-soft); }
+.tile img { width: 100%; height: 100%; object-fit: cover; }
+.tile figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 14px 12px; color: #fff; background: linear-gradient(transparent, rgba(5,12,25,0.75)); font-size: 0.92rem; }
+.tile figcaption b { display: block; font: 600 1.05rem var(--f-display); }
+.tile.big { grid-column: span 2; grid-row: span 2; }
+.tile.wide { grid-column: span 2; }
+figure { margin: 0; }
+@media (max-width: 820px) { .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 160px; } .tile.big { grid-row: span 2; } }
+
+/* Säsongsbanner (cms-modulen banners) */
+.season { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-radius: var(--r-lg); overflow: hidden; background: var(--season-bg); color: var(--on-season); }
+.season img { width: 100%; height: 100%; object-fit: cover; min-height: 260px; }
+.season .txt { padding: clamp(24px, 4vw, 48px); display: grid; gap: 14px; align-content: center; }
+.season .eyebrow { color: var(--on-season); opacity: 0.7; }
+.season .btn-ghost { color: var(--on-season); border-color: rgba(127,140,160,0.6); justify-self: start; }
+@media (max-width: 760px) { .season { grid-template-columns: 1fr; } }
+
+/* Hitta hit */
+.find { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.ways { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.ways div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.ways dt { font: 500 0.8rem/1.6 var(--f-data); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.ways dd { margin: 0; }
+dl { margin: 0; }
+.hours { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 10px; }
+.hours table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.hours td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.hours td:last-child { text-align: right; font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+@media (max-width: 820px) { .find { grid-template-columns: 1fr; } }
+
+/* ---------- Sidhuvud för undersidor ---------- */
+.page-head { padding-block: clamp(40px, 6vw, 72px) 28px; display: grid; gap: 14px; }
+.crumbs { font-size: 0.9rem; color: var(--muted); }
+.crumbs a { color: var(--muted); }
+
+/* ---------- Boende ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip { font: 500 0.95rem var(--f-body); padding: 8px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.group { display: grid; gap: 18px; padding-block: 28px; }
+.group-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+.group-head p { color: var(--muted); font-size: 0.95rem; }
+.stays { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.stay { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.stay .pic { aspect-ratio: 3 / 2; max-width: 100%; background: var(--hav-soft); position: relative; }
+.stay .pic img { width: 100%; height: 100%; object-fit: cover; }
+.stay .pic.none { background: repeating-linear-gradient(170deg, var(--hav-soft) 0 14px, transparent 14px 28px), var(--paper); display: grid; place-items: center; }
+.stay .pic.none span { font: 500 0.78rem var(--f-data); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--surface); padding: 4px 10px; border-radius: 99px; }
+.stay .body { padding: 18px 20px 20px; display: grid; gap: 10px; grid-template-rows: auto auto 1fr auto; }
+.stay .body p { color: var(--muted); font-size: 0.95rem; }
+.specs { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+.specs li { font: 500 0.78rem var(--f-data); padding: 3px 8px; border-radius: 4px; background: var(--hav-soft); color: var(--hav); }
+.stay .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); padding-top: 12px; }
+.stay .foot .from { font-size: 0.85rem; color: var(--muted); }
+.stay .foot .from b { font: 500 1.1rem var(--f-data); color: var(--ink); }
+.stay .foot a { font-weight: 600; text-decoration: none; }
+@media (max-width: 960px) { .stays { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .stays { grid-template-columns: 1fr; } }
+
+/* ---------- Örlogsbyn ---------- */
+.cabin-hero img { width: 100%; aspect-ratio: 21 / 8; object-fit: cover; max-width: 100%; }
+@media (max-width: 700px) { .cabin-hero img { aspect-ratio: 4 / 3; } }
+.cabin { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; align-items: start; padding-block: 40px 80px; }
+.cabin-main { display: grid; gap: 40px; min-width: 0; }
+.cabin-main section { display: grid; gap: 14px; }
+.names { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 0; list-style: none; }
+.names li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 2px; }
+.names .num { font-size: 0.8rem; color: var(--muted); }
+.names b { font: 600 1rem var(--f-display); }
+.names .pet { font-size: 0.78rem; color: var(--z-gron); }
+@media (max-width: 700px) { .names { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.equip { columns: 2; column-gap: 32px; padding-left: 20px; margin: 0; }
+.equip li { margin-bottom: 4px; }
+@media (max-width: 560px) { .equip { columns: 1; } }
+.terms { border-top: 1px solid var(--line); }
+.terms div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.terms dd { margin: 0; font-family: var(--f-data); font-variant-numeric: tabular-nums; text-align: right; }
+.aside { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 90px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px; display: grid; gap: 16px; }
+.aside .price { font-size: 0.9rem; color: var(--muted); }
+.aside .price b { display: block; font: 500 1.8rem var(--f-data); color: var(--ink); }
+.quick { border-top: 1px solid var(--line); font-size: 0.95rem; }
+.quick div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.quick dt { color: var(--muted); }
+.quick dd { margin: 0; font-family: var(--f-data); font-variant-numeric: tabular-nums; text-align: right; }
+.aside .btn { justify-content: center; }
+.aside small { color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 920px) { .cabin { grid-template-columns: 1fr; } .aside { position: static; } }
+
+/* ---------- Camping ---------- */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.split img { border-radius: var(--r); width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+.stat-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-block: 1px solid var(--line); margin-top: 8px; }
+.stat-row div { padding: 18px 16px 18px 0; display: grid; gap: 4px; }
+.stat-row b { font: 500 2rem var(--f-data); color: var(--hav); }
+.stat-row span { font-size: 0.92rem; color: var(--muted); }
+@media (max-width: 700px) { .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.zones { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.zone { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.zone .sw { width: 14px; height: 100%; min-height: 48px; border-radius: 3px; background: var(--c); }
+.zone h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+.zone h3 small { font: 500 0.75rem var(--f-data); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.zone p { color: var(--muted); margin-top: 6px; max-width: 60ch; }
+.zone .zp { text-align: right; font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+.zone .zp b { display: block; font: 500 1.15rem var(--f-data); color: var(--ink); }
+.zone.nobook .zp b { font-size: 0.95rem; }
+@media (max-width: 560px) { .zone { grid-template-columns: 10px minmax(0, 1fr); } .zone .zp { grid-column: 2; text-align: left; } }
+.help { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center; background: var(--hav-soft); border-radius: var(--r-lg); padding: 24px 28px; margin-top: 32px; }
+.help p { color: var(--ink); }
+@media (max-width: 640px) { .help { grid-template-columns: 1fr; } }
+
+/* ---------- Footer ---------- */
+.site-foot { background: var(--foot-bg); color: var(--on-foot); padding-block: 56px 32px; }
+.site-foot .cols { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 32px; }
+.site-foot h3 { font-size: 1rem; margin-bottom: 10px; }
+.site-foot a { color: var(--on-foot); }
+.site-foot ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 0.95rem; }
+.site-foot .muted { opacity: 0.7; font-size: 0.9rem; }
+.site-foot .bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(127,140,160,0.35); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 0.85rem; opacity: 0.75; }
+@media (max-width: 820px) { .site-foot .cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .site-foot .cols { grid-template-columns: 1fr; } }
+
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--bar); color: var(--on-bar); padding: 10px 16px; border-radius: 8px; font-size: 14px; z-index: 50; max-width: calc(100% - 32px); }
+/* ---------- Rörelse ---------- */
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes settle { from { transform: scale(1.07); } to { transform: scale(1); } }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.hero { overflow: hidden; }
+.hero-img { animation: settle 2s var(--ease) both; }
+.hero-text > * { animation: rise .8s var(--ease) both; }
+.hero-text > :nth-child(2) { animation-delay: .1s; }
+.hero-text > :nth-child(3) { animation-delay: .2s; }
+.book-card { animation: rise .9s .3s var(--ease) both; }
+[data-view]:not([hidden]) { animation: fadein .35s ease both; }
+.reveal { transition: opacity .7s ease, transform .7s var(--ease); }
+.reveal.pending { opacity: 0; transform: translateY(26px); }
+.path, .stay { transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+.path:hover, .stay:hover { transform: translateY(-4px); box-shadow: 0 16px 34px var(--shadow); border-color: transparent; }
+.stay { animation: rise .5s var(--ease) both; }
+.go { display: inline-block; transition: transform .3s var(--ease); }
+.path:hover .go { transform: translateX(5px); }
+.tile img { transition: transform .8s var(--ease); }
+.tile:hover img { transform: scale(1.05); }
+.book-row { transition: background .2s, padding .3s var(--ease); border-radius: 4px; }
+.book-row:hover { background: var(--hav-soft); padding-inline: 10px; }
+.btn { transition: filter .2s, transform .15s, border-color .2s, box-shadow .3s; }
+.btn-boka:hover { box-shadow: 0 6px 18px var(--shadow); }
+.btn:active { transform: scale(.97); }
+.site-head { transition: box-shadow .3s; }
+.site-head.scrolled { box-shadow: 0 6px 24px var(--shadow); }
+.mainnav a, .chip { transition: background .2s, color .2s, border-color .2s; }
+.mainnav.open { animation: rise .25s var(--ease) both; }
+.toast { animation: rise .3s var(--ease) both; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal.pending { opacity: 1; transform: none; }
+}
+</style>
+
+<!-- Förslagsremsan: bara för att visa förslaget, inte en del av sajten -->
+<div class="proposal">
+  <div class="wrap">
+    <strong>Designförslag · nov 2026</strong>
+    <nav class="tabs" aria-label="Sidor i förslaget">
+      <a href="#start">Startsida</a>
+      <a href="#boende">Boende</a>
+      <a href="#orlogsbyn">Stugsida</a>
+      <a href="#camping">Camping</a>
+    </nav>
+    <p class="note" id="note"></p>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#start" aria-label="Dragsö Camping, till startsidan">
+      <img class="l-light" src="img/logo.png" alt="Dragsö Camping" width="547" height="237">
+      <img class="l-dark" src="img/logo-vit.png" alt="Dragsö Camping" width="412" height="113">
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainnav">Meny</button>
+    <nav class="mainnav" id="mainnav" aria-label="Huvudmeny">
+      <a href="#boende" data-nav="boende orlogsbyn">Boende</a>
+      <a href="#camping" data-nav="camping">Camping</a>
+      <a href="#" data-todo>Aktiviteter</a>
+      <a href="#" data-todo>Hitta hit</a>
+      <a href="#" data-todo>Kontakt</a>
+    </nav>
+    <div class="head-tools">
+      <a class="lang" href="https://dragsocamping.com" target="_blank" rel="noopener">EN</a>
+      <a class="btn btn-boka" href="https://boka.dragso.se/" target="_blank" rel="noopener">Boka</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= STARTSIDA ================= -->
+<section data-view="start">
+  <div class="hero">
+    <img class="hero-img" src="img/hero-on.jpg" alt="Flygbild över Dragsö med badstranden och Karlskrona i bakgrunden">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="eyebrow"><span class="stars" aria-label="Fyra stjärnor">★★★★</span> Camping &amp; Stugby · Karlskrona</p>
+        <h1>En egen ö mitt i Karlskronas skärgård</h1>
+        <p>Camping, stugor och rum med havet runt hela ön. Sandstrand, klippbad och 20 minuters promenad till Stortorget.</p>
+      </div>
+      <div class="book-card">
+        <h2>Vad vill du boka?</h2>
+        <a class="book-row" href="https://boka.dragso.se/" target="_blank" rel="noopener">
+          <span><b>Stuga</b><small>Från enkla stugor till Örlogsbyn</small></span>
+          <span class="price">från<span>700 kr</span></span>
+        </a>
+        <a class="book-row" href="https://boka.dragso.se/" target="_blank" rel="noopener">
+          <span><b>Husvagn, husbil, tält</b><small>290 platser, alla med el</small></span>
+          <span class="price">från<span>230 kr</span></span>
+        </a>
+        <a class="book-row" href="https://boka.dragso.se/" target="_blank" rel="noopener">
+          <span><b>Rum</b><small>2+1 bäddar</small></span>
+          <span class="price">från<span>600 kr</span></span>
+        </a>
+        <p class="fine">Pris per natt. Boka online och få upp till 90 kr rabatt.</p>
+      </div>
+    </div>
+  </div>
+  <div class="facts">
+    <div class="wrap">
+      <div><b>2,8 km</b><span>till Karlskrona centrum</span></div>
+      <div><b>3</b><span>badplatser, två med sandstrand</span></div>
+      <div><b>83</b><span>campingtomter med sjöutsikt</span></div>
+      <div><b>08–16:30</b><span>receptionen har öppet</span></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Bo på Dragsö</p>
+        <h2>Tält vid vattnet eller stuga med golvvärme</h2>
+      </div>
+      <div class="paths">
+        <a class="path" href="#boende">
+          <div class="ph"><img src="img/orlogsbyn.jpg" alt="Örlogsbyns röda stugor sedda från ovan" loading="lazy"></div>
+          <div class="body"><p class="from">från 700 kr/natt</p><h3>Stugor</h3><p>Sju stugbyar, med eller utan dusch och toalett. Åtta Örlogsstugor och fem stugsviter med egna teman.</p><span class="go">Se alla stugor →</span></div>
+        </a>
+        <a class="path" href="#camping">
+          <div class="ph"><img src="img/camping-trad.jpg" alt="Husvagn under ett stort träd med havet bakom" loading="lazy"></div>
+          <div class="body"><p class="from">från 230 kr/natt</p><h3>Camping</h3><p>Små fält runt hela ön. De flesta tomter ligger nära havet, och alla har el.</p><span class="go">Välj zon och plats →</span></div>
+        </a>
+        <a class="path" href="#" data-todo>
+          <div class="ph"><img src="img/stallplats.jpg" alt="Husbil parkerad under ett träd vid vattnet" loading="lazy"></div>
+          <div class="body"><p class="from">kort stopp</p><h3>Ställplatser</h3><p>För dig med husbil som bara vill stanna en natt eller två nära stan.</p><span class="go">Läs mer →</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="band band-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Livet på ön</p>
+        <h2>Det finns alltid något att göra</h2>
+        <p class="lead">På sommaren har vi Kids Club och aktiviteter för barnen. Kajaker, SUP och båtar hyr du i receptionen.</p>
+      </div>
+      <div class="mosaic">
+        <figure class="tile big"><img src="img/badtunna.jpg" alt="Badtunna på bastuflotten i solnedgång" loading="lazy"><figcaption><b>Bastuflotten</b>Bastu och badtunna ute på vattnet</figcaption></figure>
+        <figure class="tile"><img src="img/minigolf.jpg" alt="Äventyrsminigolf med modeller av Karlskronas byggnader" loading="lazy"><figcaption><b>Äventyrsminigolf</b>Världsarvet i miniatyr, 18 hål</figcaption></figure>
+        <figure class="tile"><img src="img/kajaker.jpg" alt="Kajaker på fjärden" loading="lazy"><figcaption><b>Kajak &amp; SUP</b>Hyr i receptionen</figcaption></figure>
+        <figure class="tile wide"><img src="img/shuffleboard.jpg" alt="Shuffleboard på terrassen" loading="lazy"><figcaption><b>Shuffleboard</b>Spela på terrassen</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="season">
+        <img src="img/sjobod.jpg" alt="Sjöbodar vid en brygga en klar vinterdag" loading="lazy">
+        <div class="txt">
+          <p class="eyebrow">Just nu</p>
+          <h2>Jul och nyår vid havet</h2>
+          <p>Fira helgerna i en varm stuga på Dragsö, med promenadavstånd till stan. Boka i god tid.</p>
+          <a class="btn btn-ghost" href="#" data-todo>Läs om jul och nyår</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band band-alt">
+    <div class="wrap find">
+      <div class="prose">
+        <p class="eyebrow">Hitta hit</p>
+        <h2>Bron till ön ligger tre kilometer från centrum</h2>
+        <dl class="ways">
+          <div><dt>Adress</dt><dd>Dragsövägen 14, 371 37 Karlskrona</dd></div>
+          <div><dt>Bil</dt><dd>Över bron från Karlskrona. Parkering vid receptionen.</dd></div>
+          <div><dt>Gå &amp; cykla</dt><dd>Asfalterad gång- och cykelväg hela vägen in till stan, cirka 20 minuter till fots.</dd></div>
+          <div><dt>Båt</dt><dd>Skärgårdstrafiken stannar på Dragsö under sommaren.</dd></div>
+        </dl>
+      </div>
+      <div class="hours">
+        <h3>Receptionen</h3>
+        <table>
+          <tr><td>Måndag–fredag</td><td>08:00–16:30</td></tr>
+          <tr><td>Lördag–söndag</td><td>08:00–16:30</td></tr>
+        </table>
+        <p class="num">0455-153 54</p>
+        <p>info@dragso.se</p>
+        <small style="color:var(--muted)">Öppettiderna ändras på ett ställe och syns överallt på sajten.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOENDE ================= -->
+<section data-view="boende" hidden>
+  <div class="wrap page-head">
+    <p class="crumbs"><a href="#start">Start</a> / Boende</p>
+    <h1>Stugor och rum</h1>
+    <p class="lead">Alla stugor har kök och ligger nära vattnet. De med dusch och toalett har sängkläder att hyra och kan städas av oss.</p>
+    <div class="chips" role="group" aria-label="Visa">
+      <button class="chip" id="f-all" data-filter="all" aria-pressed="true">Alla</button>
+      <button class="chip" id="f-wc" data-filter="wc" aria-pressed="false">Med dusch &amp; WC</button>
+      <button class="chip" id="f-enkel" data-filter="enkel" aria-pressed="false">Enklare stugor</button>
+      <button class="chip" id="f-rum" data-filter="rum" aria-pressed="false">Rum</button>
+    </div>
+  </div>
+  <div class="wrap" id="stayGroups" style="padding-bottom:72px"></div>
+</section>
+
+<!-- ================= ÖRLOGSBYN ================= -->
+<section data-view="orlogsbyn" hidden>
+  <div class="cabin-hero"><img src="img/orlogsbyn.jpg" alt="Örlogsbyns åtta röda stugor med solceller och verandor"></div>
+  <div class="wrap page-head" style="padding-bottom:0">
+    <p class="crumbs"><a href="#start">Start</a> / <a href="#boende">Boende</a> / Örlogsbyn</p>
+    <h1>Örlogsbyn</h1>
+    <p class="lead">Åtta stugor med marint tema, dusch, toalett och fullt utrustat kök. 44 m² med sovrum, sovloft och golvvärme i alla rum.</p>
+  </div>
+  <div class="wrap cabin">
+    <div class="cabin-main">
+      <section>
+        <h2>Åtta stugor, åtta teman</h2>
+        <p class="prose">Varje stuga är inredd efter en roll eller ett fartyg från örlogsstaden Karlskrona.</p>
+        <ul class="names">
+          <li><span class="num">32</span><b>Artilleristen</b><span class="pet">Husdjur ok</span></li>
+          <li><span class="num">33</span><b>Navigatören</b><span class="pet">Husdjur ok</span></li>
+          <li><span class="num">34</span><b>Signalisten</b><span class="pet">Husdjur ok</span></li>
+          <li><span class="num">35</span><b>Maskinisten</b><span class="pet">Husdjur ok</span></li>
+          <li><span class="num">36</span><b>Minören</b></li>
+          <li><span class="num">37</span><b>Korvetten</b></li>
+          <li><span class="num">38</span><b>Kustartilleristen</b></li>
+          <li><span class="num">39</span><b>Ubåten</b></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Så bor ni</h2>
+        <div class="prose">
+          <p>Master bedroom med dubbelsäng, loft med två enkelsängar och en bäddsoffa i vardagsrummet. Smart-TV finns i vardagsrum, sovrum och på loftet.</p>
+          <p>Verandan har utemöbler, och ni parkerar upp till två bilar direkt vid stugan. Elbilsladdning finns.</p>
+        </div>
+      </section>
+      <section>
+        <h2>Utrustning</h2>
+        <ul class="equip">
+          <li>Dusch och toalett</li><li>Kyl och frys</li><li>Diskmaskin och tvättmaskin</li><li>Spis, ugn och mikro</li>
+          <li>Porslin, bestick och kastruller</li><li>Kaffebryggare, vattenkokare, brödrost</li><li>Täcken och kuddar</li>
+          <li>Strykjärn</li><li>Air condition</li><li>Golvvärme</li><li>Gratis wifi</li><li>Disk- och städutrustning</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Bra att veta när du bokar</h2>
+        <p class="prose">Minst två nätter. Enstaka nätter under hög- och peaksäsong bara i undantagsfall.</p>
+        <dl class="terms">
+          <div><dt>Bokningsavgift</dt><dd>80 kr</dd></div>
+          <div><dt>Avbeställningsskydd, per stuga</dt><dd>250 kr</dd></div>
+          <div><dt>Slutstädning, om du inte städar själv</dt><dd>990 kr</dd></div>
+          <div><dt>Lakan och handduk, per set</dt><dd>160 kr</dd></div>
+        </dl>
+      </section>
+    </div>
+    <aside class="aside" aria-label="Boka Örlogsbyn">
+      <p class="price">Pris per natt från<b>2 000 kr</b></p>
+      <dl class="quick">
+        <div><dt>Storlek</dt><dd>44 m²</dd></div>
+        <div><dt>Bäddar</dt><dd>4 + 2</dd></div>
+        <div><dt>Rum</dt><dd>2 + sovloft</dd></div>
+        <div><dt>Dusch &amp; WC</dt><dd>Ja</dd></div>
+        <div><dt>Husdjur</dt><dd>Stuga 32–35</dd></div>
+        <div><dt>Elbilsladdning</dt><dd>Ja</dd></div>
+      </dl>
+      <a class="btn btn-boka" href="https://boka.dragso.se/" target="_blank" rel="noopener">Se lediga datum</a>
+      <a class="btn btn-ghost" href="#" data-todo>Planlösning</a>
+      <small>Frågor? Ring receptionen på <span class="num">0455-153 54</span>.</small>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= CAMPING ================= -->
+<section data-view="camping" hidden>
+  <div class="wrap page-head">
+    <p class="crumbs"><a href="#start">Start</a> / Camping</p>
+    <h1>Camping med havet runt hörnet</h1>
+  </div>
+  <div class="wrap">
+    <div class="split">
+      <div class="prose">
+        <p class="lead">Campingen sträcker sig som ett U runt ön, uppdelad på små fält. Det största har bara 52 platser. Västra sidan är lummig och grön, den östra har utsikt över Karlskrona.</p>
+        <p>Alla platser för husvagn och husbil har el som ingår i priset. Runt ön finns tre badplatser: två sandstränder och ett klippbad med brygga.</p>
+      </div>
+      <img src="img/camping-rad.jpg" alt="Husvagnar med förtält på rad vid vattnet" loading="lazy">
+    </div>
+    <div class="stat-row">
+      <div><b>290</b><span>platser, alla med el</span></div>
+      <div><b>83</b><span>med direkt sjöutsikt</span></div>
+      <div><b>45</b><span>med utsikt över stan</span></div>
+      <div><b>52</b><span>platser på största fältet</span></div>
+    </div>
+  </div>
+  <div class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Campingzoner</p>
+        <h2>Fem zoner efter läge, storlek och pris</h2>
+        <p class="lead">Zonen styr priset. Du ser zonerna på kartan när du bokar och kan välja en egen plats där.</p>
+      </div>
+      <div class="zones">
+        <div class="zone" style="--c:var(--z-lila)"><span class="sw"></span><div><h3>Lila zon <small>Bokningsbar</small></h3><p>Direkt vid vattnet eller med havsutsikt, främst på västra sidan. Nytt för 2026: lila platser vid vattnet även på östra sidan.</p></div><p class="zp">från<b>260 kr</b></p></div>
+        <div class="zone" style="--c:var(--z-bla)"><span class="sw"></span><div><h3>Blå zon <small>Bokningsbar</small></h3><p>Utspridd över hela ön, nära servicehusen eller med större ytor.</p></div><p class="zp">från<b>260 kr</b></p></div>
+        <div class="zone" style="--c:var(--z-gron)"><span class="sw"></span><div><h3>Grön zon <small>Bokningsbar</small></h3><p>Två områden: sydöstra delen nära receptionen och nordöstra sidan av ön.</p></div><p class="zp">från<b>260 kr</b></p></div>
+        <div class="zone" style="--c:var(--z-orange)"><span class="sw"></span><div><h3>Orange zon <small>Bokningsbar</small></h3><p>Mindre platser för mindre husvagnar och husbilar.</p></div><p class="zp">se pris<b>i bokningen</b></p></div>
+        <div class="zone nobook" style="--c:var(--z-rod)"><span class="sw"></span><div><h3>Röd zon <small>Ej förhandsbokning</small></h3><p>Direkt vid havet. Går bara att få vid ankomst eller byte under vistelsen, i mån av plats.</p></div><p class="zp">fråga<b>i receptionen</b></p></div>
+      </div>
+      <div class="help">
+        <p><b>Svårt att välja?</b> Ring oss så hjälper vi dig hitta rätt plats för din husvagn eller ditt tält. <span class="num">0455-153 54</span> · info@dragso.se</p>
+        <a class="btn btn-boka" href="https://boka.dragso.se/" target="_blank" rel="noopener">Boka campingplats</a>
+      </div>
+    </div>
+  </div>
+  <div class="band band-alt">
+    <div class="wrap split">
+      <img src="img/brygga.jpg" alt="Person på en brygga ute vid klipporna" loading="lazy">
+      <div class="prose">
+        <p class="eyebrow">Tält</p>
+        <h2>Tältplatser från 230 kr</h2>
+        <p>Tält bokas på samma sätt som husvagn, och du väljer zon i bokningen.</p>
+        <p>Inför ankomsten hittar du incheckningstider, ordningsregler och karta under <a href="#" data-todo>Inför ankomst</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Dragsö Camping &amp; Stugby</h3>
+        <ul class="muted"><li>Dragsövägen 14</li><li>371 37 Karlskrona</li><li class="num">0455-153 54</li><li>info@dragso.se</li></ul>
+      </div>
+      <div><h3>Bo hos oss</h3><ul><li><a href="#boende">Stugor och rum</a></li><li><a href="#camping">Camping</a></li><li><a href="#" data-todo>Ställplatser</a></li><li><a href="#" data-todo>Företagsboende</a></li></ul></div>
+      <div><h3>Information</h3><ul><li><a href="#" data-todo>Inför ankomst</a></li><li><a href="#" data-todo>Bokningsregler</a></li><li><a href="#" data-todo>Felanmälan</a></li><li><a href="#" data-todo>Jobba hos oss</a></li></ul></div>
+      <div><h3>Våra andra campingar</h3><ul><li><a href="https://havsviken.se" target="_blank" rel="noopener">Havsviken</a></li><li><a href="https://ronnebyhavscamping.se" target="_blank" rel="noopener">Ronneby Havscamping</a></li><li><a href="https://halloweek.se" target="_blank" rel="noopener">Halloweek</a></li></ul></div>
+    </div>
+    <div class="bottom"><span>© 2026 Dragsö Camping &amp; Stugby</span><span>Integritet · Cookies</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const NOTES = {
+  start: "Startsidan: bokningen är alltid ett klick bort, med pris från direkt. Alla Boka-knappar går till ert nuvarande bokningssystem.",
+  boende: "Alla stugor på en sida, sorterade efter standard. Priserna är hämtade från bokningen 11 nov 2026. Randiga rutor = bild saknas.",
+  orlogsbyn: "Exempel på en stugsida: snabbfakta, utrustning och villkor samlat, och bokningsknappen syns hela tiden.",
+  camping: "Zonerna förklaras med färg och pris, så att gästen vet vad hen väljer innan bokningen öppnas."
+};
+const STAYS = [
+  { g: "wc", name: "Örlogsbyn", text: "Åtta stugor med marint tema, sovloft och golvvärme.", specs: ["44 m²", "4+2 bäddar", "AC"], price: "2 000", img: "img/orlogsbyn.jpg", href: "#orlogsbyn" },
+  { g: "wc", name: "Stugsviter", text: "Fem stugor med egna teman: Skärgård, Retro, Svart/vit, Berg och Glas.", specs: ["4+2 bäddar", "Master bedroom"], price: "1 800" },
+  { g: "wc", name: "Världsarvsbyn", text: "Tio självhushållsstugor med pullmansängar och bäddsoffa.", specs: ["6 bäddar", "2 sovrum"], price: "1 150" },
+  { g: "wc", name: "Fiskebyn", text: "Fem stugor med våningssängar, kök och bäddsoffa i vardagsrummet.", specs: ["6 bäddar", "Kök"], price: "1 150", img: "img/stuga-vardagsrum.jpg" },
+  { g: "enkel", name: "Skärgårdsbyn, fyra bäddar", text: "Ett rum med två våningssängar. Kokplattor, kaffebryggare och liten kyl.", specs: ["4 bäddar", "Indraget vatten"], price: "700" },
+  { g: "enkel", name: "Skärgårdsbyn, tre bäddar", text: "Dubbelsäng med överslaf. Kokplattor, kaffebryggare och liten kyl.", specs: ["3 bäddar", "Indraget vatten"], price: "700" },
+  { g: "enkel", name: "Strandstugan", text: "Dragsös enda tvåbäddsstuga, precis vid badstranden.", specs: ["2 bäddar", "Vid stranden"], price: "710" },
+  { g: "enkel", name: "Dragsöstugan", text: "Enkel stuga med indraget vatten och mindre kök.", specs: ["Indraget vatten"], price: "700" },
+  { g: "enkel", name: "Husbåten", text: "Bo på vattnet. Enkel standard med indraget vatten och mindre kök.", specs: ["Flytande"], price: null },
+  { g: "rum", name: "Rum", text: "Rum med två bäddar och en extrasäng.", specs: ["2+1 bäddar"], price: "600" }
+];
+const GROUPS = [
+  { id: "wc", title: "Stugor med dusch och toalett", sub: "Fullt utrustat kök, TV och wifi" },
+  { id: "enkel", title: "Enklare stugor", sub: "Kök och indraget vatten, dusch i servicehuset" },
+  { id: "rum", title: "Rum", sub: "För en natt eller två" }
+];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function renderStays(filter) {
+  const out = GROUPS.filter(g => filter === "all" || g.id === filter).map(g => {
+    const cards = STAYS.filter(s => s.g === g.id).map((s, i) => `
+      <article class="stay" style="animation-delay:${i * 60}ms">
+        <div class="pic${s.img ? "" : " none"}">${s.img ? `<img src="${s.img}" alt="${esc(s.name)}" loading="lazy">` : `<span>Bild saknas</span>`}</div>
+        <div class="body">
+          <h3>${esc(s.name)}</h3>
+          <ul class="specs">${s.specs.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+          <p>${esc(s.text)}</p>
+          <div class="foot">
+            <span class="from">${s.price ? `från <b>${s.price} kr</b>` : "pris i bokningen"}</span>
+            <a href="${s.href || "#"}" ${s.href ? "" : "data-todo"}>Läs mer →</a>
+          </div>
+        </div>
+      </article>`).join("");
+    return `<div class="group"><div class="group-head"><h2>${esc(g.title)}</h2><p>${esc(g.sub)}</p></div><div class="stays">${cards}</div></div>`;
+  }).join("");
+  document.getElementById("stayGroups").innerHTML = out;
+}
+
+document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b ? "true" : "false"));
+  renderStays(b.dataset.filter);
+}));
+
+const VIEWS = ["start", "boende", "orlogsbyn", "camping"];
+function show() {
+  const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "start";
+  document.querySelectorAll("[data-view]").forEach(s => s.hidden = s.dataset.view !== v);
+  document.querySelectorAll(".tabs a").forEach(a => a.removeAttribute("aria-current"));
+  document.querySelectorAll(".tabs a").forEach(a => { if (a.getAttribute("href") === "#" + v) a.setAttribute("aria-current", "page"); });
+  document.querySelectorAll(".mainnav a[data-nav]").forEach(a => { if (a.dataset.nav.split(" ").includes(v)) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  document.getElementById("note").textContent = NOTES[v];
+  document.getElementById("mainnav").classList.remove("open");
+  document.getElementById("menuBtn").setAttribute("aria-expanded", "false");
+  window.scrollTo(0, 0);
+  armReveal(document.querySelector(`[data-view="${v}"]`));
+}
+
+// Innehåll under första skärmen tonar fram när det skrollas in. Allt ovanför syns direkt.
+const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+const io = ("IntersectionObserver" in window && !reduced) ? new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.remove("pending"); io.unobserve(e.target); } });
+}, { rootMargin: "0px 0px -8% 0px" }) : null;
+function armReveal(root) {
+  if (!io || !root) return;
+  root.querySelectorAll(".section-head, .path, .tile, .season, .find > *, .zone, .stat-row, .split > *, .cabin-main section, .help, .group-head").forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    const idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+    el.style.transitionDelay = (idx % 4) * 80 + "ms";
+    el.classList.add("reveal", "pending");
+    io.observe(el);
+  });
+}
+const head = document.querySelector(".site-head");
+window.addEventListener("scroll", () => head.classList.toggle("scrolled", window.scrollY > 8), { passive: true });
+window.addEventListener("hashchange", show);
+
+let toastTimer;
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-todo]");
+  if (!t) return;
+  e.preventDefault();
+  const el = document.getElementById("toast");
+  el.textContent = "Den sidan ingår inte i förslaget än.";
+  el.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.hidden = true; }, 2200);
+});
+document.getElementById("menuBtn").addEventListener("click", e => {
+  const nav = document.getElementById("mainnav");
+  const open = nav.classList.toggle("open");
+  e.currentTarget.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+renderStays("all");
+show();
+</script>
