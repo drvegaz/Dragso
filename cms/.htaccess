@@ -1,0 +1,17 @@
+<FilesMatch "^(lib|upload)\.php$">
+  Require all denied
+</FilesMatch>
+
+# Filer som synkskriptet lägger här (t.ex. .core-manifest) ska inte nås via webben.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# Redigeringsläget ska alltid hämtas färskt och aldrig indexeras.
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-cache"
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

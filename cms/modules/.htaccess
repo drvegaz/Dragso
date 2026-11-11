@@ -1,0 +1,6 @@
+# Modulerna körs via cms/page.php och cms/api.php – aldrig direkt. Bara skript och stilar som
+# webbplatsen läser in (t.ex. quiz/quiz.js) får hämtas härifrån.
+Require all denied
+<FilesMatch "\.(js|css)$">
+  Require all granted
+</FilesMatch>

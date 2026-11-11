@@ -1,0 +1,22 @@
+DirectoryIndex index.php
+Options -Indexes
+RewriteEngine On
+
+# Dolda filer och mappar (.git, .htaccess m.fl.), utom .well-known (certifikat).
+RewriteRule (^|/)\.(?!well-known/) - [F]
+
+# Språk (modulen sprak i cms-core): /en/ och /en/camping visar index.php och camping.php på engelska.
+# Ett språk som inte visas skickas vidare till huvudspråket av cms/modules/sprak/lang.php.
+RewriteRule ^([a-z]{2})/?$ index.php?lang=$1 [QSA,L]
+RewriteCond %{DOCUMENT_ROOT}/$2.php -f
+RewriteRule ^([a-z]{2})/([a-z0-9-]+)/?$ $2.php?lang=$1 [QSA,L]
+
+# Sidor utan .php: /camping visar camping.php.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([a-z0-9-]+)/?$ $1.php [QSA,L]
+
+# Utvecklingsfiler och dokumentation ska inte kunna hämtas.
+<FilesMatch "(\.(md|log|bak|sh)|^router\.php|^vercel\.json)$">
+  Require all denied
+</FilesMatch>

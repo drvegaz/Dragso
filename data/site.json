@@ -1,0 +1,572 @@
+{
+    "ui": {
+        "book": "Boka",
+        "menu": "Meny",
+        "nav": "Huvudmeny",
+        "home": "Start",
+        "language": "Språk",
+        "from": "från",
+        "priceFrom": "från {pris} kr",
+        "perNight": "Pris per natt",
+        "readMore": "Läs mer →",
+        "noImage": "Bild saknas",
+        "seeDates": "Se lediga datum",
+        "petsOk": "Husdjur ok",
+        "bookable": "Bokningsbar",
+        "notBookable": "Ej förhandsbokning",
+        "priceInBooking": "se pris i bokningen",
+        "askReception": "fråga i receptionen",
+        "all": "Alla",
+        "skip": "Till innehållet",
+        "otherCampings": "Våra andra campingar",
+        "information": "Information",
+        "stayWithUs": "Bo hos oss",
+        "privacy": "Integritet och cookies",
+        "reception": "Receptionen"
+    },
+    "nav": [
+        {
+            "label": "Boende",
+            "page": "boende"
+        },
+        {
+            "label": "Camping",
+            "page": "camping"
+        },
+        {
+            "label": "Aktiviteter",
+            "page": "aktiviteter"
+        },
+        {
+            "label": "Hitta hit",
+            "page": "hitta-hit"
+        },
+        {
+            "label": "Kontakt",
+            "page": "kontakt"
+        }
+    ],
+    "contact": {
+        "name": "Dragsö Camping & Stugby",
+        "address": "Dragsövägen 14\n371 37 Karlskrona",
+        "phone": "0455-153 54",
+        "email": "info@dragso.se"
+    },
+    "hours": [
+        {
+            "title": "Receptionen",
+            "rows": [
+                [
+                    "Måndag–fredag",
+                    "08:00–16:30"
+                ],
+                [
+                    "Lördag–söndag",
+                    "08:00–16:30"
+                ]
+            ]
+        }
+    ],
+    "hoursExceptions": [],
+    "notices": [],
+    "pages": {
+        "start": {
+            "title": "Dragsö Camping & Stugby i Karlskrona",
+            "summary": "Camping, stugor och rum på en egen ö i Karlskronas skärgård, 3 km från centrum. Sandstrand, klippbad och promenadavstånd till stan.",
+            "hero": {
+                "eyebrow": "Camping & Stugby · Karlskrona",
+                "title": "En egen ö mitt i Karlskronas skärgård",
+                "text": "Camping, stugor och rum med havet runt hela ön. Sandstrand, klippbad och 20 minuters promenad till Stortorget.",
+                "image": "assets/img/hero-on.jpg",
+                "imageAlt": "Flygbild över Dragsö med badstranden och Karlskrona i bakgrunden"
+            },
+            "book": {
+                "title": "Vad vill du boka?",
+                "rows": [
+                    {
+                        "name": "Stuga",
+                        "sub": "Från enkla stugor till Örlogsbyn",
+                        "price": 700
+                    },
+                    {
+                        "name": "Husvagn, husbil, tält",
+                        "sub": "290 platser, alla med el",
+                        "price": 230
+                    },
+                    {
+                        "name": "Rum",
+                        "sub": "2+1 bäddar",
+                        "price": 600
+                    }
+                ],
+                "note": "Pris per natt. Boka online och få upp till 90 kr rabatt."
+            },
+            "facts": [
+                {
+                    "value": "2,8 km",
+                    "label": "till Karlskrona centrum"
+                },
+                {
+                    "value": "3",
+                    "label": "badplatser, två med sandstrand"
+                },
+                {
+                    "value": "83",
+                    "label": "campingtomter med sjöutsikt"
+                },
+                {
+                    "value": "08–16:30",
+                    "label": "receptionen har öppet"
+                }
+            ],
+            "stay": {
+                "eyebrow": "Bo på Dragsö",
+                "title": "Tält vid vattnet eller stuga med golvvärme",
+                "cards": [
+                    {
+                        "tag": "från 700 kr/natt",
+                        "name": "Stugor",
+                        "text": "Sju stugbyar, med eller utan dusch och toalett. Åtta Örlogsstugor och fem stugsviter med egna teman.",
+                        "label": "Se alla stugor →",
+                        "page": "boende",
+                        "image": "assets/img/orlogsbyn.jpg",
+                        "imageAlt": "Örlogsbyns röda stugor sedda från ovan"
+                    },
+                    {
+                        "tag": "från 230 kr/natt",
+                        "name": "Camping",
+                        "text": "Små fält runt hela ön. De flesta tomter ligger nära havet, och alla har el.",
+                        "label": "Välj zon och plats →",
+                        "page": "camping",
+                        "image": "assets/img/camping-trad.jpg",
+                        "imageAlt": "Husvagn under ett stort träd med havet bakom"
+                    },
+                    {
+                        "tag": "kort stopp",
+                        "name": "Ställplatser",
+                        "text": "För dig med husbil som bara vill stanna en natt eller två nära stan.",
+                        "label": "Läs mer →",
+                        "page": "stallplatser",
+                        "image": "assets/img/stallplats.jpg",
+                        "imageAlt": "Husbil parkerad under ett träd vid vattnet"
+                    }
+                ]
+            },
+            "life": {
+                "eyebrow": "Livet på ön",
+                "title": "Det finns alltid något att göra",
+                "lead": "På sommaren har vi Kids Club och aktiviteter för barnen. Kajaker, SUP och båtar hyr du i receptionen.",
+                "tiles": [
+                    {
+                        "name": "Bastuflotten",
+                        "text": "Bastu och badtunna ute på vattnet",
+                        "image": "assets/img/badtunna.jpg",
+                        "imageAlt": "Badtunna på bastuflotten i solnedgång"
+                    },
+                    {
+                        "name": "Äventyrsminigolf",
+                        "text": "Världsarvet i miniatyr, 18 hål",
+                        "image": "assets/img/minigolf.jpg",
+                        "imageAlt": "Äventyrsminigolf med modeller av Karlskronas byggnader"
+                    },
+                    {
+                        "name": "Kajak & SUP",
+                        "text": "Hyr i receptionen",
+                        "image": "assets/img/kajaker.jpg",
+                        "imageAlt": "Kajaker på fjärden"
+                    },
+                    {
+                        "name": "Shuffleboard",
+                        "text": "Spela på terrassen",
+                        "image": "assets/img/shuffleboard.jpg",
+                        "imageAlt": "Shuffleboard på terrassen"
+                    }
+                ]
+            },
+            "season": {
+                "eyebrow": "Just nu",
+                "title": "Jul och nyår vid havet",
+                "text": "Fira helgerna i en varm stuga på Dragsö, med promenadavstånd till stan. Boka i god tid.",
+                "label": "Läs om jul och nyår",
+                "page": "jul-nyar",
+                "image": "assets/img/sjobod.jpg",
+                "imageAlt": "Sjöbodar vid en brygga en klar vinterdag"
+            },
+            "find": {
+                "eyebrow": "Hitta hit",
+                "title": "Bron till ön ligger tre kilometer från centrum",
+                "rows": [
+                    [
+                        "Bil",
+                        "Över bron från Karlskrona. Parkering vid receptionen."
+                    ],
+                    [
+                        "Gå & cykla",
+                        "Asfalterad gång- och cykelväg hela vägen in till stan, cirka 20 minuter till fots."
+                    ],
+                    [
+                        "Båt",
+                        "Skärgårdstrafiken stannar på Dragsö under sommaren."
+                    ]
+                ]
+            }
+        },
+        "boende": {
+            "title": "Stugor och rum",
+            "summary": "Stugor med och utan dusch och toalett, stugsviter och rum på Dragsö Camping i Karlskrona.",
+            "lead": "Alla stugor har kök och ligger nära vattnet. De med dusch och toalett har sängkläder att hyra och kan städas av oss.",
+            "groups": [
+                {
+                    "title": "Stugor med dusch och toalett",
+                    "sub": "Fullt utrustat kök, TV och wifi",
+                    "label": "Med dusch & WC",
+                    "items": [
+                        {
+                            "name": "Örlogsbyn",
+                            "text": "Åtta stugor med marint tema, sovloft och golvvärme.",
+                            "list": [
+                                "44 m²",
+                                "4+2 bäddar",
+                                "AC"
+                            ],
+                            "price": 2000,
+                            "image": "assets/img/orlogsbyn.jpg",
+                            "page": "orlogsbyn"
+                        },
+                        {
+                            "name": "Stugsviter",
+                            "text": "Fem stugor med egna teman: Skärgård, Retro, Svart/vit, Berg och Glas.",
+                            "list": [
+                                "4+2 bäddar",
+                                "Master bedroom"
+                            ],
+                            "price": 1800,
+                            "image": "",
+                            "page": ""
+                        },
+                        {
+                            "name": "Världsarvsbyn",
+                            "text": "Tio självhushållsstugor med pullmansängar och bäddsoffa.",
+                            "list": [
+                                "6 bäddar",
+                                "2 sovrum"
+                            ],
+                            "price": 1150,
+                            "image": "",
+                            "page": ""
+                        },
+                        {
+                            "name": "Fiskebyn",
+                            "text": "Fem stugor med våningssängar, kök och bäddsoffa i vardagsrummet.",
+                            "list": [
+                                "6 bäddar",
+                                "Kök"
+                            ],
+                            "price": 1150,
+                            "image": "assets/img/stuga-vardagsrum.jpg",
+                            "page": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "Enklare stugor",
+                    "sub": "Kök och indraget vatten, dusch i servicehuset",
+                    "label": "Enklare stugor",
+                    "items": [
+                        {
+                            "name": "Skärgårdsbyn, fyra bäddar",
+                            "text": "Ett rum med två våningssängar. Kokplattor, kaffebryggare och liten kyl.",
+                            "list": [
+                                "4 bäddar",
+                                "Indraget vatten"
+                            ],
+                            "price": 700,
+                            "image": "",
+                            "page": ""
+                        },
+                        {
+                            "name": "Skärgårdsbyn, tre bäddar",
+                            "text": "Dubbelsäng med överslaf. Kokplattor, kaffebryggare och liten kyl.",
+                            "list": [
+                                "3 bäddar",
+                                "Indraget vatten"
+                            ],
+                            "price": 700,
+                            "image": "",
+                            "page": ""
+                        },
+                        {
+                            "name": "Strandstugan",
+                            "text": "Dragsös enda tvåbäddsstuga, precis vid badstranden.",
+                            "list": [
+                                "2 bäddar",
+                                "Vid stranden"
+                            ],
+                            "price": 710,
+                            "image": "",
+                            "page": ""
+                        },
+                        {
+                            "name": "Dragsöstugan",
+                            "text": "Enkel stuga med indraget vatten och mindre kök.",
+                            "list": [
+                                "Indraget vatten"
+                            ],
+                            "price": 700,
+                            "image": "",
+                            "page": ""
+                        },
+                        {
+                            "name": "Husbåten",
+                            "text": "Bo på vattnet. Enkel standard med indraget vatten och mindre kök.",
+                            "list": [
+                                "Flytande"
+                            ],
+                            "price": 0,
+                            "image": "",
+                            "page": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "Rum",
+                    "sub": "För en natt eller två",
+                    "label": "Rum",
+                    "items": [
+                        {
+                            "name": "Rum",
+                            "text": "Rum med två bäddar och en extrasäng.",
+                            "list": [
+                                "2+1 bäddar"
+                            ],
+                            "price": 600,
+                            "image": "",
+                            "page": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "orlogsbyn": {
+            "title": "Örlogsbyn",
+            "summary": "Åtta stugor med marint tema på Dragsö i Karlskrona: 44 m², dusch, toalett, fullt utrustat kök och golvvärme.",
+            "lead": "Åtta stugor med marint tema, dusch, toalett och fullt utrustat kök. 44 m² med sovrum, sovloft och golvvärme i alla rum.",
+            "image": "assets/img/orlogsbyn.jpg",
+            "imageAlt": "Örlogsbyns åtta röda stugor med solceller och verandor",
+            "price": 2000,
+            "themes": {
+                "title": "Åtta stugor, åtta teman",
+                "text": "Varje stuga är inredd efter en roll eller ett fartyg från örlogsstaden Karlskrona.",
+                "cabins": [
+                    {
+                        "number": 32,
+                        "name": "Artilleristen",
+                        "pets": true
+                    },
+                    {
+                        "number": 33,
+                        "name": "Navigatören",
+                        "pets": true
+                    },
+                    {
+                        "number": 34,
+                        "name": "Signalisten",
+                        "pets": true
+                    },
+                    {
+                        "number": 35,
+                        "name": "Maskinisten",
+                        "pets": true
+                    },
+                    {
+                        "number": 36,
+                        "name": "Minören",
+                        "pets": false
+                    },
+                    {
+                        "number": 37,
+                        "name": "Korvetten",
+                        "pets": false
+                    },
+                    {
+                        "number": 38,
+                        "name": "Kustartilleristen",
+                        "pets": false
+                    },
+                    {
+                        "number": 39,
+                        "name": "Ubåten",
+                        "pets": false
+                    }
+                ]
+            },
+            "living": {
+                "title": "Så bor ni",
+                "body": "Master bedroom med dubbelsäng, loft med två enkelsängar och en bäddsoffa i vardagsrummet. Smart-TV finns i vardagsrum, sovrum och på loftet.\n\nVerandan har utemöbler, och ni parkerar upp till två bilar direkt vid stugan. Elbilsladdning finns."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Dusch och toalett",
+                    "Kyl och frys",
+                    "Diskmaskin och tvättmaskin",
+                    "Spis, ugn och mikro",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare, vattenkokare, brödrost",
+                    "Täcken och kuddar",
+                    "Strykjärn",
+                    "Air condition",
+                    "Golvvärme",
+                    "Gratis wifi",
+                    "Disk- och städutrustning"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Minst två nätter. Enstaka nätter under hög- och peaksäsong bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "990 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "44 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "4 + 2"
+                    ],
+                    [
+                        "Rum",
+                        "2 + sovloft"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Ja"
+                    ],
+                    [
+                        "Husdjur",
+                        "Stuga 32–35"
+                    ],
+                    [
+                        "Elbilsladdning",
+                        "Ja"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "camping": {
+            "title": "Camping med havet runt hörnet",
+            "summary": "Camping på Dragsö i Karlskrona: 290 platser med el, de flesta nära havet. Fem zoner efter läge, storlek och pris.",
+            "lead": "Campingen sträcker sig som ett U runt ön, uppdelad på små fält. Det största har bara 52 platser. Västra sidan är lummig och grön, den östra har utsikt över Karlskrona.",
+            "text": "Alla platser för husvagn och husbil har el som ingår i priset. Runt ön finns tre badplatser: två sandstränder och ett klippbad med brygga.",
+            "image": "assets/img/camping-rad.jpg",
+            "imageAlt": "Husvagnar med förtält på rad vid vattnet",
+            "facts": [
+                {
+                    "value": "290",
+                    "label": "platser, alla med el"
+                },
+                {
+                    "value": "83",
+                    "label": "med direkt sjöutsikt"
+                },
+                {
+                    "value": "45",
+                    "label": "med utsikt över stan"
+                },
+                {
+                    "value": "52",
+                    "label": "platser på största fältet"
+                }
+            ],
+            "zones": {
+                "eyebrow": "Campingzoner",
+                "title": "Fem zoner efter läge, storlek och pris",
+                "lead": "Zonen styr priset. Du ser zonerna på kartan när du bokar och kan välja en egen plats där.",
+                "list": [
+                    {
+                        "name": "Lila zon",
+                        "color": "lila",
+                        "bookable": true,
+                        "price": 260,
+                        "text": "Direkt vid vattnet eller med havsutsikt, främst på västra sidan. Nytt för 2026: lila platser vid vattnet även på östra sidan."
+                    },
+                    {
+                        "name": "Blå zon",
+                        "color": "bla",
+                        "bookable": true,
+                        "price": 260,
+                        "text": "Utspridd över hela ön, nära servicehusen eller med större ytor."
+                    },
+                    {
+                        "name": "Grön zon",
+                        "color": "gron",
+                        "bookable": true,
+                        "price": 260,
+                        "text": "Två områden: sydöstra delen nära receptionen och nordöstra sidan av ön."
+                    },
+                    {
+                        "name": "Orange zon",
+                        "color": "orange",
+                        "bookable": true,
+                        "price": 0,
+                        "text": "Mindre platser för mindre husvagnar och husbilar."
+                    },
+                    {
+                        "name": "Röd zon",
+                        "color": "rod",
+                        "bookable": false,
+                        "price": 0,
+                        "text": "Direkt vid havet. Går bara att få vid ankomst eller byte under vistelsen, i mån av plats."
+                    }
+                ]
+            },
+            "help": {
+                "text": "Svårt att välja? Ring oss så hjälper vi dig hitta rätt plats för din husvagn eller ditt tält.",
+                "label": "Boka campingplats"
+            },
+            "tent": {
+                "eyebrow": "Tält",
+                "title": "Tältplatser från 230 kr",
+                "text": "Tält bokas på samma sätt som husvagn, och du väljer zon i bokningen.",
+                "image": "assets/img/brygga.jpg",
+                "imageAlt": "Person på en brygga ute vid klipporna"
+            }
+        }
+    },
+    "footer": {
+        "links": [
+            {
+                "label": "Havsviken",
+                "href": "https://havsviken.se"
+            },
+            {
+                "label": "Ronneby Havscamping",
+                "href": "https://ronnebyhavscamping.se"
+            },
+            {
+                "label": "Halloweek",
+                "href": "https://halloweek.se"
+            }
+        ]
+    }
+}

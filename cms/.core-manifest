@@ -1,0 +1,20 @@
+# cms-core 1.8.0 – installerat 2026-11-12 00:56 av sync.php. Ändra inte för hand.
+.htaccess
+api.php
+editor.js
+hash.php
+hjalp.php
+index.php
+lib.php
+modules/.htaccess
+modules/banners/module.php
+modules/banners/page.php
+modules/oppettider/module.php
+modules/oppettider/page.php
+modules/sprak/instruktion.txt
+modules/sprak/lang.php
+modules/sprak/module.php
+modules/sprak/page.php
+page.php
+server-sync.js
+upload.php

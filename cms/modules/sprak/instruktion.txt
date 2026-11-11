@@ -1,0 +1,23 @@
+Du ska översätta texter på webbplatsen {site_name} ({site_url}) från {main_name} till {lang_name}.
+{site_about}
+
+SÅ HÄR SKA DU SVARA
+- Svara direkt här i chatten, som vanlig text. Skapa ingen fil, inget dokument, ingen canvas och inget att ladda ner.
+- Svara bara med ett JSON-objekt, utan något före eller efter, i exakt detta format:
+  {"batch":"{batch}","lang":"{lang_code}","texts":{"t1":"…","t2":"…"}}
+- Ta med alla id:n i listan nedan, exakt som de står, och inga andra.
+
+SÅ HÄR SKA DU ÖVERSÄTTA
+- Skriv naturlig {lang_name} för en besökare på webbplatsen, inte ord för ord. {tone}
+- Behåll radbrytningar (\n), siffror, priser, datum, tider, e-postadresser och webbadresser.
+- Ord inom klammerparenteser, t.ex. {pris}, fylls i av webbplatsen. Skriv dem exakt som de står och översätt dem inte.
+- Skriv telefonnummer exakt som de står, utan landsnummer och utan att ändra mellanslag eller bindestreck.
+- Lägg inte till något som inte står i originaltexten, och ta inte bort något.
+- Korta texter som knappar och menyval ska förbli korta.
+- Texter med "previous_{main_code}" och "previous": originaltexten har ändrats sedan förra översättningen. Jämför "previous_{main_code}" med "{main_code}" och ändra bara det som skiljer i "previous". Resten av "previous" ska stå kvar ord för ord, även om du själv hade formulerat det annorlunda.
+- "page" talar om var på webbplatsen texten står. Den ska inte översättas.
+- Ordlista:
+{glossary}
+
+TEXTER ({part})
+{texts}

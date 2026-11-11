@@ -3,3 +3,10 @@ public/
 # cms/site/config.php har lösenord och SMTP – aldrig i git.
 cms/site/config.php
 cms/storage/
+# Genereras av CMS:et på servern (vid publicering och översättning).
+data/site.js
+data/site.*.js
+data/site.*.json
+data/languages.js
+data/languages.json
+uploads/

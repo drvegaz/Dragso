@@ -1,0 +1,2 @@
+# Inställningar, lösenord och egna moduler – nås bara av cms/ via filsystemet.
+Require all denied

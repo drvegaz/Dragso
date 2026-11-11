@@ -1,0 +1,14 @@
+# Innehållet ska alltid valideras mot servern så att ändringar syns direkt efter publicering.
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|json)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# JSON-källan läses bara av cms/ via filsystemet; sidan använder site.js. Stängd så att adresserna inte kan skrapas härifrån.
+<FilesMatch "^site(\.[a-z]{2})?\.json$">
+  Require all denied
+</FilesMatch>

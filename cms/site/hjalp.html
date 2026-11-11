@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hjälp – {site_name}</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<!-- Visas via cms/hjalp.php. {site_name}, {logo}, {accent}, {accent_dark} och {contact} ersätts från config.php.
+     Anpassa fritt: ta bort avsnitt som inte gäller och lägg till det som är unikt för webbplatsen. -->
+<style>
+  :root { --accent: {accent}; --accent-dark: {accent_dark}; --ink: #374151; --soft: #6B7280; --line: #E5E7EB; --sand: #F9FAFB; --blue: #2563EB; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 17px/1.65 system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  a { color: var(--accent); }
+  header { background: #1F2937; color: #fff; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  header .wrap { padding-top: 40px; padding-bottom: 48px; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #D1D5DB; margin-bottom: 12px; }
+  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 0 0 18px; }
+  header p { font-size: 19px; color: rgba(255,255,255,.85); margin: 0 0 28px; max-width: 620px; }
+  .btn { display: inline-flex; align-items: center; height: 52px; padding: 0 26px; background: var(--accent); color: #fff; font-weight: 700; text-decoration: none; border-radius: 6px; }
+  .btn:hover { background: var(--accent-dark); color: #fff; }
+  nav.toc { background: var(--sand); border-bottom: 1px solid var(--line); }
+  nav.toc .wrap { display: flex; flex-wrap: wrap; gap: 6px 22px; padding-top: 16px; padding-bottom: 16px; font-weight: 600; font-size: 15px; }
+  nav.toc a { color: var(--ink); text-decoration: none; }
+  section { padding: 48px 0 8px; scroll-margin-top: 12px; }
+  h2 { font-size: 28px; line-height: 1.2; margin: 0 0 18px; }
+  h3 { font-size: 19px; margin: 28px 0 10px; }
+  .callout { margin: 20px 0; padding: 18px 22px; background: var(--sand); border-left: 4px solid var(--accent); }
+  .callout strong { display: block; margin-bottom: 2px; }
+  .tip { border-left-color: var(--blue); }
+  .demo { display: inline-block; outline: 2px dashed var(--blue); outline-offset: 2px; padding: 0 2px; }
+  kbd { display: inline-block; min-width: 26px; padding: 1px 7px; border: 1px solid #D1D5DB; border-bottom-width: 2px; border-radius: 4px; background: #fff; font: 600 14px/1.5 system-ui, sans-serif; text-align: center; }
+  .ui { display: inline-block; padding: 0 8px; border: 1px solid #D1D5DB; border-radius: 6px; font: 500 14px/1.7 system-ui, sans-serif; background: #fff; white-space: nowrap; }
+  .ui.pri { background: var(--blue); border-color: var(--blue); color: #fff; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 18px; font-size: 16px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+  td:first-child { white-space: nowrap; }
+  footer { margin-top: 64px; background: var(--sand); border-top: 1px solid var(--line); }
+  footer .wrap { padding-top: 32px; padding-bottom: 40px; font-size: 16px; color: var(--soft); }
+  @media (max-width: 560px) { body { font-size: 16px; } td:first-child { white-space: normal; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">{site_name} · Hjälp för redaktörer</div>
+    <h1>Så redigerar du hemsidan</h1>
+    <p>Du ändrar texter och bilder direkt på sidan – precis där de syns. Inget blir synligt för besökarna förrän du trycker Publicera.</p>
+    <a class="btn" href="index.php">Logga in och börja redigera →</a>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Innehåll">
+  <div class="wrap">
+    <a href="#logga-in">Logga in</a>
+    <a href="#text">Text</a>
+    <a href="#bilder">Bilder</a>
+    <a href="#banners">Banners</a>
+    <a href="#oppettider">Öppettider</a>
+    <a href="#sprak">Språk</a>
+    <a href="#publicera">Publicera</a>
+    <a href="#angra">Ångra &amp; historik</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="logga-in">
+    <h2>Logga in</h2>
+    <p>Gå till <strong>/cms</strong> på webbplatsen och logga in med användarnamn (eller e-post) och lösenord. Första gången får du välja ett eget lösenord. Har du glömt det: tryck <span class="ui">Glömt lösenord?</span> så mejlas en länk.</p>
+    <p>Hemsidan öppnas i <strong>redigeringsläge</strong>. Den ser ut som vanligt, men längst ner finns en verktygsrad.</p>
+    <table>
+      <tr><th>Knapp</th><th>Vad den gör</th></tr>
+      <tr><td><span class="ui">Startsida ▾</span></td><td>Välj vilken sida du vill redigera. Under <em>Mer</em> finns verktyg med egna sidor, t.ex. <strong>Banners</strong>.</td></tr>
+      <tr><td><span class="ui">Ångra</span></td><td>Tar bort din senaste ändring.</td></tr>
+      <tr><td><span class="ui">Historik</span></td><td>Gå tillbaka till en tidigare version av hela sidan.</td></tr>
+      <tr><td><span class="ui pri">Publicera</span></td><td>Gör dina ändringar synliga för besökarna.</td></tr>
+      <tr><td><span class="ui">Avsluta</span></td><td>Lämnar redigeringsläget (du är fortfarande inloggad).</td></tr>
+      <tr><td><span class="ui">Logga ut</span></td><td>Loggar ut dig.</td></tr>
+    </table>
+  </section>
+
+  <section id="text">
+    <h2>Ändra text</h2>
+    <p>När du för musen över något som går att ändra får det en <span class="demo">blå streckad ram</span>. Klicka, skriv och tryck <kbd>Enter</kbd> (eller klicka någon annanstans). <kbd>Esc</kbd> avbryter. Text på knappar öppnas i en liten ruta i stället.</p>
+    <div class="callout tip"><strong>Vill du följa en länk eller trycka på en knapp?</strong>Håll in <kbd>Alt</kbd> och klicka. Ett vanligt klick redigerar texten.</div>
+    <h3>Länkar under en text</h3>
+    <p>Där det finns en knapp <span class="ui">+ Lägg till länk</span> kan du lägga till egna länkar. Klicka på en befintlig länk för att ändra, flytta (<span class="ui">↑</span> <span class="ui">↓</span>) eller ta bort den. Som adress går det att skriva en webbadress, välja en sida på webbplatsen, en e-postadress eller ett telefonnummer.</p>
+  </section>
+
+  <section id="bilder">
+    <h2>Byt bild</h2>
+    <p>Klicka på bilden, tryck <span class="ui pri">Byt bild…</span> och välj en bild från datorn (JPG, PNG eller WebP). Stora bilder skalas ner automatiskt. Där det finns ett fält för <strong>bildbeskrivning</strong>, skriv en kort beskrivning – den läses upp för synskadade och hjälper Google.</p>
+  </section>
+
+  <section id="banners">
+    <h2>Banners</h2>
+    <p>Banners är meddelanden högst upp på alla sidor, t.ex. <em>"Stängt i mellandagarna"</em>. Välj <strong>Banners</strong> under <em>Mer</em> i sidväljaren, tryck <span class="ui">+ Ny banner</span>, skriv texten och tryck <span class="ui pri">Spara och publicera</span>. Fyll gärna i <strong>Publiceras</strong> och <strong>Avpubliceras</strong> så kommer och går bannern av sig själv.</p>
+  </section>
+
+  <section id="oppettider">
+    <h2>Öppettider</h2>
+    <p>Receptionens öppettider ändrar du på ett ställe: välj <strong>Öppettider</strong> under <em>Mer</em>. De syns sedan överallt på webbplatsen. Där kan du också lägga in avvikande tider, t.ex. helgdagar, och visa dem som banner.</p>
+  </section>
+
+  <section id="sprak">
+    <h2>Språk</h2>
+    <p>Du skriver alltid på svenska i redigeringsläget. Engelska och andra språk översätts på sidan <strong>Språk</strong> under <em>Mer</em>. Texter som inte är översatta visas på svenska.</p>
+    <h3>Översätta</h3>
+    <p>På fliken <span class="ui">Översätt</span> står svenskan till vänster och översättningen till höger, sida för sida. Skriv och tryck <span class="ui pri">Spara</span> (eller <kbd>Ctrl</kbd> + <kbd>Enter</kbd>, som också går till nästa ruta). Det syns direkt på webbplatsen.</p>
+    <p>Ändrar du en svensk text som redan är översatt blir den <strong>Ändrad</strong>, och du ser vad som har ändrats. Uppdatera översättningen, eller tryck <span class="ui">Oförändrad</span> om den fortfarande stämmer (t.ex. om du bara rättade ett stavfel).</p>
+    <h3>Översätta med AI</h3>
+    <ol>
+      <li>Öppna <span class="ui">Översätt med AI</span>, välj vad som ska översättas och tryck på knappen. Instruktionen kopieras.</li>
+      <li>Öppna en ny chatt i ChatGPT, Claude, Gemini eller Copilot och klistra in.</li>
+      <li>Kopiera hela svaret med kopieringsknappen under svaret, klistra in det i rutan och tryck <span class="ui pri">Läs in svar</span>.</li>
+      <li>Svaren blir <strong>förslag</strong>. Läs igenom dem och tryck <span class="ui pri">Godkänn</span>, ändra först om något inte stämmer, eller <span class="ui">Avvisa</span>. Förslag med ⚠ behöver extra koll. Inget syns på webbplatsen förrän du har godkänt.</li>
+    </ol>
+    <div class="callout tip"><strong>Ordlistan</strong>På fliken <span class="ui">Ordlista</span> står namn som inte ska översättas (t.ex. Örlogsbyn), ord med en bestämd översättning och tonen för varje språk. Den följer med instruktionen, så lägg till ord där om AI:n översätter något fel gång på gång.</div>
+    <h3>Visa ett nytt språk</h3>
+    <p>På fliken <span class="ui">Språk</span> lägger du till språk och väljer <span class="ui">Visa på webbplatsen</span> när översättningen är klar. Ett språk som visas får en egen adress, t.ex. dragso.se/en/camping, och en knapp i menyn.</p>
+  </section>
+
+  <section id="publicera">
+    <h2>Publicera</h2>
+    <div class="callout"><strong>Inget syns för besökarna förrän du trycker Publicera.</strong>Du kan alltså testa fritt. Verktygsraden visar hur många ändringar som väntar.</div>
+    <p>Stänger du webbläsaren innan du publicerat sparas ändringarna som ett utkast på just den datorn. Har någon annan publicerat medan du redigerade får du ett meddelande om att ladda om – så skriver ingen över någon annans ändringar.</p>
+  </section>
+
+  <section id="angra">
+    <h2>Ångra och historik</h2>
+    <p><span class="ui">Ångra</span> (eller <kbd>Ctrl</kbd> + <kbd>Z</kbd>) tar bort din senaste ändring, så länge du inte publicerat. <span class="ui">Historik</span> visar de senaste 100 publicerade versionerna. Tryck <span class="ui">Återställ</span> för att gå tillbaka – den nuvarande versionen sparas också.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Frågor eller något som krånglar? Hör av dig till {contact}. &nbsp;·&nbsp; <a href="index.php">Logga in</a> &nbsp;·&nbsp; <a href="../">Till hemsidan</a>
+  </div>
+</footer>
+
+</body>
+</html>
