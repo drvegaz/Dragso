@@ -45,6 +45,10 @@ Beslut 2026-11-11: nivå 1 (ny sajt, bokningen orörd). `design/index.html` är 
 (#start, #boende, #orlogsbyn, #camping), bilder i `design/img/` hämtade från dragso.se. Publicerad som artifact
 https://claude.ai/artifact/7HZ6WSghh4ZHsHBLKB1ZBS (privat tills Mattias delar den). Alla Boka-knappar → boka.dragso.se.
 
+Git: github.com/drvegaz/Dragso (privat, push via HTTPS – SSH-nyckel saknas). Vercel bygger från repot med
+`build.sh` (lägger på doctype/head runt `design/index.html` → `public/`), inställningar i `vercel.json`, noindex.
+Ändra bara `design/index.html`; den är källan både för artifacten och Vercel.
+
 ## Om vi bygger
 
 - Tänkt grund: **cms-core** (`C:\Web\cms-core`, github.com/drvegaz/cms-core), samma som PIFAST (`C:\Web\pifast-static`,
