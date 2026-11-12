@@ -10,3 +10,5 @@ data/site.*.json
 data/languages.js
 data/languages.json
 uploads/
+# Server-config med användare (tillfälligt lösenord) – laddas upp av deploy.ps1 -ForstaGangen, aldrig i git.
+cms/site/config.server.php

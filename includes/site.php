@@ -8,6 +8,14 @@ declare(strict_types=1);
 require_once __DIR__ . '/../cms/modules/sprak/lang.php';
 
 const DR_BOOKING_URL = 'https://boka.dragso.se/';
+const DR_LIVE_URL = 'https://www.dragso.se';
+
+// Bara den riktiga sajten ska hamna hos sökmotorerna. Lokalt och på testservrar (site_url i config.php är något
+// annat än www.dragso.se) säger varje sida noindex, både som rubrik här och som <meta> i dr_head().
+function dr_is_live(): bool {
+  return rtrim(config()['site_url'], '/') === DR_LIVE_URL;
+}
+if (!dr_is_live() && PHP_SAPI !== 'cli' && !headers_sent()) header('X-Robots-Tag: noindex, nofollow');
 
 // Sidorna står på ett ställe: 'pages' i cms/site/config.php (filnamn => namn). Sidans namn = filnamnet utan .php,
 // och index.php är startsidan (''). Länkar till sidor som inte finns där får "#".
@@ -121,6 +129,8 @@ function dr_head(string $titlePath, string $summaryPath): void {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title><?= h($full) ?></title>
+<?php if (!dr_is_live()): ?><meta name="robots" content="noindex, nofollow">
+<?php endif; ?>
 <meta name="description" content="<?= h((string)dr_get($summaryPath)) ?>">
 <link rel="canonical" href="<?= h($canonical) ?>">
 <?= cms_hreflang() ?>

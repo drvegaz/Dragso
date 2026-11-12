@@ -76,7 +76,11 @@ därifrån. Ny sida: lägg till filen + `pages.<namn>` i site.json + raderna i b
   (inskick sparas bara i CMS:et tills ägaren valt e-post). Bara på svenska – formulärens texter kan inte översättas än
   (steg 5 i PLAN-sprak.md); den engelska kontaktsidan hänvisar till e-post. I exporten (Vercel) går det inte att skicka.
 - Tyska är tillagd lokalt men dold och oöversatt (5 instruktionsdelar à ca 22 000 tecken).
-- `tools/deploy.ps1` (WinSCP, sparad webbplats "dragso", fyll i `$remote` först) – inte provkörd.
+- `tools/deploy.ps1 [-Mal strato|onecom] [-Skarpt] [-ForstaGangen]` (WinSCP; sparade webbplatser "dragso-strato" och
+  "dragso", fyll i Remote per mål) – inte provkörd. -ForstaGangen laddar också upp data/site.json, cms/storage/i18n/
+  och `cms/site/config.server.php` (görs lokalt från config.exempel.php, tillfälligt lösenord + must_change, ej i git)
+  som config.php. Testserver: **Strato** (köpt av Mattias, väntar på uppsättning). Kräver PHP 8.1+ (välj 8.3+).
+- Sökmotorer: sidorna säger noindex (rubrik + meta) så länge site_url inte är https://www.dragso.se (`dr_is_live()`).
 - cms-core 1.8.0 synkat in i `cms/` (i git, som PIFAST). `cms/site/config.php` är lokal och utanför git;
   `cms/site/config.exempel.php` har samma inställningar utan lösenord. `cms/site/ordlista-start.json` = startordlistan.
 - **Köra lokalt:** `php -S localhost:8766 router.php` i mappen, CMS på `http://localhost:8766/cms/` (test / testlosen123,
