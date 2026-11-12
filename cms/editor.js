@@ -566,11 +566,14 @@
       body.cms-on .cms-focus { outline: 3px solid #F59E0B !important; outline-offset: 3px; background-color: rgba(245,158,11,.18) !important; transition: background-color .3s; }
       body.cms-on { padding-bottom: 72px; }
       .cms-bar, .cms-pop, .cms-toast { font: 14px/1.4 system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1F2937; box-sizing: border-box; }
+      /* Eget ljust färgschema: en sajt med color-scheme: dark (mörkt läge) ger annars ljus text i vita listor. */
+      .cms-bar, .cms-pop, .cms-toast { color-scheme: light; }
       .cms-bar *, .cms-pop * { box-sizing: border-box; font: inherit; }
       .cms-bar { position: fixed; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 2147483000; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px;
         width: max-content; max-width: calc(100vw - 24px); padding: 10px 14px; background: #fff; border: 1px solid #D1D5DB; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
       .cms-dot { width: 8px; height: 8px; border-radius: 50%; background: #2563EB; }
-      .cms-sel { height: 32px; border: 1px solid #D1D5DB; border-radius: 6px; padding: 0 8px; background: #fff; max-width: 200px; }
+      .cms-sel { height: 32px; border: 1px solid #D1D5DB; border-radius: 6px; padding: 0 8px; background: #fff; color: #1F2937; max-width: 200px; }
+      .cms-sel option, .cms-sel optgroup { background: #fff; color: #1F2937; }
       .cms-count { color: #6B7280; }
       .cms-count.cms-warn { color: #B45309; font-weight: 600; }
       .cms-help { flex-basis: 100%; color: #6B7280; font-size: 12px; }
