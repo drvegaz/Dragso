@@ -7,6 +7,7 @@ if (!preg_match('/^[a-z0-9-]+$/', $page) || ($lang !== '' && !preg_match('/^[a-z
 $root = dirname(__DIR__);
 chdir($root);
 $_SERVER['SCRIPT_NAME'] = "/$page.php";
+$_SERVER['REQUEST_METHOD'] = 'GET';
 $_SERVER['REQUEST_URI'] = ($lang ? "/$lang" : '') . '/' . ($page === 'index' ? '' : $page);
 if ($lang !== '') $_GET['lang'] = $lang;
 require "$root/$page.php";

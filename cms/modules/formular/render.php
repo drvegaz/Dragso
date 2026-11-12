@@ -42,13 +42,13 @@ function cms_form_here(array $form): bool {
 
 // Tar emot ett inskick till något av formulären som visas på den här sidan.
 function cms_forms_handle(array $opt = []): void {
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && is_string($_POST['cms_form'] ?? null)) cms_form_handle($_POST['cms_form'], $opt);
+  if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && is_string($_POST['cms_form'] ?? null)) cms_form_handle($_POST['cms_form'], $opt);
 }
 
 // Tar emot inskicket om det gäller det här formuläret. Lyckas det skickas besökaren tillbaka till sidan
 // med ?skickat=<id>, så att en omladdning inte skickar formuläret igen.
 function cms_form_handle(string $id, array $opt = []): void {
-  if ($_SERVER['REQUEST_METHOD'] !== 'POST' || ($_POST['cms_form'] ?? '') !== $id) return;
+  if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST' || ($_POST['cms_form'] ?? '') !== $id) return;
   $form = form_get($id);
   if (!$form || !cms_form_here($form)) return;
   try {

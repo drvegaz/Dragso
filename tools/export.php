@@ -37,7 +37,8 @@ foreach ($langs as $lang) {
   foreach ($pages as $page) {
     $html = shell_exec("$php " . escapeshellarg("$root/tools/render.php") . ' ' . escapeshellarg($page) . ($lang === $main ? '' : ' ' . escapeshellarg($lang)));
     if (!is_string($html) || !str_contains($html, '</html>')) { fwrite(STDERR, "Fel vid $lang/$page\n"); exit(1); }
-    if (preg_match('#<b>(Warning|Notice|Deprecated|Fatal error)</b>#', $html)) { fwrite(STDERR, "PHP-fel i $lang/$page\n"); exit(1); }
+    // PHP-fel: "<b>Warning</b>:" i webbläsarformat, "Warning:" eller "PHP Warning:" från kommandoraden.
+    if (preg_match('#(<b>|^|\n)(PHP )?(Warning|Notice|Deprecated|Fatal error)(</b>)?:#', $html)) { fwrite(STDERR, "PHP-fel i $lang/$page\n"); exit(1); }
     // Redigeringsläget finns inte i exporten, och adresserna ska peka på den riktiga domänen.
     $html = preg_replace('#^<script>[^\n]*cms/editor\.js[^\n]*\n#m', '', $html);
     $html = str_replace($local, $siteUrl, $html);
