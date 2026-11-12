@@ -6,7 +6,7 @@
 #   powershell -File tools\deploy.ps1 -Mal onecom …           samma sak mot one.com (dragso.se) i stället
 #
 # Mål (fyll i webroten för varje mål nedan; den finns i webbhotellets kontrollpanel):
-#   strato   testservern hos Strato.  Sparad webbplats i WinSCP: "dragso-strato".
+#   strato   testservern hos Strato.  Sparad webbplats i WinSCP: "strato", mappen /kunder/dragso = dragso.arcticweb.se.
 #   onecom   dragso.se hos one.com.    Sparad webbplats i WinSCP: "dragso".
 # Lösenorden sparas bara i WinSCP, aldrig här eller i git.
 #
@@ -28,7 +28,7 @@ param([switch]$Skarpt, [switch]$ForstaGangen, [ValidateSet('strato', 'onecom')][
 $ErrorActionPreference = 'Stop'
 
 $targets = @{
-  strato = @{ Session = 'dragso-strato'; Remote = ''; Name = 'Strato (test)' }   # t.ex. '/dragso' eller '/'
+  strato = @{ Session = 'strato';        Remote = '/kunder/dragso'; Name = 'Strato (test, dragso.arcticweb.se)' }
   onecom = @{ Session = 'dragso';        Remote = ''; Name = 'dragso.se (one.com)' }   # t.ex. '/customers/…/webroots/www'
 }
 $t = $targets[$Mal]
