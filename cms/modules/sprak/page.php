@@ -584,48 +584,88 @@ function renderScope() {
   $('aiScope').value = keep && [...$('aiScope').options].some(o => o.value === keep) ? keep : (todo ? 'todo' : 'all');
 }
 
+// Kopiera, med reservvägar. Webbläsare tillåter oftast bara kopiering direkt vid ett klick, så den här ska
+// anropas i klicket (inte efter ett anrop till servern).
 async function copyText(text) {
-  try { await navigator.clipboard.writeText(text); return true; } catch (x) { return false; }
+  try { await navigator.clipboard.writeText(text); return true; } catch (x) { /* prova nästa sätt */ }
+  return copyOld(text);
 }
 
-// Kunde inte kopieras automatiskt: visa texten markerad, så att redaktören kopierar själv.
-function showManual(text) {
+// Det gamla sättet (dold textruta + execCommand). Fungerar i fler lägen, men bara synkront i ett klick.
+function copyOld(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';
+  document.body.appendChild(ta);
+  ta.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (x) { ok = false; }
+  ta.remove();
+  return ok;
+}
+
+// Kopiera text som servern ännu inte har skickat (Promise<string>), utan att förlora klicket:
+// ClipboardItem tar emot ett löfte och skriver när texten kommer.
+async function copyPending(textPromise) {
+  try {
+    if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+      await navigator.clipboard.write([new ClipboardItem({ 'text/plain': textPromise.then(t => new Blob([t], { type: 'text/plain' })) })]);
+      return true;
+    }
+  } catch (x) { /* prova nästa sätt */ }
+  try { await navigator.clipboard.writeText(await textPromise); return true; } catch (x) { return false; }
+}
+
+// Kunde inte kopieras automatiskt: visa texten markerad överst, så att redaktören kopierar själv.
+function showManual(text, label) {
+  const box = document.createElement('div');
+  box.className = 'report bad';
+  box.innerHTML = `<strong>Webbläsaren lät inte sidan kopiera${label ? ' ' + esc(label) : ''}.</strong> Texten nedan är markerad – tryck Ctrl+C (Cmd+C på Mac) och klistra in den i chatten.`;
   const ta = document.createElement('textarea');
   ta.rows = 6;
   ta.readOnly = true;
   ta.value = text;
-  const p = document.createElement('p');
-  p.className = 'hint';
-  p.textContent = 'Webbläsaren lät inte sidan kopiera. Texten nedan är markerad – tryck Ctrl+C (Cmd+C på Mac).';
-  $('aiParts').append(p, ta);
+  ta.style.marginTop = '8px';
+  box.appendChild(ta);
+  $('aiParts').prepend(box);
   ta.focus();
   ta.select();
 }
 
+function partButtons(done) {
+  return `<div class="parts">${parts.map((p, i) => `<button class="btn${done.has(i) ? '' : ' pri'}" type="button" data-part="${i}">${done.has(i) ? '✓ Del ' + (i + 1) + ' kopierad' : 'Kopiera del ' + (i + 1) + ' av ' + parts.length} (${p.count} texter)</button>`).join('')}</div>`;
+}
+
 let parts = [];
 $('aiCopy').onclick = async () => {
-  $('aiParts').innerHTML = '';
+  $('aiParts').innerHTML = '<p class="hint">Gör instruktionen …</p>';
   $('aiCopy').disabled = true;
+  // Anropet och kopieringen startar i samma klick, så att webbläsaren tillåter kopieringen.
+  const req = api('i18n_ai_prompt', { code: cur.code, scope: $('aiScope').value });
+  const copied = copyPending(req.then(d => d.parts[0].prompt));
   try {
-    const d = await api('i18n_ai_prompt', { code: cur.code, scope: $('aiScope').value });
+    const d = await req;
     parts = d.parts;
+    const ok = await copied;
     if (parts.length === 1) {
-      const ok = await copyText(parts[0].prompt);
-      if (ok) $('aiParts').innerHTML = `<p class="done-copy">✓ Instruktionen är kopierad (${parts[0].count} texter). Klistra in den i en ny chatt.</p>`;
-      else showManual(parts[0].prompt);
+      $('aiParts').innerHTML = ok ? `<p class="done-copy">✓ Instruktionen är kopierad (${parts[0].count} texter). Klistra in den i en ny chatt.</p>` : '';
+      if (!ok) showManual(parts[0].prompt);
     } else {
-      $('aiParts').innerHTML = `<p class="hint">Det är många texter, så instruktionen är uppdelad i ${parts.length} delar. Kopiera en del i taget, gärna i en ny chatt för varje, och läs in varje svar för sig.</p>
-        <div class="parts">${parts.map((p, i) => `<button class="btn" type="button" data-part="${i}">Kopiera del ${i + 1} av ${parts.length} (${p.count} texter)</button>`).join('')}</div>`;
+      $('aiParts').innerHTML = `<p class="${ok ? 'done-copy' : 'hint'}">${ok ? '✓ Del 1 av ' + parts.length + ' är kopierad. ' : ''}Det är många texter, så instruktionen är uppdelad i ${parts.length} delar. Klistra in en del i taget, gärna i en ny chatt för varje, och läs in varje svar innan du kopierar nästa.</p>` + partButtons(new Set(ok ? [0] : []));
+      if (!ok) showManual(parts[0].prompt, 'del 1');
     }
-  } catch (x) { say(x.message, true); }
+  } catch (x) { $('aiParts').innerHTML = ''; say(x.message, true); }
   finally { $('aiCopy').disabled = false; }
 };
 $('aiParts').addEventListener('click', async (e) => {
   const b = e.target.closest('[data-part]');
   if (!b) return;
-  const p = parts[+b.dataset.part];
-  if (await copyText(p.prompt)) { b.textContent = '✓ Del ' + (+b.dataset.part + 1) + ' kopierad'; }
-  else showManual(p.prompt);
+  const i = +b.dataset.part;
+  if (await copyText(parts[i].prompt)) {
+    b.textContent = '✓ Del ' + (i + 1) + ' kopierad (' + parts[i].count + ' texter)';
+    b.classList.remove('pri');
+  } else showManual(parts[i].prompt, 'del ' + (i + 1));
 });
 
 $('aiRead').onclick = async () => {
