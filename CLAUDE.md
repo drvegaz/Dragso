@@ -53,21 +53,32 @@ efter ändringar i sidor, innehåll eller översättningar, innan push. Redigeri
 ## Sajten (påbörjad 2026-11-12)
 
 Beslut: PHP-sidor som ritas på servern (som PIFAST), för egna adresser per sida och språk (SEO). Byggs innan ägaren
-svarat på designen. Sidor: `index.php`, `boende.php`, `orlogsbyn.php`, `camping.php`, `aktiviteter.php`, `hitta-hit.php`, `kontakt.php`,
-`stallplatser.php`, `jul-nyar.php`
-(adresser `/`, `/boende`, …, `/en/camping`). Bara "Integritet och cookies" i sidfoten länkar till `#` – lägg till dem i `DR_PAGES` i `includes/site.php` och i `pages`/`page_content` i config.
+svarat på designen. 19 sidor (adresser `/`, `/boende`, …, `/en/camping`): start, boende, camping, ställplatser,
+aktiviteter, hitta hit, kontakt, jul och nyår, integritet, och tio stugsidor (Örlogsbyn, Stugsviter, Världsarvsbyn,
+Fiskebyn, Skärgårdsbyn 4/3, Strandstugan, Dragsöstugan, Husbåten, Vandrarhemsrum). **Sidorna står på ett ställe:**
+`pages` och `page_content` i `cms/site/config.php` (och `config.exempel.php`); `dr_url()`, sitemap och exporten läser
+därifrån. Ny sida: lägg till filen + `pages.<namn>` i site.json + raderna i båda config-filerna.
+- Stugsidor: `includes/cabin.php` är mallen; sidfilen är tre rader (`$cabin = 'fiskebyn'; require …`). Husbåten har
+  `bookByPhone` (bokas bara via telefon/e-post).
 
 - `data/site.json`: allt innehåll, också knappar (`ui`, med platshållare `{pris}`, `{telefon}`). Sökvägarna används som
   `data-cms`. `includes/site.php`: `dr_text()`, `dr_img()` (bildbeskrivning i `<bild>Alt`), `dr_price()`, `dr_url()`.
 - `includes/partials/header.php` / `footer.php`, `assets/css/site.css` (från designförslaget), `assets/js/site.js`.
-- Språk: cms-core-modulen `sprak` (`lang.php`), `.htaccess` gör `/en/…`. Engelska är översatt (397 texter, via
-  AI-flödet) men bara lokalt – `data/site.en.*` och `cms/storage/` ligger inte i git.
+- Språk: cms-core-modulen `sprak` (`lang.php`), `.htaccess` gör `/en/…`. Engelska är översatt (754 texter, via
+  AI-flödet) men bara lokalt – `data/site.en.*` och `cms/storage/` ligger inte i git. Första uppladdningen tar med
+  dem (`deploy.ps1 -ForstaGangen`).
+- Typsnitten ligger i `assets/fonts/` (latin + latin-ext), inte Google Fonts – integritetssidan säger att inget hämtas
+  från andra företag. Lägg inte tillbaka externa typsnitt, statistik eller inbäddningar utan att ändra den sidan.
+- `.htaccess`: www + HTTPS, 16 regler som skickar dagens 88 WordPress-adresser vidare (301), `/sitemap.xml` →
+  `sitemap.php`, språk och sidor utan `.php`. `router.php` gör inte omdirigeringarna (bara Apache).
+- `tools/deploy.ps1` (WinSCP, sparad webbplats "dragso", fyll i `$remote` först) – inte provkörd.
 - cms-core 1.8.0 synkat in i `cms/` (i git, som PIFAST). `cms/site/config.php` är lokal och utanför git;
   `cms/site/config.exempel.php` har samma inställningar utan lösenord. `cms/site/ordlista-start.json` = startordlistan.
 - **Köra lokalt:** `php -S localhost:8766 router.php` i mappen, CMS på `http://localhost:8766/cms/` (test / testlosen123,
   bara i den lokala config.php). `router.php` gör samma sak som `.htaccess` för PHP:s inbyggda server.
-- Kvar innan publicering: integritetssida, fler stugsidor, årets julerbjudande (2024 års kod JUL2024 togs inte med), hjälpsidan (Öppettider och Språk är skrivna), `tools/deploy.ps1`,
-  HTTPS/www-regler i `.htaccess`, omdirigeringar från dagens adresser, sitemap, riktig config på servern.
+- Kvar innan publicering: ägarens OK på design och texter (särskilt integritetssidan och priserna), årets
+  julerbjudande (2024 års kod JUL2024 togs inte med), WinSCP-inloggning och `$remote`, riktig config på servern
+  (användare, SMTP), test av omdirigeringarna på Apache, dragsocamping.com (väntar på ägaren, troligen → /en/).
 
 ## Om vi bygger
 

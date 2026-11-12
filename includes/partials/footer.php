@@ -39,7 +39,7 @@
         </ul>
       </div>
     </div>
-    <div class="bottom"><span>© <?= date('Y') ?> <?= dr_t('contact.name') ?></span><a href="#"<?= dr_attr('ui.privacy') ?>><?= dr_t('ui.privacy') ?></a></div>
+    <div class="bottom"><span>© <?= date('Y') ?> <?= dr_t('contact.name') ?></span><a href="<?= h(dr_url('integritet')) ?>"<?= dr_attr('ui.privacy') ?>><?= dr_t('ui.privacy') ?></a></div>
   </div>
 </footer>
 <script src="/assets/js/site.js" defer></script>

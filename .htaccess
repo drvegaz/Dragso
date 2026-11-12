@@ -5,6 +5,36 @@ RewriteEngine On
 # Dolda filer och mappar (.git, .htaccess m.fl.), utom .well-known (certifikat).
 RewriteRule (^|/)\.(?!well-known/) - [F]
 
+# Kanonisk adress: dragso.se → www.dragso.se, och alltid HTTPS (X-Forwarded-Proto om one.com har en proxy framför).
+RewriteCond %{HTTP_HOST} ^dragso\.se$ [NC]
+RewriteRule ^ https://www.dragso.se%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.dragso\.se$ [NC]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Gamla adresser från WordPress-sajten (88 sidor, november 2026) → nya sidor. Sidor med samma namn
+# (stallplatser, jul-nyar, orlogsbyn, husbaten, dragsostugan, aktiviteter) fungerar utan regel.
+RewriteRule ^(?:test|exempelsida|footer|360\-2|fototavling|gastundersokning|social\-media|paket\-erbjudanden|tillganlighet|hallbarhet|seniorlager|om\-dragso|pasklov)/?$ / [R=301,L]
+RewriteRule ^(?:stugor|baddsoffa|stadning|stadlista|information/bokningsregler|stugor/.+)/?$ /boende [R=301,L]
+RewriteRule ^(?:stugsvit|stugsviterteman)/?$ /stugsviter [R=301,L]
+RewriteRule ^(?:luxus\-sjalvhushallsstuga)/?$ /varldsarvsbyn [R=301,L]
+RewriteRule ^(?:sjalvhushallsstuga)/?$ /fiskebyn [R=301,L]
+RewriteRule ^(?:fyrbaddsstuga)/?$ /skargardsbyn-4 [R=301,L]
+RewriteRule ^(?:trebaddsstuga)/?$ /skargardsbyn-3 [R=301,L]
+RewriteRule ^(?:tvabaddsstugan)/?$ /strandstugan [R=301,L]
+RewriteRule ^(?:vandrarhem)/?$ /rum [R=301,L]
+RewriteRule ^(?:camping\-karlskrona|kosystem\-hogsasong|obokningsbara\-platser|omradeskarta|platsstorlekar|information/ordningsregler|camping\-karlskrona/.+)/?$ /camping [R=301,L]
+RewriteRule ^(?:returnofgrim|skattjakt|grim|shuffleboard|friskvard|vattencykel|havskajak|sup|kajak|kanot|cykel|trampbat|motorbat|bastuflotte|aktiviteter/.+)/?$ /aktiviteter [R=301,L]
+RewriteRule ^(?:skargardstrafiken|evenemang\-i\-karlskrona|ankomst\-pa\-dragso|infor\-ankomst|utflyktsmal\-i\-narheten)/?$ /hitta-hit [R=301,L]
+RewriteRule ^(?:kontakta\-oss|felanmalan\-c1|internet\-access\-wifi|for\-forening|event|konferens|bokningsforfragan|information|information/restaurang\-butik|information/oppettider|kontakta\-oss/.+)/?$ /kontakt [R=301,L]
+RewriteRule ^(?:disclaimer|imprint|privacy\-statement\-eu|cookie\-policy\-eu)/?$ /integritet [R=301,L]
+RewriteRule ^(?:boka\-online)/?$ https://boka.dragso.se/ [R=301,L]
+RewriteRule ^(?:halloweek)/?$ https://halloweek.se/ [R=301,L]
+
+# Sitemap (sitemap.php läser sidorna och språken från CMS:et).
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
 # Språk (modulen sprak i cms-core): /en/ och /en/camping visar index.php och camping.php på engelska.
 # Ett språk som inte visas skickas vidare till huvudspråket av cms/modules/sprak/lang.php.
 RewriteRule ^([a-z]{2})/?$ index.php?lang=$1 [QSA,L]

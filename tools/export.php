@@ -8,9 +8,10 @@ declare(strict_types=1);
 $root = dirname(__DIR__);
 $out = "$root/export";
 $siteUrl = 'https://www.dragso.se';
-$pages = ['index', 'boende', 'orlogsbyn', 'camping', 'aktiviteter', 'hitta-hit', 'kontakt', 'stallplatser', 'jul-nyar'];
 
 require "$root/cms/lib.php";
+// Sidorna från 'pages' i cms/site/config.php (samma lista som sidväljaren i redigeringsläget).
+$pages = array_map(fn($f) => basename($f, '.php'), array_keys(config()['pages']));
 $local = rtrim(config()['site_url'], '/');
 $main = config()['language'];
 $langs = array_column(json_decode((string)@file_get_contents("$root/data/languages.json"), true) ?: [['code' => $main]], 'code');

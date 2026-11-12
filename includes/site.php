@@ -8,8 +8,12 @@ declare(strict_types=1);
 require_once __DIR__ . '/../cms/modules/sprak/lang.php';
 
 const DR_BOOKING_URL = 'https://boka.dragso.se/';
-// Sidor som finns som egna filer. Länkar till andra sidor (t.ex. aktiviteter) visas, men går ingenstans än.
-const DR_PAGES = ['', 'boende', 'orlogsbyn', 'camping', 'aktiviteter', 'hitta-hit', 'kontakt', 'stallplatser', 'jul-nyar'];
+
+// Sidorna står på ett ställe: 'pages' i cms/site/config.php (filnamn => namn). Sidans namn = filnamnet utan .php,
+// och index.php är startsidan (''). Länkar till sidor som inte finns där får "#".
+function dr_pages(): array {
+  return array_map(fn($f) => $f === 'index.php' ? '' : basename($f, '.php'), array_keys(config()['pages']));
+}
 
 function dr_site(): array {
   return cms_site();
@@ -61,7 +65,7 @@ function dr_price(int $price): string {
 
 // Adress till en sida på samma språk. Sidor som inte är byggda än får "#".
 function dr_url(string $page): string {
-  return in_array($page, DR_PAGES, true) ? cms_url($page) : '#';
+  return in_array($page, dr_pages(), true) ? cms_url($page) : '#';
 }
 
 function dr_tel(string $phone): string {
@@ -117,9 +121,7 @@ function dr_head(string $titlePath, string $summaryPath): void {
 <meta property="og:title" content="<?= h($full) ?>">
 <meta property="og:description" content="<?= h((string)dr_get($summaryPath)) ?>">
 <meta property="og:image" content="<?= h(rtrim(config()['site_url'], '/') . '/assets/img/hero-on.jpg') ?>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script>if (/[?&]edit\b/.test(location.search)) { for (const f of ['cms/server-sync.js', 'cms/editor.js']) { const s = document.createElement('script'); s.src = '/' + f; s.async = false; document.head.appendChild(s); } }</script>
 <?php

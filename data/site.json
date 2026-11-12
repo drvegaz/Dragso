@@ -32,7 +32,9 @@
         "forKids": "För barn",
         "forAdults": "För vuxna",
         "bookPitch": "Boka ställplats",
-        "bookCabin": "Boka stuga"
+        "bookCabin": "Boka stuga",
+        "bookByPhone": "Boka via telefon",
+        "bookByPhoneNote": "Husbåten bokas via telefon eller e-post."
     },
     "nav": [
         {
@@ -247,34 +249,34 @@
                             "name": "Stugsviter",
                             "text": "Fem stugor med egna teman: Skärgård, Retro, Svart/vit, Berg och Glas.",
                             "list": [
-                                "4+2 bäddar",
-                                "Master bedroom"
+                                "36 m²",
+                                "4+2 bäddar"
                             ],
                             "price": 1800,
-                            "image": "",
-                            "page": ""
+                            "image": "assets/img/stugsvit.jpg",
+                            "page": "stugsviter"
                         },
                         {
                             "name": "Världsarvsbyn",
-                            "text": "Tio självhushållsstugor med pullmansängar och bäddsoffa.",
+                            "text": "Tio stugor mitt på campingen med egen murad grill. Två är anpassade för rullstol.",
                             "list": [
-                                "6 bäddar",
-                                "2 sovrum"
+                                "26 m²",
+                                "4+2 bäddar"
                             ],
                             "price": 1150,
                             "image": "",
-                            "page": ""
+                            "page": "varldsarvsbyn"
                         },
                         {
                             "name": "Fiskebyn",
-                            "text": "Fem stugor med våningssängar, kök och bäddsoffa i vardagsrummet.",
+                            "text": "Fem stugor i söderläge med stor uteplats och utsikt över Karlskrona.",
                             "list": [
-                                "6 bäddar",
-                                "Kök"
+                                "26 m²",
+                                "4+2 bäddar"
                             ],
                             "price": 1150,
                             "image": "assets/img/stuga-vardagsrum.jpg",
-                            "page": ""
+                            "page": "fiskebyn"
                         }
                     ]
                 },
@@ -287,54 +289,56 @@
                             "name": "Skärgårdsbyn, fyra bäddar",
                             "text": "Ett rum med två våningssängar. Kokplattor, kaffebryggare och liten kyl.",
                             "list": [
-                                "4 bäddar",
-                                "Indraget vatten"
+                                "14 m²",
+                                "4 bäddar"
                             ],
                             "price": 700,
                             "image": "",
-                            "page": ""
+                            "page": "skargardsbyn-4"
                         },
                         {
                             "name": "Skärgårdsbyn, tre bäddar",
                             "text": "Dubbelsäng med överslaf. Kokplattor, kaffebryggare och liten kyl.",
                             "list": [
-                                "3 bäddar",
-                                "Indraget vatten"
+                                "14 m²",
+                                "3 bäddar"
                             ],
                             "price": 700,
                             "image": "",
-                            "page": ""
+                            "page": "skargardsbyn-3"
                         },
                         {
                             "name": "Strandstugan",
                             "text": "Dragsös enda tvåbäddsstuga, precis vid badstranden.",
                             "list": [
-                                "2 bäddar",
-                                "Vid stranden"
+                                "15 m²",
+                                "2 bäddar"
                             ],
                             "price": 710,
                             "image": "",
-                            "page": ""
+                            "page": "strandstugan"
                         },
                         {
                             "name": "Dragsöstugan",
-                            "text": "Enkel stuga med indraget vatten och mindre kök.",
+                            "text": "Ett rum med våningssäng och bäddsoffa, kokplattor och egen altan med grill.",
                             "list": [
-                                "Indraget vatten"
+                                "16 m²",
+                                "2+2 bäddar"
                             ],
                             "price": 700,
                             "image": "",
-                            "page": ""
+                            "page": "dragsostugan"
                         },
                         {
                             "name": "Husbåten",
-                            "text": "Bo på vattnet. Enkel standard med indraget vatten och mindre kök.",
+                            "text": "Bo på vattnet vid en egen brygga i Killingaviken. Dusch, toalett och kök i servicehuset.",
                             "list": [
-                                "Flytande"
+                                "10 m²",
+                                "2+1 bäddar"
                             ],
                             "price": 0,
                             "image": "",
-                            "page": ""
+                            "page": "husbaten"
                         }
                     ]
                 },
@@ -344,14 +348,15 @@
                     "label": "Rum",
                     "items": [
                         {
-                            "name": "Rum",
-                            "text": "Rum med två bäddar och en extrasäng.",
+                            "name": "Vandrarhemsrum",
+                            "text": "Fyra rum med egen ingång, tio meter från badstranden. Slutstädning ingår.",
                             "list": [
+                                "8 m²",
                                 "2+1 bäddar"
                             ],
                             "price": 600,
                             "image": "",
-                            "page": ""
+                            "page": "rum"
                         }
                     ]
                 }
@@ -855,6 +860,734 @@
                 "image": "assets/img/badtunna.jpg",
                 "imageAlt": "Badtunna på bastuflotten i solnedgång"
             }
+        },
+        "stugsviter": {
+            "title": "Stugsviter",
+            "price": 1800,
+            "image": "assets/img/stugsvit.jpg",
+            "imageAlt": "Stugsviterna i rad, röda med vita gavlar och verandor",
+            "summary": "Fem stugsviter med egna teman på Dragsö i Karlskrona: 36 m², dusch, toalett, fullt utrustat kök och golvvärme.",
+            "lead": "Fem stugor med egna teman, dusch, toalett och fullt utrustat kök. 36 m² med sovrum, sovloft och golvvärme i alla rum.",
+            "themes": {
+                "title": "Fem stugor, fem teman",
+                "text": "Varje stugsvit har en egen inredning.",
+                "cabins": [
+                    {
+                        "number": 27,
+                        "name": "Skärgård",
+                        "text": "Exklusivt kök och mycket trä, som en modern skärgårdsstuga.",
+                        "pets": false
+                    },
+                    {
+                        "number": 28,
+                        "name": "Retro",
+                        "text": "Modern retro med exklusivt kök.",
+                        "pets": true
+                    },
+                    {
+                        "number": 29,
+                        "name": "Berg",
+                        "text": "Som en alpstuga, med sten och mörkt trä.",
+                        "pets": false
+                    },
+                    {
+                        "number": 30,
+                        "name": "Svart/vit",
+                        "text": "Allt i svart och vitt, med pianolackat kök.",
+                        "pets": false
+                    },
+                    {
+                        "number": 31,
+                        "name": "Glas",
+                        "text": "Glas i tavlor, skulpturer och detaljer.",
+                        "pets": false
+                    }
+                ]
+            },
+            "living": {
+                "title": "Så bor ni",
+                "body": "Master bedroom med dubbelsäng, loft med två enkelsängar och en bäddsoffa i vardagsrummet. Platt-TV i vardagsrum och sovrum.\n\nVerandan har tak och utemöbler, och ni parkerar direkt vid stugan."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Dusch och toalett",
+                    "Kyl och frys",
+                    "Diskmaskin",
+                    "Spis, ugn och mikro",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare, vattenkokare, brödrost",
+                    "Täcken och kuddar",
+                    "Strykjärn",
+                    "Air condition",
+                    "Golvvärme",
+                    "Grill",
+                    "Wifi"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Minst två nätter. Enstaka nätter under hög- och peaksäsong bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "990 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "36 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "4 + 2"
+                    ],
+                    [
+                        "Rum",
+                        "2 + sovloft"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Ja"
+                    ],
+                    [
+                        "Husdjur",
+                        "Stuga 28"
+                    ],
+                    [
+                        "Elbilsladdning",
+                        "I närheten"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "varldsarvsbyn": {
+            "title": "Världsarvsbyn",
+            "price": 1150,
+            "image": "",
+            "imageAlt": "",
+            "summary": "Tio stugor mitt på campingen på Dragsö i Karlskrona: 26 m², 4+2 bäddar, dusch, toalett, kök och egen murad grill.",
+            "lead": "Tio bekväma stugor mitt på campingen, 30–80 meter från badstranden. 26 m² med dusch, toalett, kök och egen murad grill.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Sovrummet har två sängar och två pullmansängar, och i vardagsrummet finns en bäddsoffa för två.\n\nVerandan har tak, utemöbler och egen murad grill. Ni parkerar direkt vid stugan. Två av stugorna är anpassade för rullstol, med ramp och annat duschrum."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Dusch och toalett",
+                    "Kyl och frys",
+                    "Diskmaskin",
+                    "Spis, ugn och mikro",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare och vattenkokare",
+                    "TV och dvd",
+                    "Täcken och kuddar",
+                    "Strykjärn",
+                    "Golvvärme",
+                    "Egen murad grill",
+                    "Wifi"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Under hög- och peaksäsong bokas stugan lördag–lördag. Enstaka dygn bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "790 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "26 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "4 + 2"
+                    ],
+                    [
+                        "Rum",
+                        "2"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Ja"
+                    ],
+                    [
+                        "Rullstol",
+                        "2 stugor"
+                    ],
+                    [
+                        "Husdjur",
+                        "Fråga receptionen"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "fiskebyn": {
+            "title": "Fiskebyn",
+            "price": 1150,
+            "image": "assets/img/stuga-vardagsrum.jpg",
+            "imageAlt": "Vardagsrum och kök i en stuga i Fiskebyn",
+            "summary": "Fem stugor i söderläge med utsikt över Karlskrona på Dragsö: 26 m², 4+2 bäddar, dusch, toalett och kök.",
+            "lead": "Fem stugor i söderläge med stor uteplats och utsikt över Karlskrona. 35 meter till skärgårdsbåten och 90 meter till badstranden.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Sovrummet har två våningssängar, och i vardagsrummet finns en bäddsoffa för två. Vardagsrum och kök är ett rum, och badrummet har dusch och toalett.\n\nUteplatsen är stor och har utsikt över stan. Ni parkerar direkt vid stugan."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Dusch och toalett",
+                    "Kyl och frys",
+                    "Diskmaskin",
+                    "Spis, ugn och mikro",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare och vattenkokare",
+                    "TV",
+                    "Täcken och kuddar",
+                    "Strykjärn",
+                    "Utemöbler",
+                    "Wifi"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Under hög- och peaksäsong bokas stugan lördag–lördag. Enstaka dygn bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "790 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "26 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "4 + 2"
+                    ],
+                    [
+                        "Rum",
+                        "2"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Ja"
+                    ],
+                    [
+                        "Husdjur",
+                        "Stuga 13–14"
+                    ],
+                    [
+                        "Elbilsladdning",
+                        "I närheten"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "skargardsbyn-4": {
+            "title": "Skärgårdsbyn, fyra bäddar",
+            "price": 700,
+            "image": "",
+            "imageAlt": "",
+            "summary": "Stugor byggda som gamla sjöbodar, 25 meter från badstranden på Dragsö: 14 m², fyra bäddar och pentry.",
+            "lead": "Fem stugor byggda som gammaldags sjöbodar, 25 meter från badstranden. Ett rum på 14 m² med pentry och två våningssängar.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Rummet har två våningssängar och ett matbord för fyra. Dusch och toalett finns i servicehuset, 50 meter bort.\n\nUtanför finns en terrass med ljugarbänk, bord och bänkar att äta vid, och två gemensamma murade grillar."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Kyl med litet frysfack",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare",
+                    "Täcken och kuddar",
+                    "Disk- och städutrustning",
+                    "TV",
+                    "Utemöbler",
+                    "Gemensamma murade grillar"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Under hög- och peaksäsong bokas stugan lördag–lördag. Enstaka dygn bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "590 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "14 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "4"
+                    ],
+                    [
+                        "Kök",
+                        "Pentry"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Servicehuset, 50 m"
+                    ],
+                    [
+                        "Husdjur",
+                        "Stuga 5–6"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "skargardsbyn-3": {
+            "title": "Skärgårdsbyn, tre bäddar",
+            "price": 700,
+            "image": "",
+            "imageAlt": "",
+            "summary": "Stugor byggda som gamla sjöbodar, 25 meter från badstranden på Dragsö: 14 m², dubbelsäng med överslaf och pentry.",
+            "lead": "Fyra stugor byggda som gammaldags sjöbodar, 25 meter från badstranden. Ett rum på 14 m² med pentry, dubbelsäng och överslaf.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Rummet har en dubbelsäng med en platsbyggd säng ovanför, och ett matbord för fyra. Dusch och toalett finns i servicehuset, 50 meter bort.\n\nUtanför finns en terrass med ljugarbänk, bord och bänkar att äta vid, och två gemensamma murade grillar."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Kyl med litet frysfack",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare",
+                    "Täcken och kuddar",
+                    "Disk- och städutrustning",
+                    "TV",
+                    "Utemöbler",
+                    "Gemensamma murade grillar"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Under hög- och peaksäsong bokas stugan lördag–lördag. Enstaka dygn bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "590 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "14 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "3"
+                    ],
+                    [
+                        "Kök",
+                        "Pentry"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Servicehuset, 50 m"
+                    ],
+                    [
+                        "Husdjur",
+                        "Stuga 1–2"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "strandstugan": {
+            "title": "Strandstugan",
+            "price": 710,
+            "image": "",
+            "imageAlt": "",
+            "summary": "Dragsös enda tvåbäddsstuga, direkt vid badstranden med utsikt över badviken: 15 m² med torrkök.",
+            "lead": "Dragsös enda tvåbäddsstuga ligger direkt vid badstranden, med utsikt över badviken. Ett rum på 15 m² inrett i skärgårdstema.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Två enkelsängar står ihop, och i köksdelen finns ett torrkök och ett bord för två. Dusch, toalett, kök och diskmaskin finns i servicehuset, 35 meter bort."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Kyl med litet frysfack",
+                    "Två kokplattor och mikro",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare",
+                    "TV",
+                    "Täcken och kuddar",
+                    "Disk- och städutrustning"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Under hög- och peaksäsong bokas stugan lördag–lördag. Enstaka dygn bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "590 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "15 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "2"
+                    ],
+                    [
+                        "Kök",
+                        "Torrkök"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Servicehuset, 35 m"
+                    ],
+                    [
+                        "Husdjur",
+                        "Nej"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "dragsostugan": {
+            "title": "Dragsöstugan",
+            "price": 700,
+            "image": "",
+            "imageAlt": "",
+            "summary": "Den traditionella Dragsöstugan mitt på campingen: 16 m², 2+2 bäddar, kokplattor och altan med grill.",
+            "lead": "Den traditionella Dragsöstugan ligger mitt på campingen, 60 meter från badstranden. Ett rum på 16 m² med egen altan och grill.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Sovdelen har en våningssäng och en bäddsoffa för två. Köksdelen har kokplattor, kaffebryggare, kyl och ett bord för fyra. Dusch, toalett och diskmaskin finns i servicehuset, 10 meter bort."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Kyl med frysfack",
+                    "Kokplattor och mikro",
+                    "Porslin, bestick och kastruller",
+                    "Kaffebryggare",
+                    "TV",
+                    "Utemöbler och grill",
+                    "Täcken och kuddar",
+                    "Disk- och städutrustning"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Under hög- och peaksäsong bokas stugan lördag–lördag. Enstaka dygn bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "590 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "16 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "2 + 2"
+                    ],
+                    [
+                        "Kök",
+                        "Torrkök"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Servicehuset, 10 m"
+                    ],
+                    [
+                        "Husdjur",
+                        "Nej"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "husbaten": {
+            "title": "Husbåten",
+            "price": 0,
+            "image": "",
+            "imageAlt": "",
+            "bookByPhone": true,
+            "summary": "Dragsös enda stuga på vattnet: en husbåt vid egen brygga i Killingaviken, 10 m² och 2+1 bäddar.",
+            "lead": "Dragsös enda stuga på vattnet ligger vid en egen brygga i Killingaviken. Grilla på den lilla uteplatsen och ät middag i kvällssolen.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Husbåten är 10 m² och har en våningssäng med utdragbar underdel, så att tre kan sova. Dusch, toalett och kök med spis, ugn, kyl, frys och diskmaskin finns i servicehuset, 120 meter bort, där det också finns en matsal."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Gasolkök",
+                    "Porslin, bestick och kastruller",
+                    "Grill",
+                    "Täcken och kuddar",
+                    "Disk- och städutrustning"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Minst två nätter. Enstaka nätter under hög- och peaksäsong bara i undantagsfall.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Slutstädning, om du inte städar själv",
+                        "590 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "10 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "2 + 1"
+                    ],
+                    [
+                        "Kök",
+                        "Gasolkök"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Servicehuset, 120 m"
+                    ],
+                    [
+                        "Husdjur",
+                        "Nej"
+                    ],
+                    [
+                        "Wifi",
+                        "Nej"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "rum": {
+            "title": "Vandrarhemsrum",
+            "price": 600,
+            "image": "",
+            "imageAlt": "",
+            "summary": "Fyra vandrarhemsrum med egen ingång, tio meter från badstranden på Dragsö: 8 m² och två eller tre bäddar.",
+            "lead": "Fyra rum med egen ingång, bara tio meter från badstranden. Slutstädningen ingår i priset.",
+            "living": {
+                "title": "Så bor ni",
+                "body": "Rummen är 8 m² och har en våningssäng med utdragbar underdel, för två eller tre. Dusch, toalett och kök med spis, ugn, kyl, frys och diskmaskin finns i servicehuset, 35 meter bort, där det också finns en matsal. Ta med egen köksutrustning om du vill laga mat där."
+            },
+            "equipment": {
+                "title": "Utrustning",
+                "list": [
+                    "Kyl med litet frysfack",
+                    "TV",
+                    "Kaffebryggare",
+                    "Muggar, glas, tallrikar och bestick",
+                    "Täcken och kuddar"
+                ]
+            },
+            "terms": {
+                "title": "Bra att veta när du bokar",
+                "text": "Slutstädningen ingår i priset.",
+                "rows": [
+                    [
+                        "Bokningsavgift",
+                        "80 kr"
+                    ],
+                    [
+                        "Avbeställningsskydd, per stuga",
+                        "250 kr"
+                    ],
+                    [
+                        "Lakan och handduk, per set",
+                        "160 kr"
+                    ]
+                ]
+            },
+            "facts": {
+                "rows": [
+                    [
+                        "Storlek",
+                        "8 m²"
+                    ],
+                    [
+                        "Bäddar",
+                        "2 + 1"
+                    ],
+                    [
+                        "Kök",
+                        "I servicehuset"
+                    ],
+                    [
+                        "Dusch & WC",
+                        "Servicehuset, 35 m"
+                    ],
+                    [
+                        "Husdjur",
+                        "Rum D"
+                    ]
+                ],
+                "note": "Frågor? Ring receptionen på {telefon}."
+            }
+        },
+        "integritet": {
+            "title": "Integritet och cookies",
+            "summary": "Hur Dragsö Camping & Stugby hanterar personuppgifter och cookies på webbplatsen.",
+            "lead": "Den här webbplatsen samlar inte in uppgifter om dig när du besöker den. Här beskriver vi vad som gäller när du bokar eller hör av dig.",
+            "sections": [
+                {
+                    "title": "Cookies och statistik",
+                    "text": "Webbplatsen använder inga cookies för besökare. Vi mäter inte trafiken, visar ingen reklam och hämtar inget från andra företag, inte heller typsnitt. Därför frågar vi inte om cookies när du kommer hit.\n\nBara den som loggar in för att redigera webbplatsen får en cookie, som behövs för inloggningen."
+                },
+                {
+                    "title": "När du bokar",
+                    "text": "Bokningen görs i vårt bokningssystem på boka.dragso.se. Där lämnar du de uppgifter som behövs för bokningen, och de används för att hantera din vistelse."
+                },
+                {
+                    "title": "När du hör av dig",
+                    "text": "Mejlar eller ringer du oss använder vi uppgifterna för att svara dig och hjälpa dig med din vistelse."
+                },
+                {
+                    "title": "Länkar till andra webbplatser",
+                    "text": "Vi länkar till bland annat Google Maps, bokningssystemet och Restaurang Havsviken. När du följer en sådan länk gäller den webbplatsens egna regler."
+                },
+                {
+                    "title": "Dina rättigheter",
+                    "text": "Du har rätt att få veta vilka uppgifter vi har om dig och att få dem rättade eller borttagna. Hör av dig till oss, så hjälper vi dig. Är du inte nöjd kan du vända dig till Integritetsskyddsmyndigheten (IMY)."
+                }
+            ]
         }
     },
     "footer": {
