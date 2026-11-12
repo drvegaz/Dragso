@@ -14,6 +14,16 @@ const HISTORY_DIR = STORAGE_DIR . '/history';
 const UPLOAD_DIR = ROOT . '/uploads/cms';
 const HISTORY_KEEP = 100;
 
+// storage/ laddas aldrig upp (där ligger det levande), så på en ny server saknas skyddsfilen och allt där
+// – användare, inloggningsförsök, formulärinskick – kunde läsas via webben. Kärnan skapar den därför själv.
+(function (): void {
+  $f = STORAGE_DIR . '/.htaccess';
+  if (is_file($f)) return;
+  if (!is_dir(STORAGE_DIR) && !@mkdir(STORAGE_DIR, 0775, true)) return;
+  if (@file_put_contents($f, "# Historik, användare och inloggningsförsök ska aldrig nås via webben.\nRequire all denied\n") === false)
+    error_log('[cms] kunde inte skapa ' . $f);
+})();
+
 // Standardvärden för cms/site/config.php. Webbplatsens egna värden gäller före dessa.
 const CONFIG_DEFAULTS = [
   'site_name' => 'Webbplatsen',
