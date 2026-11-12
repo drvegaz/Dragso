@@ -58,9 +58,15 @@ function dr_img(string $path, string $attrs = '', bool $lazy = true): string {
 }
 
 // "från 700 kr" på sidans språk (ui.priceFrom med {pris}). Tusental som språket skriver dem: 2 000, 2,000, 2.000.
-function dr_price(int $price): string {
+// $path = priset i innehållet (t.ex. "pages.orlogsbyn.price"): då blir siffran redigerbar i redigeringsläget.
+// (Under redigeringen visas siffran utan mellanrum, t.ex. 2000; efter publicering som vanligt.)
+function dr_price(int $price, string $path = ''): string {
   $sep = ['en' => ',', 'de' => '.', 'da' => '.', 'nl' => '.', 'it' => '.', 'es' => '.'][cms_lang()] ?? "\u{00A0}";
-  return h(str_replace('{pris}', number_format($price, 0, ',', $sep), (string)dr_get('ui.priceFrom')));
+  $num = number_format($price, 0, ',', $sep);
+  $tpl = (string)dr_get('ui.priceFrom');
+  if ($path === '') return h(str_replace('{pris}', $num, $tpl));
+  [$before, $after] = array_pad(explode('{pris}', $tpl, 2), 2, '');
+  return h($before) . '<span class="price-num"' . dr_attr($path) . '>' . h($num) . '</span>' . h($after);
 }
 
 // Adress till en sida på samma språk. Sidor som inte är byggda än får "#".

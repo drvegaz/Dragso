@@ -41,7 +41,7 @@ $p = 'pages.camping';
         <div class="zone<?= $z['bookable'] ? '' : ' nobook' ?>" style="--c:var(--z-<?= $color ?>)">
           <span class="sw"></span>
           <div><h3><?= dr_text("$z_.name") ?> <small><?= $z['bookable'] ? dr_t('ui.bookable') : dr_t('ui.notBookable') ?></small></h3><?= dr_text("$z_.text", 'p') ?></div>
-          <p class="zp"><?php if (!$z['bookable']): ?><b><?= dr_t('ui.askReception') ?></b><?php elseif ($z['price']): ?><b><?= dr_price((int)$z['price']) ?></b><?php else: ?><b><?= dr_t('ui.priceInBooking') ?></b><?php endif; ?></p>
+          <p class="zp"><?php if (!$z['bookable']): ?><b><?= dr_t('ui.askReception') ?></b><?php elseif ($z['price']): ?><b><?= dr_price((int)$z['price'], "$z_.price") ?></b><?php else: ?><b><?= dr_t('ui.priceInBooking') ?></b><?php endif; ?></p>
         </div>
         <?php endforeach; ?>
       </div>

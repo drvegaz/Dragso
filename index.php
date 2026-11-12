@@ -23,7 +23,7 @@ $p = 'pages.start';
         <?php foreach ((array)dr_get("$p.book.rows") as $i => $row): ?>
         <a class="book-row" href="<?= h(DR_BOOKING_URL) ?>" target="_blank" rel="noopener">
           <span><?= dr_text("$p.book.rows.$i.name", 'b') ?><?= dr_text("$p.book.rows.$i.sub", 'small') ?></span>
-          <span class="price"><span><?= dr_price((int)$row['price']) ?></span></span>
+          <span class="price"><span><?= dr_price((int)$row['price'], "$p.book.rows.$i.price") ?></span></span>
         </a>
         <?php endforeach; ?>
         <?= dr_text("$p.book.note", 'p', ' class="fine"') ?>

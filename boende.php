@@ -38,7 +38,7 @@ $p = 'pages.boende';
             <ul class="specs"><?php foreach ($s['list'] as $n => $x): ?><li<?= dr_attr("$s_.list.$n") ?>><?= dr_t("$s_.list.$n") ?></li><?php endforeach; ?></ul>
             <?= dr_text("$s_.text", 'p') ?>
             <div class="foot">
-              <span class="from"><?= $s['price'] ? '<b>' . dr_price((int)$s['price']) . '</b>' : dr_t('ui.priceInBooking') ?></span>
+              <span class="from"><?= $s['price'] ? '<b>' . dr_price((int)$s['price'], "$s_.price") . '</b>' : dr_t('ui.priceInBooking') ?></span>
               <?php if ($s['page'] !== ''): ?><a href="<?= h(dr_url($s['page'])) ?>"<?= dr_attr('ui.readMore') ?>><?= dr_t('ui.readMore') ?></a>
               <?php else: ?><a href="<?= h(DR_BOOKING_URL) ?>" target="_blank" rel="noopener"<?= dr_attr('ui.book') ?>><?= dr_t('ui.book') ?></a><?php endif; ?>
             </div>

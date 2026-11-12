@@ -51,7 +51,7 @@ $c = (array)dr_get($p);
       </section>
     </div>
     <aside class="aside" aria-label="<?= dr_t('ui.book') ?> – <?= dr_t("$p.title") ?>">
-      <p class="price"><?= dr_t('ui.perNight') ?><b><?= ($c['price'] ?? 0) ? dr_price((int)$c['price']) : dr_t('ui.priceInBooking') ?></b></p>
+      <p class="price"><?= dr_t('ui.perNight') ?><b><?= ($c['price'] ?? 0) ? dr_price((int)$c['price'], "$p.price") : dr_t('ui.priceInBooking') ?></b></p>
       <?= dr_rows("$p.facts.rows", 'quick') ?>
       <?php if (!empty($c['bookByPhone'])): ?>
       <a class="btn btn-boka" href="<?= h(dr_tel((string)dr_get('contact.phone'))) ?>"<?= dr_attr('ui.bookByPhone') ?>><?= dr_t('ui.bookByPhone') ?></a>
