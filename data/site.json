@@ -28,7 +28,11 @@
         "included": "Det här ingår",
         "call": "Ring",
         "emailLabel": "E-post",
-        "addressLabel": "Adress"
+        "addressLabel": "Adress",
+        "forKids": "För barn",
+        "forAdults": "För vuxna",
+        "bookPitch": "Boka ställplats",
+        "bookCabin": "Boka stuga"
     },
     "nav": [
         {
@@ -784,6 +788,72 @@
             "shop": {
                 "title": "Kiosk och butik",
                 "text": "På sommaren har vi öppet i butiken med nybakat bröd, kaffe, glass, basvaror, grillmat och tillbehör till husvagn, husbil och tält."
+            }
+        },
+        "stallplatser": {
+            "title": "Ställplatser för husbil",
+            "summary": "Ställplatser för husbil på Dragsö i Karlskrona, i lummig miljö eller direkt vid vattnet, med servicehus och tömningsstation.",
+            "lead": "Ställ husbilen på ön mitt i Karlskronas skärgård, tre kilometer från stan. Välj en plats i lummig grönska eller direkt vid vattnet.",
+            "image": "assets/img/stallplats.jpg",
+            "imageAlt": "Husbil parkerad under ett träd vid vattnet",
+            "place": {
+                "title": "Så hittar du rätt plats",
+                "text": "Platserna för husbil har en husbilssymbol med platsnummer på områdeskartan. Varje plats har en egen brandsäkerhetsplan för hur husbilen ska stå. Den ser du på kartan och på bomkortet du får vid incheckningen, och vi berättar också när du checkar in.",
+                "note": "Platserna direkt vid vattnet ligger i röd zon och går inte att förhandsboka. De delas ut vid ankomst i mån av plats. Vill du helst stå där, boka en plats i en annan zon för säkerhets skull, särskilt på sommaren."
+            },
+            "service": {
+                "title": "Service på campingen",
+                "list": [
+                    "Servicehus med dusch och toalett",
+                    "Tvättstuga",
+                    "Kök",
+                    "Wifi",
+                    "Tömning och påfyllning av vatten",
+                    "Camperclean för toalettkassetter"
+                ],
+                "note": "Tvättmaskin, torktumlare och Camperclean (20 kr) betalas vid utcheckningen. Camperclean tömmer, sköljer och fyller kassetten med rätt mängd vatten och ett mikrobiologiskt medel."
+            }
+        },
+        "jul-nyar": {
+            "title": "Jul och nyår på Dragsö",
+            "summary": "Fira jul och nyår i en varm stuga på Dragsö i Karlskrona, med skattjakt för barnen, reflexbana, tipspromenad och bastuflotte.",
+            "lead": "Vi har öppet över jul och nyår. Fira i en varm stuga på ön, med promenadavstånd till Karlskrona och aktiviteter för både barn och vuxna.",
+            "image": "assets/img/sjobod.jpg",
+            "imageAlt": "Sjöbodar vid en brygga en klar vinterdag",
+            "activities": {
+                "title": "Aktiviteter under jul och nyår",
+                "text": "Alla aktiviteter kostar 20 kr per person och betalas med Swish på plats.",
+                "kids": [
+                    {
+                        "name": "Ubbes & Smillas skattmysterium",
+                        "text": "Hitta de borttappade ledtrådarna på ön och lös mysteriet. För barn 3–8 år, och alla som löser det får ta del av skatten."
+                    },
+                    {
+                        "name": "Julbingo",
+                        "text": "Hitta bilderna på bingobrickan. För barn 3–5 år, med ett hemligt pris som lottas ut efteråt."
+                    }
+                ],
+                "adults": [
+                    {
+                        "name": "Tipspromenad",
+                        "text": "En tipspromenad runt ön under hela perioden."
+                    },
+                    {
+                        "name": "Reflexbana",
+                        "text": "Följ reflexerna och bilda det hemliga ordet. Kom när det mörknar och ta med ficklampa."
+                    }
+                ]
+            },
+            "stay": {
+                "title": "Bo i stuga över helgerna",
+                "text": "Ska ni fira jul i Karlskrona eller komma iväg över nyår? Stugorna med dusch, toalett och fullt utrustat kök passar bra, och Örlogsbyn har golvvärme i alla rum.",
+                "note": "Boka online och få upp till 90 kr rabatt."
+            },
+            "sauna": {
+                "title": "Bastuflotten",
+                "text": "Värm dig i den vedeldade bastun och badtunnan ute på vattnet, med familj eller vänner. Bastuflotten går att boka året runt.",
+                "image": "assets/img/badtunna.jpg",
+                "imageAlt": "Badtunna på bastuflotten i solnedgång"
             }
         }
     },

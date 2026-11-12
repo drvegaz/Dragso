@@ -9,7 +9,7 @@ require_once __DIR__ . '/../cms/modules/sprak/lang.php';
 
 const DR_BOOKING_URL = 'https://boka.dragso.se/';
 // Sidor som finns som egna filer. Länkar till andra sidor (t.ex. aktiviteter) visas, men går ingenstans än.
-const DR_PAGES = ['', 'boende', 'orlogsbyn', 'camping', 'aktiviteter', 'hitta-hit', 'kontakt'];
+const DR_PAGES = ['', 'boende', 'orlogsbyn', 'camping', 'aktiviteter', 'hitta-hit', 'kontakt', 'stallplatser', 'jul-nyar'];
 
 function dr_site(): array {
   return cms_site();

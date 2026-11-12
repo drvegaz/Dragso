@@ -18,9 +18,9 @@ return [
 
   'modules' => ['banners', 'oppettider', 'sprak'],
   // Sidfilerna (sidväljaren i redigeringsläget och grupperna i översättningen).
-  'pages' => ['index.php' => 'Startsida', 'boende.php' => 'Boende', 'orlogsbyn.php' => 'Örlogsbyn', 'camping.php' => 'Camping', 'aktiviteter.php' => 'Aktiviteter', 'hitta-hit.php' => 'Hitta hit', 'kontakt.php' => 'Kontakt'],
+  'pages' => ['index.php' => 'Startsida', 'boende.php' => 'Boende', 'orlogsbyn.php' => 'Örlogsbyn', 'camping.php' => 'Camping', 'aktiviteter.php' => 'Aktiviteter', 'hitta-hit.php' => 'Hitta hit', 'kontakt.php' => 'Kontakt', 'stallplatser.php' => 'Ställplatser', 'jul-nyar.php' => 'Jul och nyår'],
   // Vilken del av site.json som hör till vilken sida (grupperna i översättningen).
-  'page_content' => ['index.php' => 'pages.start', 'boende.php' => 'pages.boende', 'orlogsbyn.php' => 'pages.orlogsbyn', 'camping.php' => 'pages.camping', 'aktiviteter.php' => 'pages.aktiviteter', 'hitta-hit.php' => 'pages.hitta-hit', 'kontakt.php' => 'pages.kontakt'],
+  'page_content' => ['index.php' => 'pages.start', 'boende.php' => 'pages.boende', 'orlogsbyn.php' => 'pages.orlogsbyn', 'camping.php' => 'pages.camping', 'aktiviteter.php' => 'pages.aktiviteter', 'hitta-hit.php' => 'pages.hitta-hit', 'kontakt.php' => 'pages.kontakt', 'stallplatser.php' => 'pages.stallplatser', 'jul-nyar.php' => 'pages.jul-nyar'],
 
   // Standardlistan i cms/lib.php plus imageAlt (bildbeskrivningar).
   'editable_keys' => ['title', 'eyebrow', 'lead', 'text', 'label', 'intro', 'body', 'list', 'sub', 'note',
