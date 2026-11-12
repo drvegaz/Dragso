@@ -342,7 +342,7 @@ function fieldHtml(f, i) {
   return `<div class="row${s ? ' has-sugg' : ''}" data-i="${i}">
     <div class="src"><span class="lbl">${esc(overview.main.name)}</span>${esc(f.source)}${f.status === 'changed'
       ? `<div class="diff"><span class="lbl">Ändrat sedan översättningen:</span>${diff(f.oldSource, f.source)}</div>` : ''}</div>
-    <div class="tgt"><label class="lbl" for="t${i}">${esc(cur.name)}${s ? ' – förslag från AI' : ''}</label>
+    <div class="tgt"><label class="lbl" for="t${i}">${esc(cur.name)}${s ? (s.memory ? ' – samma text som redan är godkänd' : ' – förslag från AI') : ''}</label>
       ${s && f.text ? `<p class="live"><span class="lbl">Nu på webbplatsen:</span>${esc(f.text)}</p>` : ''}
       <textarea id="t${i}" rows="${rows(Math.max(f.source.length, baseline(f).length))}" spellcheck="true" lang="${esc(cur.code)}">${esc(baseline(f))}</textarea>
       ${warns.length ? `<ul class="warn">${warns.map(w => `<li>⚠ ${esc(w)}</li>`).join('')}</ul>` : ''}
@@ -481,6 +481,12 @@ async function save(row, sameText) {
     const d = await api('i18n_save', { code: cur.code, key: f.key, text });
     cur.fields[i] = { ...d.field, group: f.group };
     Object.assign(overview.languages.find(x => x.code === cur.code) || {}, d.stats);
+    if (d.memory) {
+      // Andra fält med exakt samma text fick förslag: hämta om listan så att de syns.
+      await loadFields(cur.code);
+      say(`Sparat och publicerat. ${d.memory} ${d.memory === 1 ? 'annan text' : 'andra texter'} med samma ${mainLower()} fick översättningen som förslag.`);
+      return document.querySelector(`#fields .row[data-i="${i}"]`) || true;
+    }
     say(text.trim() ? 'Sparat och publicerat.' : 'Översättningen är borttagen.');
     return replaceRow(row, i);
   } catch (x) {

@@ -141,6 +141,31 @@ function i18n_active(array $fields): array {
   return i18n_split($fields)[0];
 }
 
+// ---- Återanvänd godkända översättningar ----
+// Ett fält som saknar översättning och har exakt samma källtext som ett godkänt fält (t.ex. "Personbil") får den
+// godkända översättningen som förslag (suggestion.memory = true). Bara exakt samma text, och bara om alla godkända
+// översättningar av den texten är likadana. Ett avvisat förslag kommer inte tillbaka (noMemory = källtexten).
+
+function i18n_memory_fill(array $active, array $tr): array {
+  $seen = [];
+  foreach ($active as $k => $f) {
+    $t = $tr[$k] ?? null;
+    if (isset($t['text']) && ($t['source'] ?? null) === $f['source']) $seen[$f['source']][$t['text']] = true;
+  }
+  $n = 0;
+  foreach ($active as $k => $f) {
+    $t = $tr[$k] ?? [];
+    if (isset($t['text']) || isset($t['suggestion']) || ($t['noMemory'] ?? null) === $f['source']) continue;
+    $opts = array_keys($seen[$f['source']] ?? []);
+    if (count($opts) !== 1) continue;
+    $t['suggestion'] = ['text' => (string)$opts[0], 'source' => $f['source'], 'at' => date('c'), 'by' => current_user(),
+      'batch' => '', 'warnings' => [], 'memory' => true];
+    $tr[$k] = $t;
+    $n++;
+  }
+  return [$tr, $n];
+}
+
 // Samma lista, t.ex. links.0.label och links.3.label (index → #).
 function i18n_pattern(string $key): string {
   return preg_replace('/(^|\.)\d+(?=\.|$)/', '$1#', $key);
@@ -484,7 +509,7 @@ function i18n_field_out(string $key, array $f, ?array $t, string $group): array 
   return ['key' => $key, 'path' => $f['path'], 'group' => $group, 'source' => $f['source'], 'text' => $t['text'] ?? '',
     'status' => $status, 'oldSource' => $status === 'changed' ? $t['source'] : null, 'by' => $t['by'] ?? null, 'at' => $t['at'] ?? null,
     'suggestion' => $s ? ['text' => $s['text'], 'at' => $s['at'], 'by' => $s['by'], 'warnings' => $s['warnings'] ?? [],
-      'sourceChanged' => $s['source'] !== $f['source']] : null];
+      'sourceChanged' => $s['source'] !== $f['source'], 'memory' => !empty($s['memory'])] : null];
 }
 
 return [
@@ -501,9 +526,15 @@ return [
       $lang = i18n_lang($code);
       $site = load_site()['site'];
       $all = i18n_fields($site);
-      [$tr] = i18n_reconcile($all, i18n_translations($code));
       [$groups, $of] = i18n_groups($all, $site);
       [$fields, $skipped] = i18n_split($all);
+      // Fyll i förslag från godkända översättningar av samma text (sparas, så att de kan godkännas).
+      $tr = with_site_lock(function () use ($code, $all, $fields): array {
+        [$tr] = i18n_reconcile($all, i18n_translations($code));
+        [$tr, $n] = i18n_memory_fill($fields, $tr);
+        if ($n) i18n_write(i18n_file($code), $tr);
+        return $tr;
+      });
       $out = [];
       foreach ($fields as $k => $f) $out[] = i18n_field_out($k, $f, $tr[$k] ?? null, $of[$k]);
       $skip = [];
@@ -538,9 +569,16 @@ return [
       $scope = (string)($in['scope'] ?? 'todo');
       $site = load_site()['site'];
       $all = i18n_fields($site);
-      [$tr] = i18n_reconcile($all, i18n_translations($code));
       [$groups, $of] = i18n_groups($all, $site);
       $fields = i18n_active($all);
+      $tr = with_site_lock(function () use ($code, $all, $fields): array {
+        [$tr] = i18n_reconcile($all, i18n_translations($code));
+        [$tr, $n] = i18n_memory_fill($fields, $tr);
+        if ($n) i18n_write(i18n_file($code), $tr);
+        return $tr;
+      });
+      // Texter som redan har fått ett förslag från en godkänd översättning av samma text skickas inte till AI:n.
+      $fields = array_filter($fields, fn($k) => empty($tr[$k]['suggestion']['memory']), ARRAY_FILTER_USE_KEY);
       $keys = array_values(array_filter(array_keys($fields), fn($k) => match (true) {
         $scope === 'todo' => i18n_status($tr[$k] ?? null, $fields[$k]['source']) !== 'done',
         $scope === 'changed' => i18n_status($tr[$k] ?? null, $fields[$k]['source']) === 'changed',
@@ -600,6 +638,8 @@ return [
         $tr = i18n_translations($code);
         foreach ($keys as $k) {
           if (!isset($tr[$k]['suggestion'])) continue;
+          // Ett avvisat förslag från samma text som redan är godkänd ska inte komma tillbaka (så länge källtexten är densamma).
+          if (!empty($tr[$k]['suggestion']['memory'])) $tr[$k]['noMemory'] = $tr[$k]['suggestion']['source'];
           unset($tr[$k]['suggestion']);
           if (!$tr[$k]) unset($tr[$k]);
         }
@@ -625,6 +665,7 @@ return [
           $tr[$k] = ['text' => $s['text'], 'source' => $s['source'], 'status' => 'approved', 'by' => current_user(), 'at' => date('c')];
           $n++;
         }
+        [$tr] = i18n_memory_fill($fields, $tr);
         i18n_backup($code);
         i18n_write(i18n_file($code), $tr);
         i18n_publish_all($site);
@@ -688,10 +729,12 @@ return [
           i18n_check_text($text);
           $tr[$key] = ['text' => $text, 'source' => $f['source'], 'status' => 'approved', 'by' => current_user(), 'at' => date('c')];
         }
+        // Andra fält med exakt samma text får den nya översättningen som förslag.
+        [$tr, $memory] = i18n_memory_fill($fields, $tr);
         i18n_backup($code);
         i18n_write(i18n_file($code), $tr);
         i18n_publish_all($site);
-        return ['field' => i18n_field_out($key, $f, $tr[$key] ?? null, ''), 'stats' => i18n_stats($fields, $tr)];
+        return ['field' => i18n_field_out($key, $f, $tr[$key] ?? null, ''), 'stats' => i18n_stats($fields, $tr), 'memory' => $memory];
       });
       json_out(['ok' => true] + $field);
     }
