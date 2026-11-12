@@ -10,14 +10,114 @@
     "button": "Skicka förfrågan",
     "success": "Tack! Vi har fått din förfrågan och svarar så snart vi kan.",
     "fields": [
-      { "id": "namn", "type": "text", "label": "Namn", "required": true },
-      { "id": "epost", "type": "email", "label": "E-post", "required": true },
-      { "id": "telefon", "type": "tel", "label": "Telefon" },
-      { "id": "typ", "type": "select", "label": "Vad gäller det?", "required": true,
-        "options": ["Stuga", "Campingplats eller ställplats", "Bastuflotten", "Grupp, förening eller företag", "Annat"] },
-      { "id": "datum", "type": "text", "label": "Datum", "placeholder": "Till exempel 4–7 juli", "help": "När vill du komma, och hur länge?" },
-      { "id": "antal", "type": "text", "label": "Antal personer" },
-      { "id": "meddelande", "type": "textarea", "label": "Meddelande", "required": true }
+      {
+        "id": "namn",
+        "type": "text",
+        "label": "Namn",
+        "required": true
+      },
+      {
+        "id": "epost",
+        "type": "email",
+        "label": "E-post",
+        "required": true
+      },
+      {
+        "id": "telefon",
+        "type": "tel",
+        "label": "Telefon"
+      },
+      {
+        "id": "typ",
+        "type": "select",
+        "label": "Vad gäller det?",
+        "required": true,
+        "options": [
+          "Stuga",
+          "Campingplats eller ställplats",
+          "Bastuflotten",
+          "Grupp, förening eller företag",
+          "Annat"
+        ]
+      },
+      {
+        "id": "datum",
+        "type": "text",
+        "label": "Datum",
+        "placeholder": "Till exempel 4–7 juli",
+        "help": "När vill du komma, och hur länge?"
+      },
+      {
+        "id": "antal",
+        "type": "text",
+        "label": "Antal personer"
+      },
+      {
+        "id": "meddelande",
+        "type": "textarea",
+        "label": "Meddelande",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "felanmalan",
+    "title": "Felanmälan",
+    "active": true,
+    "page": "kontakt.php",
+    "intro": "Är något trasigt i din stuga, på din plats eller i servicehuset? Berätta, så åtgärdar vi det så snart vi kan. Vid akuta fel, till exempel vattenläcka eller strömavbrott, ring receptionen direkt.",
+    "recipients": [],
+    "subject": "Felanmälan: {var}",
+    "button": "Skicka felanmälan",
+    "success": "Tack! Vi har fått din felanmälan och tittar på det så snart vi kan.",
+    "fields": [
+      {
+        "id": "namn",
+        "type": "text",
+        "label": "Namn",
+        "required": true
+      },
+      {
+        "id": "telefon",
+        "type": "tel",
+        "label": "Telefon",
+        "required": true,
+        "help": "Så att vi kan nå dig om vi har frågor."
+      },
+      {
+        "id": "var",
+        "type": "text",
+        "label": "Stuga eller plats",
+        "required": true,
+        "placeholder": "Till exempel stuga 34 eller plats B12"
+      },
+      {
+        "id": "vad",
+        "type": "select",
+        "label": "Vad gäller det?",
+        "required": true,
+        "options": [
+          "El",
+          "Vatten eller avlopp",
+          "Värme eller kyla",
+          "Wifi",
+          "Städning",
+          "Servicehuset",
+          "Annat"
+        ]
+      },
+      {
+        "id": "beskrivning",
+        "type": "textarea",
+        "label": "Beskriv felet",
+        "required": true
+      },
+      {
+        "id": "bild",
+        "type": "image",
+        "label": "Bild",
+        "help": "Ta gärna en bild av felet."
+      }
     ]
   }
 ]

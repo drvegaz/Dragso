@@ -71,7 +71,8 @@ därifrån. Ny sida: lägg till filen + `pages.<namn>` i site.json + raderna i b
   från andra företag. Lägg inte tillbaka externa typsnitt, statistik eller inbäddningar utan att ändra den sidan.
 - `.htaccess`: www + HTTPS, 16 regler som skickar dagens 88 WordPress-adresser vidare (301), `/sitemap.xml` →
   `sitemap.php`, språk och sidor utan `.php`. `router.php` gör inte omdirigeringarna (bara Apache).
-- Formulär: modulen `formular`, `cms/site/formular-start.json` = "Skicka en förfrågan" på kontakt.php, utan mottagare
+- Formulär: modulen `formular`, `cms/site/formular-start.json` = "Skicka en förfrågan" och "Felanmälan" (med bild)
+  på kontakt.php, utan mottagare
   (inskick sparas bara i CMS:et tills ägaren valt e-post). Bara på svenska – formulärens texter kan inte översättas än
   (steg 5 i PLAN-sprak.md); den engelska kontaktsidan hänvisar till e-post. I exporten (Vercel) går det inte att skicka.
 - Tyska är tillagd lokalt men dold och oöversatt (5 instruktionsdelar à ca 22 000 tecken).

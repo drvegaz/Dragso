@@ -48,7 +48,17 @@ if ($withForm) {
     </div>
   </div>
 
-  <div class="band band-alt">
+  <?php if ($withForm && ($fel = form_get('felanmalan')) && $fel['page'] === 'kontakt.php'): ?>
+  <div class="band band-alt" id="felanmalan">
+    <div class="wrap form-wrap">
+      <h2><?= h($fel['title']) ?></h2>
+      <?php if ($fel['intro'] !== ''): ?><p class="lead"><?= nl2br(h($fel['intro'])) ?> <a class="num" href="<?= h(dr_tel((string)dr_get('contact.phone'))) ?>"><?= dr_t('contact.phone') ?></a></p><?php endif; ?>
+      <?= cms_form_html('felanmalan', ['button_class' => 'btn btn-boka', 'cms_path' => '/cms/']) ?>
+    </div>
+  </div>
+  <?php endif; ?>
+
+  <div class="band">
     <div class="wrap two">
       <div class="prose">
         <?= dr_text("$p.restaurant.title", 'h2') ?>
