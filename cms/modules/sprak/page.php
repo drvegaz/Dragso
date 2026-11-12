@@ -661,7 +661,8 @@ $('aiCopy').onclick = async () => {
       $('aiParts').innerHTML = ok ? `<p class="done-copy">✓ Instruktionen är kopierad (${parts[0].count} texter). Klistra in den i en ny chatt.</p>` : '';
       if (!ok) showManual(parts[0].prompt);
     } else {
-      $('aiParts').innerHTML = `<p class="${ok ? 'done-copy' : 'hint'}">${ok ? '✓ Del 1 av ' + parts.length + ' är kopierad. ' : ''}Det är många texter, så instruktionen är uppdelad i ${parts.length} delar. Klistra in en del i taget, gärna i en ny chatt för varje, och läs in varje svar innan du kopierar nästa.</p>` + partButtons(new Set(ok ? [0] : []));
+      $('aiParts').innerHTML = `<p class="hint">Det är många texter, så instruktionen är uppdelad i ${parts.length} delar. Klistra in en del i taget, gärna i en ny chatt för varje, och läs in varje svar innan du kopierar nästa.</p>`
+        + `<p id="aiMsg" class="done-copy"${ok ? '' : ' hidden'}>✓ Del 1 av ${parts.length} är kopierad (${parts[0].count} texter).</p>` + partButtons(new Set(ok ? [0] : []));
       if (!ok) showManual(parts[0].prompt, 'del 1');
     }
   } catch (x) { $('aiParts').innerHTML = ''; say(x.message, true); }
@@ -674,6 +675,8 @@ $('aiParts').addEventListener('click', async (e) => {
   if (await copyText(parts[i].prompt)) {
     b.textContent = '✓ Del ' + (i + 1) + ' kopierad (' + parts[i].count + ' texter)';
     b.classList.remove('pri');
+    const m = $('aiMsg');
+    if (m) { m.hidden = false; m.textContent = `✓ Del ${i + 1} av ${parts.length} är kopierad (${parts[i].count} texter). Klistra in den i en ny chatt och läs in svaret.`; }
   } else showManual(parts[i].prompt, 'del ' + (i + 1));
 });
 

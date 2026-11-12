@@ -464,7 +464,25 @@ function i18n_parse_answer(string $raw): array {
   $json = substr($body, $a, $b - $a + 1);
   $data = json_decode($json, true);
   // Markdown kan också ha lagt "\" före tecken som _ * [ ], vilket inte är giltig JSON.
-  if (!is_array($data)) $data = json_decode(preg_replace('/\\\\([_*\[\]()#+\-.!`>~|])/', '$1', $json), true);
+  $fixed = preg_replace('/\\\\([_*\[\]()#+\-.!`>~|])/', '$1', $json);
+  if (!is_array($data)) $data = json_decode($fixed, true);
+  // Kommatecken efter sista texten ({"t1": "…",}) är vanligt hos AI men inte giltig JSON.
+  if (!is_array($data)) $data = json_decode(preg_replace('/,(\s*[}\]])/', '$1', $fixed), true);
+  // Sista utvägen: läs ut "batch" och varje "tN": "…" för sig (t.ex. vid en radbrytning mitt i en text,
+  // eller något annat som gör svaret till ogiltig JSON).
+  if (!is_array($data) || !is_array($data['texts'] ?? null)) {
+    if (preg_match('/"batch"\s*:\s*"([^"]+)"/', $fixed, $bm)
+      && preg_match_all('/"(t\d+)"\s*:\s*"((?:[^"\\\\]|\\\\.)*)"/su', $fixed, $m, PREG_SET_ORDER)) {
+      $texts = [];
+      foreach ($m as [, $id, $v]) {
+        $d = json_decode('"' . str_replace(["\r", "\n", "\t"], ['', '\n', '\t'], $v) . '"');
+        $texts[$id] = is_string($d) ? $d : stripcslashes($v);
+      }
+      preg_match('/"lang"\s*:\s*"([a-z]{2})"/', $fixed, $lm);
+      $data = ['batch' => $bm[1], 'lang' => $lm[1] ?? null, 'texts' => $texts];
+      $notes[] = 'Svaret var inte helt giltig JSON, så texterna lästes ut en och en (' . count($texts) . ' st). Kontrollera att alla kom med.';
+    }
+  }
   if (!is_array($data) || !is_array($data['texts'] ?? null))
     throw new InvalidArgumentException('Svaret gick inte att läsa. Kontrollera att du har kopierat hela svaret, eller be AI:n svara igen med bara JSON.');
   return [$data, $notes];
