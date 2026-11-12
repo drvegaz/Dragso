@@ -99,6 +99,48 @@ function i18n_status(?array $t, string $source): string {
   return $t['source'] === $source ? 'done' : 'changed';
 }
 
+// ---- Översätt aldrig ----
+// Fält som ska vara likadana på alla språk: de räknas inte, skickas inte till AI:n och visas alltid på huvudspråket.
+// cms/storage/i18n/oversatt-aldrig.json: { "<nyckel>": { skip: true|false, by, at } }. skip: true = valt av redaktören,
+// skip: false = "översätt ändå" (tar bort ett automatiskt undantag). Gäller alla språk.
+// Automatiskt: texter som bara är ett telefonnummer, en e-postadress eller en webbadress.
+
+const I18N_SKIP = I18N_DIR . '/oversatt-aldrig.json';
+
+function i18n_skip_list(): array {
+  return i18n_read(I18N_SKIP, []);
+}
+
+// Skälet till ett automatiskt undantag, eller null.
+function i18n_auto_skip(string $source): ?string {
+  $t = trim($source);
+  // Bara siffror och tecken som hör till nummer (telefonnummer, men också t.ex. datum och organisationsnummer).
+  if (preg_match('/^\+?[\d\s\-–—\/().]+$/u', $t) && preg_match_all('/\d/', $t) >= 6) return 'phone';
+  if (filter_var($t, FILTER_VALIDATE_EMAIL)) return 'email';
+  if (preg_match('#^(https?://|www\.)\S+$#i', $t)) return 'url';
+  return null;
+}
+
+// [fält som översätts, undantagna fält => ['reason' => manual|phone|email|url, 'by', 'at']]
+function i18n_split(array $fields): array {
+  $list = i18n_skip_list();
+  $active = [];
+  $skipped = [];
+  foreach ($fields as $k => $f) {
+    $manual = $list[$k]['skip'] ?? null;
+    $auto = $manual === null ? i18n_auto_skip($f['source']) : null;
+    if ($manual === true) $skipped[$k] = ['reason' => 'manual', 'by' => $list[$k]['by'] ?? null, 'at' => $list[$k]['at'] ?? null];
+    elseif ($auto) $skipped[$k] = ['reason' => $auto, 'by' => null, 'at' => null];
+    else $active[$k] = $f;
+  }
+  return [$active, $skipped];
+}
+
+// Bara de fält som översätts.
+function i18n_active(array $fields): array {
+  return i18n_split($fields)[0];
+}
+
 // Samma lista, t.ex. links.0.label och links.3.label (index → #).
 function i18n_pattern(string $key): string {
   return preg_replace('/(^|\.)\d+(?=\.|$)/', '$1#', $key);
@@ -219,8 +261,9 @@ function i18n_publish_all(array $site): void {
     if ($moved) i18n_write(i18n_file($code), $tr);
     if (empty($l['published'])) { i18n_unpublish($code); continue; }
     $out = $site;
+    $active = i18n_active($fields);   // undantagna fält visas alltid på huvudspråket
     foreach ($tr as $k => $t) {
-      if (($t['status'] ?? '') === 'approved' && isset($fields[$k])) i18n_set($out, $fields[$k]['path'], (string)$t['text']);
+      if (($t['status'] ?? '') === 'approved' && isset($active[$k])) i18n_set($out, $active[$k]['path'], (string)$t['text']);
     }
     atomic_write(ROOT . "/data/site.$code.json", encode_site($out));
     atomic_write(ROOT . "/data/site.$code.js", site_js($out, 'window.SITE_LANG = ' . json_encode($code) . ";\n"));
@@ -427,7 +470,7 @@ function i18n_check_suggestion(string $source, string $text, array $g, string $c
 // ---- Svar till sidan ----
 
 function i18n_overview(): array {
-  $fields = i18n_fields(load_site()['site']);
+  $fields = i18n_active(i18n_fields(load_site()['site']));
   $langs = array_map(fn($l) => $l + i18n_stats($fields, i18n_translations($l['code'])), i18n_languages());
   $taken = array_merge([i18n_main()], array_column($langs, 'code'));
   $available = [];
@@ -457,14 +500,17 @@ return [
       $code = (string)($_GET['code'] ?? '');
       $lang = i18n_lang($code);
       $site = load_site()['site'];
-      $fields = i18n_fields($site);
-      [$tr] = i18n_reconcile($fields, i18n_translations($code));
-      [$groups, $of] = i18n_groups($fields, $site);
+      $all = i18n_fields($site);
+      [$tr] = i18n_reconcile($all, i18n_translations($code));
+      [$groups, $of] = i18n_groups($all, $site);
+      [$fields, $skipped] = i18n_split($all);
       $out = [];
       foreach ($fields as $k => $f) $out[] = i18n_field_out($k, $f, $tr[$k] ?? null, $of[$k]);
+      $skip = [];
+      foreach ($skipped as $k => $s) $skip[] = ['key' => $k, 'path' => $all[$k]['path'], 'group' => $of[$k], 'source' => $all[$k]['source']] + $s;
       $g = [];
       foreach ($groups as $id => $x) $g[] = ['id' => $id] + $x;
-      json_out(['code' => $code, 'name' => $lang['name'], 'groups' => $g, 'fields' => $out] + i18n_stats($fields, $tr));
+      json_out(['code' => $code, 'name' => $lang['name'], 'groups' => $g, 'fields' => $out, 'skipped' => $skip] + i18n_stats($fields, $tr));
     }
 
     if ($action === 'i18n_glossary') {
@@ -491,9 +537,10 @@ return [
       $lang = i18n_lang($code);
       $scope = (string)($in['scope'] ?? 'todo');
       $site = load_site()['site'];
-      $fields = i18n_fields($site);
-      [$tr] = i18n_reconcile($fields, i18n_translations($code));
-      [$groups, $of] = i18n_groups($fields, $site);
+      $all = i18n_fields($site);
+      [$tr] = i18n_reconcile($all, i18n_translations($code));
+      [$groups, $of] = i18n_groups($all, $site);
+      $fields = i18n_active($all);
       $keys = array_values(array_filter(array_keys($fields), fn($k) => match (true) {
         $scope === 'todo' => i18n_status($tr[$k] ?? null, $fields[$k]['source']) !== 'done',
         $scope === 'changed' => i18n_status($tr[$k] ?? null, $fields[$k]['source']) === 'changed',
@@ -516,8 +563,9 @@ return [
       if (($data['lang'] ?? $code) !== $code) $notes[] = 'Svaret angav språket "' . $data['lang'] . '", men instruktionen gällde ' . $code . '.';
       $report = with_site_lock(function () use ($code, $batch, $data): array {
         i18n_lang($code);
-        $fields = i18n_fields(load_site()['site']);
-        [$tr] = i18n_reconcile($fields, i18n_translations($code));
+        $all = i18n_fields(load_site()['site']);
+        [$tr] = i18n_reconcile($all, i18n_translations($code));
+        $fields = i18n_active($all);   // svar på texter som har blivit "översätt aldrig" hoppas över (räknas som borta)
         $g = i18n_glossary();
         $r = ['imported' => 0, 'missing' => [], 'unknown' => [], 'gone' => 0, 'invalid' => 0, 'sourceChanged' => 0, 'warnings' => 0];
         foreach ($batch['items'] as $tid => $item) if (!array_key_exists($tid, $data['texts'])) $r['missing'][] = $tid;
@@ -567,8 +615,9 @@ return [
       $n = with_site_lock(function () use ($code, $keys): int {
         i18n_lang($code);
         $site = load_site()['site'];
-        $fields = i18n_fields($site);
-        [$tr] = i18n_reconcile($fields, i18n_translations($code));
+        $all = i18n_fields($site);
+        [$tr] = i18n_reconcile($all, i18n_translations($code));
+        $fields = i18n_active($all);
         $n = 0;
         foreach ($keys as $k) {
           $s = $tr[$k]['suggestion'] ?? null;
@@ -626,12 +675,14 @@ return [
       $field = with_site_lock(function () use ($code, $key, $text): array {
         i18n_lang($code);
         $site = load_site()['site'];
-        $fields = i18n_fields($site);
-        $f = $fields[$key] ?? null;
+        $all = i18n_fields($site);
+        $f = $all[$key] ?? null;
         if (!$f) throw new InvalidArgumentException('Texten finns inte längre på webbplatsen. Ladda om sidan.');
+        $fields = i18n_active($all);
+        if (!isset($fields[$key])) throw new InvalidArgumentException('Den här texten översätts aldrig. Tryck "Översätt ändå" först.');
         if (!str_contains($f['source'], "\n")) $text = preg_replace('/\s*\n\s*/', ' ', $text);
         $text = trim($text);
-        [$tr] = i18n_reconcile($fields, i18n_translations($code));
+        [$tr] = i18n_reconcile($all, i18n_translations($code));
         if ($text === '') unset($tr[$key]);
         else {
           i18n_check_text($text);
@@ -643,6 +694,24 @@ return [
         return ['field' => i18n_field_out($key, $f, $tr[$key] ?? null, ''), 'stats' => i18n_stats($fields, $tr)];
       });
       json_out(['ok' => true] + $field);
+    }
+
+    // "Översätt aldrig" (skip: true) eller "Översätt ändå" (skip: false) för ett fält, på alla språk.
+    if ($action === 'i18n_skip') {
+      $key = (string)($in['key'] ?? '');
+      $skip = ($in['skip'] ?? null) === true;
+      with_site_lock(function () use ($key, $skip): void {
+        $site = load_site()['site'];
+        $all = i18n_fields($site);
+        if (!isset($all[$key])) throw new InvalidArgumentException('Texten finns inte längre på webbplatsen. Ladda om sidan.');
+        $list = i18n_skip_list();
+        if ($skip) $list[$key] = ['skip' => true, 'by' => current_user(), 'at' => date('c')];
+        elseif (i18n_auto_skip($all[$key]['source'])) $list[$key] = ['skip' => false, 'by' => current_user(), 'at' => date('c')];
+        else unset($list[$key]);
+        i18n_write(I18N_SKIP, $list);
+        i18n_publish_all($site);
+      });
+      json_out(['ok' => true]);
     }
 
     json_out(['error' => 'Okänd åtgärd'], 404);

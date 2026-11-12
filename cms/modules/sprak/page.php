@@ -83,6 +83,9 @@
   .live{font-size:13px;color:#4B5563;margin:0 0 6px;white-space:pre-wrap;overflow-wrap:anywhere}
   .warn{margin:6px 0 0;padding:6px 10px;background:#FFFBEB;border:1px solid #FDE68A;font-size:13px;color:#92400E;list-style:none}
   .who{font-size:12px;color:#9CA3AF}
+  .btn.ghost{border-color:transparent;color:#6B7280;font-weight:500}
+  .btn.ghost:hover:not(:disabled){color:#1F2937;background:#F3F4F6}
+  .row.skipped .src{color:#6B7280}
   /* Ordlista */
   .gl{display:grid;gap:10px}
   .ge{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,2fr) 38px;gap:8px;align-items:start;padding:10px 0;border-top:1px solid #F3F4F6}
@@ -152,9 +155,11 @@
         <button type="button" data-f="missing" aria-pressed="false">Saknas</button>
         <button type="button" data-f="changed" aria-pressed="false">Ändrade</button>
         <button type="button" data-f="done" aria-pressed="false">Klara</button>
+        <button type="button" data-f="skipped" aria-pressed="false">Översätts aldrig</button>
       </div>
       <input type="search" id="q" placeholder="Sök i texterna" aria-label="Sök i texterna">
     </div>
+    <p class="hint" style="margin:-4px 0 0">Tryck <strong>Översätt aldrig</strong> på texter som ska se likadana ut på alla språk, t.ex. namn, adresser och användarnamn. De visas på huvudspråket, räknas inte som saknade och skickas inte till AI:n. Telefonnummer, e-post- och webbadresser hoppas över automatiskt. Allt går att ångra under <em>Översätts aldrig</em>.</p>
     <div id="fields"><p class="empty">Hämtar…</p></div>
   </section>
 
@@ -190,7 +195,8 @@ const csrf = <?= json_encode(csrf_token()) ?>;
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const $ = (id) => document.getElementById(id);
 const STATUS = { done: 'Klar', changed: 'Ändrad', missing: 'Saknas' };
-const FILTER_NAMES = { all: 'Alla', suggestion: 'Förslag', missing: 'Saknas', changed: 'Ändrade', done: 'Klara' };
+const FILTER_NAMES = { all: 'Alla', suggestion: 'Förslag', missing: 'Saknas', changed: 'Ändrade', done: 'Klara', skipped: 'Översätts aldrig' };
+const SKIP_REASON = { manual: 'Översätts aldrig', phone: 'Automatiskt: bara siffror, t.ex. ett telefonnummer', email: 'Automatiskt: e-postadress', url: 'Automatiskt: webbadress' };
 
 async function api(action, body, query = '') {
   const r = await fetch('api.php?action=' + action + query, { method: body ? 'POST' : 'GET',
@@ -343,8 +349,20 @@ function fieldHtml(f, i) {
             : '<button class="btn sm pri" type="button" data-m="save" disabled>Spara</button>'}
         ${!s && f.status === 'changed' ? '<button class="btn sm" type="button" data-m="same" title="Översättningen stämmer fortfarande">Oförändrad</button>' : ''}
         ${who}
+        <button class="btn sm ghost" type="button" data-m="skip" title="Texten ska se likadan ut på alla språk (t.ex. ett namn). Den visas på ${esc(overview.main.name.toLowerCase())} och skickas inte till AI:n. Går att ångra under Översätts aldrig.">Översätt aldrig</button>
         <a class="show" href="${esc(showUrl(f))}" target="_blank" rel="noopener">Visa på sidan ↗</a>
       </div></div></div>`;
+}
+
+// En text som översätts aldrig: visas under filtret "Översätts aldrig", med "Översätt ändå".
+function skippedHtml(s, i) {
+  const who = s.reason === 'manual' && s.by ? ` · ${esc(s.by)} ${esc((s.at || '').slice(0, 10))}` : '';
+  return `<div class="row skipped" data-s="${i}">
+    <div class="src"><span class="lbl">${esc(overview.main.name)}</span>${esc(s.source)}</div>
+    <div class="tgt"><span class="lbl">${esc(cur.name)}</span><p class="live" style="margin:0">Visas som på ${esc(overview.main.name.toLowerCase())}.</p>
+      <div class="acts"><span class="badge st-hid" style="margin:0">${esc(SKIP_REASON[s.reason] || 'Översätts aldrig')}${who}</span>
+        <button class="btn sm" type="button" data-m="unskip">Översätt ändå</button>
+        <a class="show" href="${esc(showUrl(s))}" target="_blank" rel="noopener">Visa på sidan ↗</a></div></div></div>`;
 }
 
 function matches(f, flt) {
@@ -360,7 +378,7 @@ function visible(f) {
 function renderCounts() {
   for (const b of $('filters').children) {
     const k = b.dataset.f;
-    b.textContent = FILTER_NAMES[k] + ' (' + cur.fields.filter(f => matches(f, k)).length + ')';
+    b.textContent = FILTER_NAMES[k] + ' (' + (k === 'skipped' ? (cur.skipped || []).length : cur.fields.filter(f => matches(f, k)).length) + ')';
     b.setAttribute('aria-pressed', k === filter ? 'true' : 'false');
     if (k === 'suggestion') b.hidden = !cur.fields.some(f => f.suggestion) && filter !== 'suggestion';
   }
@@ -370,6 +388,16 @@ function renderFields() {
   if (!cur) return;
   renderCounts();
   renderScope();
+  if (filter === 'skipped') {
+    const q = $('q').value.trim().toLowerCase();
+    const sk = (cur.skipped || []).map((s, i) => [s, i]).filter(([s]) => !q || s.source.toLowerCase().includes(q));
+    const html = cur.groups.map(g => {
+      const list = sk.filter(([s]) => s.group === g.id);
+      return list.length ? `<div class="group"><div class="ghead"><h2>${esc(g.title)}</h2></div>${list.map(([s, i]) => skippedHtml(s, i)).join('')}</div>` : '';
+    }).join('');
+    $('fields').innerHTML = html || '<p class="empty">Inga texter är undantagna. Tryck <strong>Översätt aldrig</strong> på en rad för att lägga till.</p>';
+    return;
+  }
   const html = cur.groups.map(g => {
     const list = cur.fields.map((f, i) => [f, i]).filter(([f]) => f.group === g.id && visible(f));
     if (!list.length) return '';
@@ -419,7 +447,7 @@ $('q').oninput = () => renderFields();
 
 function dirtyCount() {
   if (!cur) return 0;
-  return [...document.querySelectorAll('#fields .row')].filter(r => r.querySelector('textarea').value.trim() !== baseline(cur.fields[+r.dataset.i]).trim()).length;
+  return [...document.querySelectorAll('#fields .row[data-i]')].filter(r => r.querySelector('textarea').value.trim() !== baseline(cur.fields[+r.dataset.i]).trim()).length;
 }
 
 $('fields').addEventListener('input', (e) => {
@@ -503,11 +531,25 @@ async function approveAll(groupEl) {
   } catch (x) { say(x.message, true); }
 }
 
+// Översätt aldrig / Översätt ändå. Gäller fältet på alla språk.
+async function setSkip(row, skip) {
+  const f = skip ? cur.fields[+row.dataset.i] : cur.skipped[+row.dataset.s];
+  if (skip && f.text && !confirm(`Översätt aldrig? Texten visas då på ${mainLower()} på alla språk. Den översättning som finns sparas, och kommer tillbaka om du trycker Översätt ändå.`)) return;
+  row.querySelectorAll('button').forEach(b => b.disabled = true);
+  try {
+    await api('i18n_skip', { key: f.key, skip });
+    await loadFields(cur.code);
+    refreshOverview();
+    say(skip ? 'Texten översätts aldrig.' : 'Texten översätts igen.');
+  } catch (x) { say(x.message, true); row.querySelectorAll('button').forEach(b => b.disabled = false); }
+}
+
 $('fields').addEventListener('click', (e) => {
   const b = e.target.closest('button[data-m]');
   if (!b) return;
   const m = b.dataset.m;
   if (m === 'approveAll') return approveAll(b.closest('.group'));
+  if (m === 'skip' || m === 'unskip') return setSkip(b.closest('.row'), m === 'skip');
   const row = b.closest('.row');
   if (m === 'approve') approve(row);
   else if (m === 'reject') reject(row);
