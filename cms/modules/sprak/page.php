@@ -83,7 +83,10 @@
   .live{font-size:13px;color:#4B5563;margin:0 0 6px;white-space:pre-wrap;overflow-wrap:anywhere}
   .warn{margin:6px 0 0;padding:6px 10px;background:#FFFBEB;border:1px solid #FDE68A;font-size:13px;color:#92400E;list-style:none}
   .who{font-size:12px;color:#9CA3AF}
-  .btn.ghost{border-color:transparent;color:#6B7280;font-weight:500}
+  .btn.ghost{border-color:transparent;background:transparent;color:#6B7280;font-weight:500}
+  /* Färgade rader (förslag, nyss sparad, undantag): luft åt sidorna, och bakgrunden dras ut lika mycket så att texten står kvar i linje med rubriken. */
+  .row.has-sugg,.row.saved-flash,.row.skipped{padding-left:14px;padding-right:14px;margin:0 -14px}
+  .row.skipped{background:#FAFAF9}
   .btn.ghost:hover:not(:disabled){color:#1F2937;background:#F3F4F6}
   .row.skipped .src{color:#6B7280}
   /* Ordlista */
