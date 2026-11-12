@@ -16,7 +16,7 @@ return [
   'mail_from' => 'noreply@dragso.se',
   'smtp' => ['host' => '', 'port' => 587, 'user' => '', 'pass' => ''],
 
-  'modules' => ['banners', 'oppettider', 'sprak', 'formular'],
+  'modules' => ['banners', 'oppettider', 'sprak', 'formular', 'anvandare'],
   // Sidfilerna (sidväljaren i redigeringsläget och grupperna i översättningen).
   'pages' => [
     'index.php' => 'Startsida',

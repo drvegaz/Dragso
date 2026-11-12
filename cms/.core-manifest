@@ -1,4 +1,4 @@
-# cms-core 1.11.3 – installerat 2026-11-12 19:40 av sync.php. Ändra inte för hand.
+# cms-core 1.11.3 – installerat 2026-11-12 19:47 av sync.php. Ändra inte för hand.
 .htaccess
 api.php
 editor.js
@@ -7,6 +7,8 @@ hjalp.php
 index.php
 lib.php
 modules/.htaccess
+modules/anvandare/module.php
+modules/anvandare/page.php
 modules/banners/module.php
 modules/banners/page.php
 modules/formular/form.js
