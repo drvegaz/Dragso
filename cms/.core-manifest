@@ -1,4 +1,4 @@
-# cms-core 1.8.0 – installerat 2026-11-12 00:56 av sync.php. Ändra inte för hand.
+# cms-core 1.8.0 – installerat 2026-11-12 01:37 av sync.php. Ändra inte för hand.
 .htaccess
 api.php
 editor.js
@@ -9,6 +9,11 @@ lib.php
 modules/.htaccess
 modules/banners/module.php
 modules/banners/page.php
+modules/formular/form.js
+modules/formular/functions.php
+modules/formular/module.php
+modules/formular/page.php
+modules/formular/render.php
 modules/oppettider/module.php
 modules/oppettider/page.php
 modules/sprak/instruktion.txt

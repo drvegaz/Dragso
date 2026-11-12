@@ -793,6 +793,10 @@
             "shop": {
                 "title": "Kiosk och butik",
                 "text": "På sommaren har vi öppet i butiken med nybakat bröd, kaffe, glass, basvaror, grillmat och tillbehör till husvagn, husbil och tält."
+            },
+            "form": {
+                "title": "Skicka en förfrågan",
+                "text": "Skriv till oss på e-post, så svarar vi så snart vi kan."
             }
         },
         "stallplatser": {

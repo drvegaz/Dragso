@@ -2,6 +2,12 @@
 declare(strict_types=1);
 require __DIR__ . '/includes/site.php';
 $p = 'pages.kontakt';
+// Formuläret (modulen formular) finns bara på huvudspråket – formulärets texter går inte att översätta än.
+$withForm = cms_lang() === cms_main_lang();
+if ($withForm) {
+  require __DIR__ . '/cms/modules/formular/render.php';
+  cms_forms_handle();
+}
 ?><!doctype html>
 <html lang="<?= h(cms_lang()) ?>">
 <head>
@@ -27,6 +33,19 @@ $p = 'pages.kontakt';
       <?= dr_text("$p.note", 'p', ' class="aside-note"') ?>
     </div>
     <?php require __DIR__ . '/includes/partials/hours.php'; ?>
+  </div>
+
+  <div class="band" id="forfragan">
+    <div class="wrap form-wrap">
+      <?php if ($withForm && ($form = form_get('bokningsforfragan')) && $form['page'] === 'kontakt.php'): ?>
+      <h2><?= h($form['title']) ?></h2>
+      <?php if ($form['intro'] !== ''): ?><p class="lead"><?= nl2br(h($form['intro'])) ?></p><?php endif; ?>
+      <?= cms_form_html('bokningsforfragan', ['button_class' => 'btn btn-boka']) ?>
+      <?php else: ?>
+      <?= dr_text("$p.form.title", 'h2') ?>
+      <p class="lead"><?= dr_t("$p.form.text") ?> <a href="mailto:<?= dr_t('contact.email') ?>"><?= dr_t('contact.email') ?></a></p>
+      <?php endif; ?>
+    </div>
   </div>
 
   <div class="band band-alt">

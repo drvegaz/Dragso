@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bokningsforfragan",
+    "title": "Skicka en förfrågan",
+    "active": true,
+    "page": "kontakt.php",
+    "intro": "Har du frågor om boende, grupper, bastuflotten eller något annat? Skriv till oss, så svarar vi så snart vi kan. Det här är en förfrågan, inte en bokning.",
+    "recipients": [],
+    "subject": "Förfrågan via webbplatsen: {typ}",
+    "button": "Skicka förfrågan",
+    "success": "Tack! Vi har fått din förfrågan och svarar så snart vi kan.",
+    "fields": [
+      { "id": "namn", "type": "text", "label": "Namn", "required": true },
+      { "id": "epost", "type": "email", "label": "E-post", "required": true },
+      { "id": "telefon", "type": "tel", "label": "Telefon" },
+      { "id": "typ", "type": "select", "label": "Vad gäller det?", "required": true,
+        "options": ["Stuga", "Campingplats eller ställplats", "Bastuflotten", "Grupp, förening eller företag", "Annat"] },
+      { "id": "datum", "type": "text", "label": "Datum", "placeholder": "Till exempel 4–7 juli", "help": "När vill du komma, och hur länge?" },
+      { "id": "antal", "type": "text", "label": "Antal personer" },
+      { "id": "meddelande", "type": "textarea", "label": "Meddelande", "required": true }
+    ]
+  }
+]
