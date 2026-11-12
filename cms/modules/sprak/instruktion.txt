@@ -9,6 +9,7 @@ SÅ HÄR SKA DU SVARA
 
 SÅ HÄR SKA DU ÖVERSÄTTA
 - Skriv naturlig {lang_name} för en besökare på webbplatsen, inte ord för ord. {tone}
+- Finns det vedertagna termer på {lang_name} för fackord i verksamheten, till exempel hos myndigheter eller i branschen, använd dem. Använd samma ord för samma sak överallt.
 - Behåll radbrytningar (\n), siffror, priser, datum, tider, e-postadresser och webbadresser.
 - Ord inom klammerparenteser, t.ex. {pris}, fylls i av webbplatsen. Skriv dem exakt som de står och översätt dem inte.
 - Skriv telefonnummer exakt som de står, utan landsnummer och utan att ändra mellanslag eller bindestreck.

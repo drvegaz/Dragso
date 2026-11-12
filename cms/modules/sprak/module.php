@@ -484,7 +484,9 @@ function i18n_check_suggestion(string $source, string $text, array $g, string $c
   // Hela ord: "Artilleristen" ska inte träffa "Kustartilleristen".
   $word = fn(string $term, string $in, bool $ci) => (bool)preg_match('/(?<![\p{L}\p{N}])' . preg_quote($term, '/') . '(?![\p{L}\p{N}])/u' . ($ci ? 'i' : ''), $in);
   foreach ($g['entries'] as $e) {
-    if (!$word($e['term'], $source, true)) continue;
+    // Förkortningar med bara versaler (BE, MC) jämförs exakt, så att "BE" inte träffar ordet "be".
+    $acronym = $e['term'] === mb_strtoupper($e['term']) && preg_match('/\p{L}/u', $e['term']);
+    if (!$word($e['term'], $source, !$acronym)) continue;
     if ($e['type'] === 'keep' && !$word($e['term'], $text, false)) $w[] = "\"{$e['term']}\" ska inte översättas.";
     if ($e['type'] === 'fixed' && isset($e['fixed'][$code]) && mb_stripos($text, $e['fixed'][$code]) === false)
       $w[] = "\"{$e['term']}\" ska bli \"{$e['fixed'][$code]}\".";
