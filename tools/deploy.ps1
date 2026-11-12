@@ -24,7 +24,7 @@
 #   cms/site/config.server.php     som cms/site/config.php på servern, om filen finns. Gör den från
 #                                  config.exempel.php: rätt site_url och en användare med ett tillfälligt lösenord
 #                                  och 'must_change' => true. Filen ligger utanför git.
-param([switch]$Skarpt, [switch]$ForstaGangen, [ValidateSet('strato', 'onecom')][string]$Mal = 'strato')
+param([switch]$Skarpt, [switch]$ForstaGangen, [switch]$Ja, [ValidateSet('strato', 'onecom')][string]$Mal = 'strato')
 $ErrorActionPreference = 'Stop'
 
 $targets = @{
@@ -57,6 +57,10 @@ $commands = @('option batch abort', 'option confirm off', "open $($t.Session)",
   "synchronize remote $mode -criteria=either -filemask=`"| $mask`" `"$local`" `"$remote`"")
 $serverConfig = Join-Path $local 'cms\site\config.server.php'
 if ($ForstaGangen) {
+  # Mapparna finns inte på en ny server (storage/ laddas aldrig upp). mkdir ger fel om de redan finns, därför continue.
+  $r = $remote.TrimEnd('/')
+  $commands += @('option batch continue', "mkdir `"$r/cms/storage`"", "mkdir `"$r/cms/storage/i18n`"", 'option batch abort')
+  $commands += "put `"$local\cms\storage\.htaccess`" `"$r/cms/storage/.htaccess`""   # skyddet: Require all denied
   $commands += "synchronize remote -criteria=either `"$local\cms\storage\i18n`" `"$($remote.TrimEnd('/'))/cms/storage/i18n`""
   if (Test-Path $serverConfig) { $commands += "put `"$serverConfig`" `"$($remote.TrimEnd('/'))/cms/site/config.php`"" }
 }
@@ -67,7 +71,7 @@ Write-Host ($(if ($ForstaGangen) { 'Första uppladdningen, med startinnehåll, �
   elseif ($Skarpt) { 'Laddar upp …' } else { 'Förhandsvisning – inget laddas upp. Kör med -Skarpt för att ladda upp.' })) -ForegroundColor Cyan
 if ($ForstaGangen) {
   if (-not (Test-Path $serverConfig)) { Write-Host 'OBS: cms/site/config.server.php saknas – då finns ingen config.php på servern och CMS:et startar inte.' -ForegroundColor Yellow }
-  if ((Read-Host 'Det här skriver över data/site.json, översättningarna och config.php på servern. Skriv JA för att fortsätta') -ne 'JA') { return }
+  if (-not $Ja -and (Read-Host 'Det här skriver över data/site.json, översättningarna och config.php på servern. Skriv JA för att fortsätta') -ne 'JA') { return }
 }
 
 # Kommandona går via en skriptfil, så att citattecknen i filmasken kommer fram oförändrade till WinSCP.
