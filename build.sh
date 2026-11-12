@@ -1,10 +1,12 @@
 #!/bin/sh
-# Bygger public/ för Vercel av design/index.html.
-# Sidan saknar <!doctype>/<head> (artifact-format), så de läggs till här.
+# Bygger public/ för Vercel:
+#   /            den statiska exporten av sajten (export/, görs med: php tools/export.php)
+#   /forslag/    designförslaget (design/index.html, i artifact-format utan <head>, så det läggs till här)
 set -e
 rm -rf public
-mkdir -p public
-cp -r design/img public/img
+mkdir -p public/forslag
+cp -r export/. public/
+cp -r design/img public/forslag/img
 {
   printf '%s\n' '<!doctype html>' '<html lang="sv">' '<head>' \
     '<meta charset="utf-8">' \
@@ -14,5 +16,5 @@ cp -r design/img public/img
     '</head>' '<body>'
   cat design/index.html
   printf '%s\n' '</body>' '</html>'
-} > public/index.html
+} > public/forslag/index.html
 echo "public/ klar"

@@ -9,7 +9,7 @@ require_once __DIR__ . '/../cms/modules/sprak/lang.php';
 
 const DR_BOOKING_URL = 'https://boka.dragso.se/';
 // Sidor som finns som egna filer. Länkar till andra sidor (t.ex. aktiviteter) visas, men går ingenstans än.
-const DR_PAGES = ['', 'boende', 'orlogsbyn', 'camping'];
+const DR_PAGES = ['', 'boende', 'orlogsbyn', 'camping', 'aktiviteter', 'hitta-hit', 'kontakt'];
 
 function dr_site(): array {
   return cms_site();
@@ -71,6 +71,20 @@ function dr_tel(string $phone): string {
 // Ersätter {telefon} i en text med telefonnumret.
 function dr_fill(string $escaped): string {
   return str_replace('{telefon}', '<a href="' . h(dr_tel((string)dr_get('contact.phone'))) . '">' . dr_t('contact.phone') . '</a>', $escaped);
+}
+
+// Rader [[rubrik, värde], …] som definitionslista, t.ex. priser och tider.
+function dr_rows(string $path, string $class = 'terms'): string {
+  $out = '';
+  foreach ((array)dr_get($path) as $i => $r) $out .= '<div>' . dr_text("$path.$i.0", 'dt') . dr_text("$path.$i.1", 'dd') . '</div>';
+  return "<dl class=\"$class\">$out</dl>";
+}
+
+// Lista med texter ["…", "…"].
+function dr_list(string $path, string $class = 'checks'): string {
+  $out = '';
+  foreach ((array)dr_get($path) as $i => $x) $out .= dr_text("$path.$i", 'li');
+  return "<ul class=\"$class\">$out</ul>";
 }
 
 // Banners (modulen banners) som är aktiva nu.

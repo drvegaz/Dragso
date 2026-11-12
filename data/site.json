@@ -22,7 +22,13 @@
         "information": "Information",
         "stayWithUs": "Bo hos oss",
         "privacy": "Integritet och cookies",
-        "reception": "Receptionen"
+        "reception": "Receptionen",
+        "bookedDayBefore": "Bokas dagen innan",
+        "openMap": "Öppna i Google Maps",
+        "included": "Det här ingår",
+        "call": "Ring",
+        "emailLabel": "E-post",
+        "addressLabel": "Adress"
     },
     "nav": [
         {
@@ -550,6 +556,234 @@
                 "text": "Tält bokas på samma sätt som husvagn, och du väljer zon i bokningen.",
                 "image": "assets/img/brygga.jpg",
                 "imageAlt": "Person på en brygga ute vid klipporna"
+            }
+        },
+        "aktiviteter": {
+            "title": "Aktiviteter",
+            "summary": "Uthyrning av kajak, SUP, kanot, båt och cykel, bastuflotte med badtunna, äventyrsminigolf, biljardgolf och Kids Club på Dragsö i Karlskrona.",
+            "lead": "Paddla ut i skärgården, värm dig i bastun på flotten eller spela minigolf genom världsarvet. Det mesta hyr och bokar du i receptionen.",
+            "summer": {
+                "eyebrow": "Sommar",
+                "title": "Sommarprogram och Kids Club",
+                "text": "På sommaren fyller vi programmet med aktiviteter för hela familjen: musikquiz, karaoke, allsång, spökjakt, after beach for kids och mycket mer. Programmet för veckan finns i receptionen.",
+                "note": "Kids Club två dagar i veckan under högsommaren, med ett pass för barn under 7 år och ett för barn från 7 år. Passar barn 4–12 år, men alla som vill får vara med.",
+                "image": "assets/img/kajaker.jpg",
+                "imageAlt": "Kajaker på fjärden en solig dag"
+            },
+            "rent": {
+                "eyebrow": "Uthyrning",
+                "title": "Hyr kajak, SUP, båt eller cykel",
+                "lead": "Flytväst och paddel ingår, och sjökort om du vill. Hyr i receptionen.",
+                "list": [
+                    {
+                        "name": "Kajak, singel",
+                        "value": "90 kr/timme · 300 kr/dag",
+                        "note": ""
+                    },
+                    {
+                        "name": "Kajak, duo",
+                        "value": "130 kr/timme · 400 kr/dag",
+                        "note": ""
+                    },
+                    {
+                        "name": "Havskajak, singel",
+                        "value": "från 350 kr",
+                        "note": "Bokas dagen innan"
+                    },
+                    {
+                        "name": "SUP",
+                        "value": "125 kr/timme · 350 kr/dag",
+                        "note": ""
+                    },
+                    {
+                        "name": "Kanot",
+                        "value": "90 kr/timme · 300 kr/dag",
+                        "note": ""
+                    },
+                    {
+                        "name": "Trampbåt",
+                        "value": "från 350 kr",
+                        "note": ""
+                    },
+                    {
+                        "name": "Vattencykel",
+                        "value": "från 150 kr",
+                        "note": ""
+                    },
+                    {
+                        "name": "Motorbåt",
+                        "value": "1 390–2 230 kr",
+                        "note": "Aluminiumbåt upp till 50 hk. Bokas dagen innan."
+                    },
+                    {
+                        "name": "Cykel",
+                        "value": "100 kr/4 timmar · 150 kr/dag",
+                        "note": "Med pakethållare och korg."
+                    }
+                ]
+            },
+            "sauna": {
+                "eyebrow": "Bastuflotten",
+                "title": "Vedeldad bastu och badtunna på vattnet",
+                "text": "Hyr bastuflotten med familj, vänner eller jobbet. Den ligger vid bryggan på Dragsö, med parkering nära, och går att boka året runt för upp till 11 personer.",
+                "rows": [
+                    [
+                        "3 timmar",
+                        "2 800 kr"
+                    ],
+                    [
+                        "4 timmar",
+                        "3 200 kr"
+                    ],
+                    [
+                        "Heldag, 09:00–21:00",
+                        "6 000 kr"
+                    ]
+                ],
+                "list": [
+                    "Badrock, tofflor och handduk",
+                    "Bastu och badtunna varma när ni kommer",
+                    "Ved",
+                    "Isvatten",
+                    "Dusch och WC i servicehuset"
+                ],
+                "note": "Första tiden från 13:00. Charkbricka och ostbricka går att beställa till flotten.",
+                "image": "assets/img/badtunna.jpg",
+                "imageAlt": "Badtunna på bastuflotten i solnedgång"
+            },
+            "golf": {
+                "eyebrow": "Minigolf",
+                "title": "Äventyrsminigolf och biljardgolf",
+                "text": "Äventyrsminigolfen är Karlskronas världsarv i miniatyr: 18 hål förbi Kungsholms fort, Repslagarbanan och Grevagården, med Rosenbom och Karl XI. Biljardgolf är en golfbana i ståhöjd som spelas med biljardkö, också 18 hål.",
+                "rows": [
+                    [
+                        "Vuxna och barn från 12 år",
+                        "70 kr"
+                    ],
+                    [
+                        "Barn under 12 år",
+                        "50 kr"
+                    ],
+                    [
+                        "Båda banorna, barn / vuxen",
+                        "100 kr / 130 kr"
+                    ]
+                ],
+                "note": "Är ni 15 eller fler, ring och boka. Grupper över 20 personer får paketpris.",
+                "image": "assets/img/minigolf.jpg",
+                "imageAlt": "Äventyrsminigolf med modeller av Karlskronas byggnader"
+            },
+            "terrace": {
+                "eyebrow": "Terrassen",
+                "title": "Shuffleboard, dart och beer pong",
+                "text": "Restaurang Havsvikens terrass ligger vid Dragsös stora badplats. Spela och ät något från restaurangen eller Beach Loungen.",
+                "rows": [
+                    [
+                        "Shuffleboard, 55 minuter per bana",
+                        "295 kr"
+                    ],
+                    [
+                        "Dart, 55 minuter",
+                        "100 kr"
+                    ],
+                    [
+                        "Beer pong, 55 minuter",
+                        "100 kr"
+                    ]
+                ],
+                "note": "Bokas hela timmar hos Restaurang Havsviken, 0733-777 670.",
+                "image": "assets/img/shuffleboard.jpg",
+                "imageAlt": "Shuffleboard på terrassen"
+            }
+        },
+        "hitta-hit": {
+            "title": "Hitta hit",
+            "summary": "Vägen till Dragsö Camping i Karlskrona med bil, cykel eller båt, och det du behöver veta om in- och utcheckning.",
+            "lead": "Dragsö ligger tre kilometer från Karlskronas centrum, med bro från fastlandet. Hit kommer du med bil, till fots, på cykel eller med skärgårdsbåten.",
+            "ways": {
+                "title": "Så kommer du hit",
+                "rows": [
+                    [
+                        "Bil",
+                        "Över bron från Karlskrona. Parkera i incheckningsfickan till höger när du kommer, och kör inte fram till bommen – det är den enda infarten."
+                    ],
+                    [
+                        "Gå & cykla",
+                        "Asfalterad gång- och cykelväg hela vägen in till stan, cirka 20 minuter till fots."
+                    ],
+                    [
+                        "Båt",
+                        "Skärgårdsbåtarna går mellan Dragsö och centrum under sommaren, på uppdrag av Blekingetrafiken."
+                    ]
+                ]
+            },
+            "arrival": {
+                "eyebrow": "Inför ankomst",
+                "title": "Incheckning och utcheckning",
+                "rows": [
+                    [
+                        "Incheckning",
+                        "från 15:00"
+                    ],
+                    [
+                        "Utcheckning, campingplats",
+                        "13:00"
+                    ],
+                    [
+                        "Utcheckning, stuga och rum",
+                        "12:00"
+                    ],
+                    [
+                        "Utcheckning med beställd slutstädning",
+                        "10:00"
+                    ]
+                ],
+                "list": [
+                    "Vill du komma tidigare? Ring samma dag, så ser vi om det går.",
+                    "Kommer du sent? Hör av dig i förväg om du kommer efter att receptionen har stängt.",
+                    "Har du campingplats, ha Camping Key Europe, Camping-ID eller legitimation redo.",
+                    "Checka ut i receptionen innan du flyttar fordonet, så blir det ingen kö."
+                ],
+                "image": "assets/img/camping-falt.jpg",
+                "imageAlt": "Husvagnar och tält på gräset en solig dag"
+            },
+            "around": {
+                "eyebrow": "I närheten",
+                "title": "Utflykter från Dragsö",
+                "list": [
+                    {
+                        "name": "Karlskrona",
+                        "text": "Världsarvsstaden med Stortorget, Marinmuseum och Kungsholms fort, 20 minuter till fots."
+                    },
+                    {
+                        "name": "ARK56",
+                        "text": "Leder i Blekinge Arkipelag för cykel, vandring, kajak och båt, med en app som visar vägen."
+                    },
+                    {
+                        "name": "Hittaut",
+                        "text": "Karta eller app med kontroller att leta upp på promenaden, cykelturen eller löprundan."
+                    },
+                    {
+                        "name": "Wämöparken",
+                        "text": "Park med minizoo och promenadstigar en bit utanför Karlskrona."
+                    }
+                ]
+            }
+        },
+        "kontakt": {
+            "title": "Kontakt",
+            "summary": "Kontakta Dragsö Camping & Stugby i Karlskrona: telefon, e-post, adress och receptionens öppettider.",
+            "lead": "Ring, mejla eller kom förbi receptionen. Svarar vi inte direkt, försök igen lite senare eller lämna ett meddelande.",
+            "note": "Har du en bokning, ha bokningsnumret till hands när du hör av dig.",
+            "restaurant": {
+                "title": "Restaurang Havsviken",
+                "text": "Restaurangen ligger vid entrén med utsikt över Killingaviken, Dragsös stora badstrand. Bordsbokning och shuffleboard på terrassen:",
+                "phone": "0733-777 670",
+                "label": "Till Havsvikens webbplats"
+            },
+            "shop": {
+                "title": "Kiosk och butik",
+                "text": "På sommaren har vi öppet i butiken med nybakat bröd, kaffe, glass, basvaror, grillmat och tillbehör till husvagn, husbil och tält."
             }
         }
     },
