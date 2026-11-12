@@ -17,4 +17,17 @@ cp -r design/img public/forslag/img
   cat design/index.html
   printf '%s\n' '</body>' '</html>'
 } > public/forslag/index.html
+# /cms/: CMS:et kräver PHP och finns inte här – en kort förklaring i stället för 404.
+mkdir -p public/cms
+cat > public/cms/index.html <<'HTML'
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>Redigering – Dragsö</title>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/css/site.css"></head>
+<body><main class="wrap page-head" style="max-width:640px;padding-block:80px">
+<h1>Redigeringen finns inte här</h1>
+<p class="lead">Det här är en förhandsvisning av den nya webbplatsen. Sidorna visas som de kommer att se ut, men CMS:et (inloggning, redigering, översättning och formulär) behöver en server med PHP och fungerar först när webbplatsen ligger på sitt riktiga webbhotell.</p>
+<p><a class="btn btn-boka" href="/">Till startsidan</a></p>
+</main></body></html>
+HTML
 echo "public/ klar"
